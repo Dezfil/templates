@@ -1,0 +1,66 @@
+{
+  "formatVersion": 1,
+  "id": "living-with-volcanoes",
+  "version": 1,
+  "kind": "workflow",
+  "title": "Living with volcanoes",
+  "question": "How many people in the Philippines live within 30 km of a volcano that has erupted in recorded history?",
+  "place": "The Philippines",
+  "tags": [
+    "Analysis"
+  ],
+  "dataDate": "2023-11",
+  "sources": [
+    {
+      "name": "NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines",
+      "licence": "CC0-1.0",
+      "credit": "National Geophysical Data Center / World Data Service (NGDC/WDS): NCEI/WDS Global Significant Volcanic Eruptions Database. NOAA National Centers for Environmental Information. doi:10.7289/V5JW8BSH, accessed 2026-10-12"
+    },
+    {
+      "name": "Kontur Population: Philippines, population density for 400m H3 hexagons",
+      "licence": "CC-BY-4.0",
+      "credit": "Kontur Population, Kontur Inc., via the Humanitarian Data Exchange"
+    },
+    {
+      "name": "Natural Earth: the Philippines (1:10m countries)",
+      "licence": "LicenseRef-Natural-Earth",
+      "credit": "Made with Natural Earth"
+    }
+  ],
+  "howMade": {
+    "question": "Taal, Mayon and Pinatubo are household names: the Philippines has 49 volcanoes in NOAA's list, 18 of them with an eruption in recorded history. How many people live within 30 km of one of those 18?\n\nThe workflow keeps the 18 (a filter on NCEI's status \"Historical\"), draws 30 km around each and cuts the circles to the Philippines' land. It takes the middle of each of Kontur's population hexagons (about 400 m across) and adds up the people inside each circle with a spatial join; it counts each volcano's significant eruptions in NCEI's database and joins them on by the volcano's id. Then it merges the circles into one shape, keeps the hexagon middles inside it and adds up their people once, and a SQL step sets them against the whole country.\n\nThe answer: 11.4 million of 117.3 million people, 9.7%, live within 30 km of a volcano that has erupted in recorded history; 3.5 million of them near Taal. Someone near two volcanoes counts for each of them on the map, and once in the total. Thirty kilometres is a plain radius, not a hazard zone drawn from any volcano's history. Kontur's grid is a model built from open population and building data: an estimate for 2023, not a count.",
+    "datasets": [
+      {
+        "dataset": "volcanoes",
+        "source": "NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines",
+        "made": "The 49 volcanoes NCEI lists in the Philippines, read from its hazards service on 2026-10-12: name, location, kind, elevation, status and the last known eruption, its code put in words from NCEI's own list."
+      },
+      {
+        "dataset": "significant_eruptions",
+        "source": "NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines",
+        "made": "The 50 significant eruptions NCEI lists in the Philippines, read from its hazards service on 2026-10-12: the volcano, the date, the explosivity index and the deaths."
+      },
+      {
+        "dataset": "population_cells",
+        "source": "Kontur Population: Philippines, population density for 400m H3 hexagons",
+        "made": "All 291,941 populated H3 hexagons of the 2023-11-01 release, 117.3 million people, read from Kontur's address on HDX on 2026-10-12; turned from Web Mercator into longitude and latitude."
+      },
+      {
+        "dataset": "philippines",
+        "source": "Natural Earth: the Philippines (1:10m countries)",
+        "made": "The Philippines' outline from Natural Earth's countries (version 5.1.1), read on 2026-10-12."
+      }
+    ],
+    "styling": [
+      "The 18 volcanoes with a historical eruption as circles: area by the people within 30 km, colour by the last known eruption, from red (1964 or later) to brown (before 1500); labels give the name and the people.",
+      "The people within 30 km, summed into hexagons 2 km a side, pale yellow (a few people) to deep red (the towns) on a logarithmic scale; the land within 30 km outlined.",
+      "The other 31 volcanoes as small grey points.",
+      "Widgets: the people within 30 km of a volcano and their share of the country, from the workflow's last step; the people near each volcano; the sources.",
+      "The camera holds southern Luzon, from Pinatubo to Bulusan; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

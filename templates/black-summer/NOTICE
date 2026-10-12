@@ -1,0 +1,101 @@
+Black Summer fires (black-summer), version 1
+=============================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- NASA FIRMS: MODIS active fire detections (MCD14ML), Australia, 2019 and 2020, CC0-1.0: NASA FIRMS. MODIS Thermal Anomalies/Fire Products (MCD14ML), Giglio, doi:10.5067/FIRMS/MODIS/MCD14ML. We acknowledge the use of imagery from the NASA LANCE FIRMS (https://earthdata.nasa.gov/firms), part of the NASA Earth Science Data and Information System (ESDIS).
+- Natural Earth: New South Wales, Victoria and the territories (1:10m states and provinces), LicenseRef-Natural-Earth: Made with Natural Earth
+
+
+NASA FIRMS
+----------
+
+Dataset: fire_detections (95,392 MODIS detections, presumed vegetation
+fires, from 1 November 2019 to 31 January 2020 in New South Wales,
+Victoria, the Australian Capital Territory and the Jervis Bay Territory;
+52,865 of them rated 80 or more for confidence)
+
+Publisher: NASA's Fire Information for Resource Management System (FIRMS),
+part of LANCE and the Earth Science Data and Information System (ESDIS):
+its yearly country files of the MODIS standard-quality detections
+(MCD14ML, from Terra and Aqua; version 6.03 as the files give it), which
+FIRMS's FAQ says are "a subset of the standard quality data processed by
+the MODIS Fire Team Science Computing Facility at the University of
+Maryland". The product's citation, as its DOI gives it: Giglio, L., MODIS
+Thermal Anomalies/Fire Products, NASA LANCE FIRMS,
+doi:10.5067/FIRMS/MODIS/MCD14ML.
+https://firms.modaps.eosdis.nasa.gov/country/
+
+Licence: CC0 1.0 Universal (CC0-1.0). NASA's data use guidance: "Unless
+the content is marked with a use restriction or license, data provided
+from a NASA-led mission are licensed as Creative Commons Zero (CC0)."
+https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Credit, as FIRMS's FAQ asks: "NASA FIRMS", and its acknowledgement: "We
+acknowledge the use of imagery from the NASA LANCE FIRMS
+(https://earthdata.nasa.gov/firms), part of the NASA Earth Science Data and
+Information System (ESDIS)."
+https://www.earthdata.nasa.gov/data/tools/firms/faq
+
+Where and when: read on 2026-10-12 at 18:25:33 UTC from FIRMS's country
+files:
+
+  https://firms.modaps.eosdis.nasa.gov/data/country/modis/2019/modis_2019_Australia.csv
+  (25,021,097 bytes, SHA-256 c24edcdf1bd55862c1e7f897006bcd8d3e00f3d4115a8661f4d687137cabfb39)
+  https://firms.modaps.eosdis.nasa.gov/data/country/modis/2020/modis_2020_Australia.csv
+  (12,487,063 bytes, SHA-256 4426abfc1360897daafc066248707696aa84b5e0aba3c6f20183fe455db74176)
+
+Kept: the detections from 1 November 2019 to 31 January 2020 whose point
+lies in one of the four states and territories, of type 0 (presumed
+vegetation fire); each one's day, the overpass time in UTC, the satellite,
+the confidence, the fire radiative power, the brightness, day or night,
+the state, and its point.
+
+
+Natural Earth
+-------------
+
+Dataset: states (New South Wales, Victoria, the Australian Capital
+Territory and the Jervis Bay Territory: 4 outlines)
+
+Publisher: Natural Earth, with the support of NACIS: the 1:10m states and
+provinces (admin-1, version 5.1.1).
+https://www.naturalearthdata.com
+
+Licence: public domain, as Natural Earth's terms of use state: no
+permission is needed and crediting is not required.
+https://www.naturalearthdata.com/about/terms-of-use/
+
+Credit, the short form it suggests: Made with Natural Earth.
+
+Where and when: read on 2026-10-12 at 18:25:35 UTC from
+
+  https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_1_states_provinces.zip
+  (14,909,524 bytes, SHA-256 efc59726337323058f9446210adc96673179cd344e053666ee3d28cb58ba2b05)
+
+Kept: each of the four's name and outline.
+
+
+The workflow's results
+----------------------
+
+The template carries each workflow step's result from its run on
+2026-10-12 (results/<step id>.parquet): the confident detections, their H3
+cells, the burning cells and their middles, the cells by fire, the
+detections by fire, the hulls, the hulls on land, measured, each fire's
+fire radiative power, and the fires. They are made from both sources
+together; both are free of conditions, and the credits above go with them.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

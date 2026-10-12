@@ -1,0 +1,60 @@
+{
+  "formatVersion": 1,
+  "id": "nile",
+  "version": 1,
+  "kind": "workflow",
+  "title": "The Nile",
+  "question": "How many of Egypt's people live along the Nile, and on how much of its land?",
+  "place": "Egypt",
+  "tags": [
+    "Analysis"
+  ],
+  "dataDate": "2023-11",
+  "sources": [
+    {
+      "name": "Kontur Population: Egypt, population density for 400m H3 hexagons",
+      "licence": "CC-BY-4.0",
+      "credit": "Kontur Population, Kontur Inc., via the Humanitarian Data Exchange"
+    },
+    {
+      "name": "Natural Earth: the Nile, the Nile Delta and Egypt (1:10m)",
+      "licence": "LicenseRef-Natural-Earth",
+      "credit": "Made with Natural Earth"
+    }
+  ],
+  "howMade": {
+    "question": "Herodotus called Egypt the gift of the Nile. Away from the river and its Delta the country is desert: how many of its people live in the valley, and on how much of the land?\n\nThe workflow draws the valley as 10 km either side of the Nile and its two Delta branches (its course through Lake Nasser too), adds the Delta as Natural Earth draws it, merges them into one shape and cuts it at Egypt's border. Taking that shape away from Egypt leaves the land beyond the valley; both are measured on the ground. A filter by location keeps Kontur's population hexagons (about 400 m across) that touch the valley, a group and summarize adds up their people, and a SQL step sets both against the whole.\n\nThe answer: 92.4 million of Egypt's 112.7 million people, 81.9%, on 45,774 km², 4.6% of its land. The valley is a choice: a wider band, or the irrigated land as farmers know it, gives another number. Kontur's grid is a model built from open population and building data: an estimate for 2023, not a count.",
+    "datasets": [
+      {
+        "dataset": "population_cells",
+        "source": "Kontur Population: Egypt, population density for 400m H3 hexagons",
+        "made": "All 95,818 populated H3 hexagons of the 2023-11-01 release, 112.7 million people, read from Kontur's address on HDX on 2026-10-12; turned from Web Mercator into longitude and latitude."
+      },
+      {
+        "dataset": "nile",
+        "source": "Natural Earth: the Nile, the Nile Delta and Egypt (1:10m)",
+        "made": "The Nile's centre line in Egypt, its course through Lake Nasser, and the Rosetta and Damietta branches, from Natural Earth's rivers (version 5.0.0), cut at Egypt's border; read on 2026-10-12."
+      },
+      {
+        "dataset": "nile_delta",
+        "source": "Natural Earth: the Nile, the Nile Delta and Egypt (1:10m)",
+        "made": "The Nile Delta as Natural Earth's geographic regions draw it (version 5.0.0), read on 2026-10-12."
+      },
+      {
+        "dataset": "egypt",
+        "source": "Natural Earth: the Nile, the Nile Delta and Egypt (1:10m)",
+        "made": "Egypt's outline from Natural Earth's countries (version 5.1.1), read on 2026-10-12."
+      }
+    ],
+    "styling": [
+      "Where Egypt's people live: Kontur's hexagons summed into hexagons 4 km a side, from pale yellow (a few people) to deep red (the cities) on a logarithmic scale.",
+      "The valley the workflow drew, outlined in green; the land beyond it lightly tinted sand.",
+      "Widgets: the people in the valley, their share of Egypt's people and the valley's share of its land, from the workflow's last step; the sources.",
+      "The camera holds the whole country; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

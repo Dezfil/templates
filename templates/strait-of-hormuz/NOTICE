@@ -1,0 +1,169 @@
+Ships through the Strait of Hormuz in 2026 (strait-of-hormuz), version 2
+=========================================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- IMF PortWatch: daily transits at the Strait of Hormuz, daily port calls and the ports database, LicenseRef-IMF-Copyright-and-Usage: Sources: Kpler; UN Global Platform; IMF PortWatch (portwatch.imf.org). Commercial reuse of the IMF's data needs the IMF's permission: copyright@imf.org
+- World Bank, Global Shipping Traffic Density, commercial ships (2015 to 2021), CC-BY-4.0: World Bank, Global Shipping Traffic Density. Data source: IMF's World Seaborne Trade monitoring system (Cerdeiro, Komaromi, Liu and Saeed, 2020)
+- OpenStreetMap, traffic separation schemes in the Gulf and the Gulf of Oman, ODbL-1.0: © OpenStreetMap contributors
+- Natural Earth, marine areas (1:10m, version 5.1.0), LicenseRef-Natural-Earth: Made with Natural Earth
+
+
+IMF PortWatch
+-------------
+
+Datasets: strait_transits (the ships a day through the Strait of Hormuz,
+by ship type, 1 January 2025 to 4 October 2026: 642 days), ports (the 68
+ports PortWatch follows in the United Arab Emirates, Saudi Arabia, Qatar,
+Bahrain, Kuwait, Iraq, Iran and Oman) and port_calls (each of those ports'
+calls a day, by ship type, 1 January 2025 to 2 October 2026: 43,520 rows).
+
+Publisher: the International Monetary Fund's PortWatch, on the satellite
+AIS data of the UN Global Platform, which Kpler provides.
+https://portwatch.imf.org
+
+Licence: the IMF's copyright and usage terms, their "Special Terms for
+Statistical Data": users "may download, extract, copy, create derivative
+works, publish, distribute, and use Data obtained from IMF Sites", with
+the IMF named as the source, any material transformation stated, and
+"For any potential commercial reuse of IMF Data, email copyright@imf.org
+to request permission." PortWatch's FAQ sends questions about commercial
+redistribution of its datasets to the same address. Anyone who passes the
+data on is asked to make reasonable efforts to have their users follow
+these terms; whoever sells the data as a product of its own must say that
+the IMF gives it free of charge.
+https://www.imf.org/en/About/copyright-and-terms
+
+Credit, as PortWatch's FAQ recommends for its port and chokepoint
+activity: "Sources: Kpler; UN Global Platform; IMF PortWatch
+(portwatch.imf.org)." In the form the IMF's terms give: Source:
+International Monetary Fund, PortWatch, https://portwatch.imf.org.
+
+Transformation, stated as the terms ask: the template keeps PortWatch's
+daily counts unchanged and adds them up only on the map: the ships a day
+over 1 March to 2 October in 2025 and in 2026, each port's change between
+the two, and one row per counted transit (so the timeline counts ships).
+Each port is placed on the sea of the nearest Natural Earth marine area;
+the strait sits at PortWatch's own point for it. The counts rest on ships'
+AIS transponders: PortWatch reports GPS jamming, AIS spoofing and ships
+going dark at the strait in 2026, and possible anomalies on 27 and 28
+April 2026.
+
+Where and when: read on 2026-10-12 between 17:55:23 and 17:55:50 UTC from
+PortWatch's public ArcGIS services, one request at a time, 71 requests in
+all:
+
+  https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/PortWatch_chokepoints_database/FeatureServer/0
+  (the strait, chokepoint6: 4,233 bytes, SHA-256 f320a8d8675665b4f49095ff76cfd85726baa706160ecfd81d0be4dc4225b77b)
+  https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0
+  (its days from 2025-01-01 to 2026-10-04: 265,733 bytes, SHA-256 a2655c9178e9a125de7fe240c665bc2ec2cf0f4d02eb5db94abfc0e5f56ae042)
+  https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/PortWatch_ports_database/FeatureServer/0
+  (the eight countries' ports: 10,397 bytes, SHA-256 0dfb0e0f5c03aa5d5f2b596f45ec0f00fe07a22a208cf80d886b6367fc7e41fa)
+  https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Ports_Data/FeatureServer/0
+  (each port's days from 2025-01-01 to 2026-10-02, one request per port:
+  25,637,358 bytes in all; each answer's address, size and SHA-256 are in
+  the template's build record)
+
+Kept: the strait's ships a day, in all and by type (tanker, container,
+dry bulk, general cargo, roll-on/roll-off); each port's name, country and
+point; each port's calls a day, in all and by the same types.
+
+
+World Bank, Global Shipping Traffic Density
+-------------------------------------------
+
+Dataset: shipping_lanes (14,811 H3 cells at resolution 5, about 250 km²
+each, between 33° and 65° E and 11° and 33° N)
+
+Publisher: the World Bank, Development Data Hub, dataset 0037580, Global
+Shipping Traffic Density; the grid of commercial ships' AIS positions,
+January 2015 to February 2021, at 0.005°.
+https://datacatalog.worldbank.org/search/dataset/0037580
+
+Licence: Creative Commons Attribution 4.0 International (CC-BY-4.0), as
+the catalogue's record states.
+https://creativecommons.org/licenses/by/4.0/
+
+Credit, as the record's citation gives it: World Bank, Global Shipping
+Traffic Density. Data source: IMF's World Seaborne Trade monitoring system
+(Cerdeiro, Komaromi, Liu and Saeed, 2020).
+
+Where and when: read on 2026-10-12 at 17:56:03 UTC; of the commercial
+ships' archive
+
+  https://datacatalogfiles.worldbank.org/ddh-published/0037580/5/DR0045405/shipdensity_commercial_.zip
+  (480,353,369 bytes, last modified Thu, 27 Feb 2025 22:20:50 GMT)
+
+only the grid's own entry was read, by range: ShipDensity_Commercial1.tif
+(356,093,602 bytes deflated, SHA-256 87c1ddb30e9d9d0eacebdb4b9d5dd52679900cdf26cad78b70be26403d86343e;
+9,818,136,931 bytes inflated, its CRC-32 checked against the archive's).
+
+Kept, and changed: the positions inside the window, summed two pixels by
+two and then into the H3 cell that holds each block's middle; each cell
+with its count of positions. The map leaves out the cells with fewer than
+ten million positions in six years.
+
+
+OpenStreetMap
+-------------
+
+Dataset: separation_schemes (the 56 ways tagged as traffic separation
+lanes, boundaries, lines and zones between 47° and 60° E and 22° and
+30.5° N)
+
+Publisher: the OpenStreetMap contributors, through the Overpass API.
+https://www.openstreetmap.org
+
+Licence: Open Database License v1.0 (ODbL-1.0).
+https://www.openstreetmap.org/copyright
+https://opendatacommons.org/licenses/odbl/1-0/
+
+Credit: © OpenStreetMap contributors.
+
+Where and when: read on 2026-10-12 at 17:56:13 UTC, the data as it stood
+at 2026-10-12T00:00:00Z (the database's state 2026-10-12T17:55:06Z), from
+
+  https://overpass-api.de/api/interpreter
+  with the query
+  [out:json][timeout:120][date:"2026-10-12T00:00:00Z"];way["seamark:type"~"^separation_(lane|boundary|line|zone)$"](22,47,30.5,60);out geom tags;
+  (25,848 bytes, SHA-256 45cf950275ed5de54be50bc1b44b9742ec59b5aede16b207a67d927dd146ac66)
+
+Kept: each way's OpenStreetMap id, its seamark type and its line. The
+dataset is a derived database under the ODbL; the schemes as mapped in
+OpenStreetMap are not complete and are not for navigation.
+
+
+Natural Earth
+-------------
+
+Used, not carried: the 1:10m marine areas (version 5.1.0) name the sea
+each port lies on (the ports dataset's sea column, with the Persian Gulf
+called "The Gulf, inside the strait" and the Gulf of Masira counted with
+the Arabian Sea).
+
+Publisher: Natural Earth, with the support of NACIS.
+https://www.naturalearthdata.com
+
+Licence: public domain, as Natural Earth's terms of use state: no
+permission is needed and crediting is not required.
+https://www.naturalearthdata.com/about/terms-of-use/
+
+Credit, the short form it suggests: Made with Natural Earth.
+
+Where and when: read on 2026-10-12 at 17:56:13 UTC from
+
+  https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_marine_polys.zip
+  (940,563 bytes, SHA-256 a2d3395904c41e718e02c3ec5bc988712164c524c236fad32d95d282ca303b2a)
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
