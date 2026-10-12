@@ -1,0 +1,41 @@
+{
+  "formatVersion": 1,
+  "id": "kruger-elephants",
+  "version": 1,
+  "kind": "map",
+  "title": "Kruger's elephants and the heat",
+  "question": "How do Kruger's elephant herds move as the day heats up?",
+  "place": "Kruger National Park, South Africa",
+  "tags": ["Time", "Big data", "Widgets"],
+  "dataDate": "2009-08",
+  "sources": [
+    {
+      "name": "ThermochronTracking Elephants Kruger 2007, Movebank Data Repository (doi:10.5441/001/1.403h24q5)",
+      "licence": "CC0-1.0",
+      "credit": "Slotow R, Thaker M, Vanak AT (2019) Data from: Fine-scale tracking of ambient temperature and movement reveals shuttling behavior of elephants to water. Movebank Data Repository. https://doi.org/10.5441/001/1.403h24q5"
+    }
+  ],
+  "howMade": {
+    "question": "Elephants are the largest animals on land, and the hardest to cool: in Kruger's summer the afternoon passes 40 °C. From August 2007 to August 2009, researchers followed fourteen breeding herds with GPS collars that logged a position every half hour and the temperature around the collar. How does a herd move as the day heats up?\n\nEvery one of the 283,688 fixes is in the map, joined into each herd's track and coloured by the temperature its collar measured. The nights are blue and slow; by midday the tracks turn orange and red, and the herds walk faster: about 0.26 km an hour below 20 °C, twice that at 35 °C and above. The study behind the data found the herds shuttling to water, closest to it in the hottest hours. Follow the red stretches to the rivers, or play the timeline through the two years, the dry winters and the wet summers.",
+    "datasets": [
+      {
+        "dataset": "elephant_fixes",
+        "source": "ThermochronTracking Elephants Kruger 2007, Movebank Data Repository (doi:10.5441/001/1.403h24q5)",
+        "made": "Every GPS fix of the 14 collared herds, 283,688 fixes from 13 August 2007 to 12 August 2009, from the data package's CSV read from the Movebank Data Repository on 2026-10-12; the herd, the time in South African time, the collar's temperature and the position kept."
+      }
+    ],
+    "styling": [
+      "The tracks are built in the layer's SQL from the 283,688 fixes: each herd's track cut into stretches of one temperature band, 47,302 of them, each running on to the next stretch's first fix so the track stays unbroken; a gap of more than three hours breaks it.",
+      "Each stretch is coloured and widened by the temperature its collar measured, from blue below 20 °C to red at 35 °C and above; hotter stretches draw on top.",
+      "The temperature is the collar's own sensor in the open air around the elephant's neck, read every half hour: a relative measure of the heat the herd met, not a weather station's.",
+      "Speed is the straight-line distance from fix to fix over the time between them, so it is the least a herd walked.",
+      "A timeline docked on each stretch's start plays the two years.",
+      "Widgets: the average speed, the hours at each temperature, the kilometres by part of the day and by herd, each one filtering the tracks.",
+      "Times are South African Standard Time, two hours ahead of UTC all year."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
