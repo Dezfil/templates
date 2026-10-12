@@ -6,7 +6,7 @@ import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { DuckDBInstance } from "@duckdb/node-api";
 
-export const USER_AGENT = "dezfil-templates-build (https://github.com/Dezfil/templates)";
+export const USER_AGENT = "Dezfil-templates/1.0 (+https://dezfil.io)";
 
 export const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 
