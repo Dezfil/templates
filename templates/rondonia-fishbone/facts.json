@@ -1,0 +1,54 @@
+{
+  "formatVersion": 1,
+  "id": "rondonia-fishbone",
+  "version": 1,
+  "kind": "map",
+  "title": "Rondônia's fishbone",
+  "question": "How did roads and settlers cut Rondônia's rainforest into a fishbone, and where is it still being cleared?",
+  "place": "Rondônia, Brazil",
+  "tags": [
+    "Time",
+    "Big data",
+    "3D"
+  ],
+  "dataDate": "2025",
+  "sources": [
+    {
+      "name": "INPE PRODES, yearly deforestation increment in the Legal Amazon since 2008 (TerraBrasilis)",
+      "licence": "CC-BY-SA-4.0",
+      "credit": "INSTITUTO NACIONAL DE PESQUISAS ESPACIAIS (INPE). Amazônia Legal – Prodes (Desmatamento): Incremento anual do desmatamento (2008/2025). 2026. Disponível em: https://terrabrasilis.dpi.inpe.br/geonetwork/srv/eng/catalog.search#/metadata/a5220c18-f7fa-4e3e-b39b-feeb3ccc4830"
+    },
+    {
+      "name": "INPE PRODES, deforestation accumulated in the Legal Amazon up to 2007 (TerraBrasilis)",
+      "licence": "CC-BY-SA-4.0",
+      "credit": "INSTITUTO NACIONAL DE PESQUISAS ESPACIAIS (INPE). Amazônia Legal – Prodes (Desmatamento): Desmatamento acumulado até 2007. 2026. Disponível em: https://terrabrasilis.dpi.inpe.br/geonetwork/srv/eng/catalog.search#/metadata/415220fc-3013-4258-bd21-83014865cee5"
+    }
+  ],
+  "howMade": {
+    "question": "From the 1970s Brazil's land agency settled families in Rondônia along the BR-364 highway, on plots of forest laid out along side roads a few kilometres apart. Each family cleared its plot from the road inward, and seen from a satellite the clearings grew into a fishbone: the highway its spine, the side roads its ribs. How far has it spread, and where is the forest still falling?\n\nThe map draws INPE's own survey, PRODES, which has measured the Amazon's clearing from Landsat images every year since 1988. In earth brown, the 82,658 km² of forest cleared in Rondônia up to 2007; on top, coloured by year, the 16,917 km² cleared from 2008 to 2025, at the edges of the old fishbone and along the new roads of the north-west. Play the timeline to watch the years add up, or switch on the hexagons and tilt the map to see where the frontier moved most.",
+    "datasets": [
+      {
+        "dataset": "cleared_before_2008",
+        "source": "INPE PRODES, deforestation accumulated in the Legal Amazon up to 2007 (TerraBrasilis)",
+        "made": "PRODES's mask of forest cleared up to 2007, cut to Rondônia on TerraBrasilis's feature service and read on 2026-10-12: 11,922 polygons, 82,658 km², simplified by about 55 m."
+      },
+      {
+        "dataset": "cleared_by_year",
+        "source": "INPE PRODES, yearly deforestation increment in the Legal Amazon since 2008 (TerraBrasilis)",
+        "made": "Every clearing PRODES mapped in Rondônia from 2008 to 2025, read from TerraBrasilis's feature service on 2026-10-12: 83,388 polygons, 16,917 km², with the PRODES year, the image date and the area; simplified by about 55 m."
+      }
+    ],
+    "styling": [
+      "The forest cleared up to 2007 in one earth colour, so the fishbone reads as a whole.",
+      "The forest cleared since, every polygon PRODES mapped, coloured by its PRODES year from purple in 2008 to yellow in 2025; a PRODES year runs from August to July and is named for the July it ends in.",
+      "A timeline docked on the end of each PRODES year plays the eighteen years.",
+      "Widgets: the area cleared in the years shown, and the years that cleared most.",
+      "A third layer, off when the map opens, counts the clearings since 2008 into hexagons with 5 km sides, raised and coloured by the area cleared in each: switch it on and tilt the map.",
+      "PRODES maps clear-cuts of 6.25 hectares and more in what was primary forest; it does not see degradation, fire scars or small clearings, nor land that was never forest."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
