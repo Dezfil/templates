@@ -1,0 +1,134 @@
+Which pump? (which-pump), version 1
+===================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- John Snow, Map 1 in On the mode of communication of cholera, 2nd edition (1855), CC-PDM-1.0: After John Snow, 1855; scan: Wellcome Collection, Public Domain Mark
+- OpenStreetMap, ODbL-1.0: © OpenStreetMap contributors
+
+
+John Snow, Map 1 (1855)
+-----------------------
+
+Datasets: deaths (one point per bar Snow drew, 580) and pumps (the 13
+pumps on his map). The workflow's results are made from these two.
+
+The work: John Snow (1813-1858), On the mode of communication of
+cholera, second edition, much enlarged, London: John Churchill, 1855.
+Map 1, "Scale 30 inches to a mile", shows the deaths from cholera in and
+around Broad Street, Golden Square, in late August and early September
+1854, a black bar for each death at its house, and the street pumps.
+Snow died in 1858; the work is in the public domain everywhere.
+
+Licence: recorded as CC-PDM-1.0, the Public Domain Mark, as the
+Wellcome Collection marks its scan.
+https://creativecommons.org/publicdomain/mark/1.0/
+
+Credit: After John Snow, 1855; scan: Wellcome Collection, Public Domain
+Mark.
+
+The scan: the Wellcome Collection's copy, work uqa27qrt
+(https://wellcomecollection.org/works/uqa27qrt), digitised as
+b28985266; Map 1 is image 58, 3,507 by 3,324 pixels. The build reads the
+catalogue record and refuses the scan unless every licence on it is the
+Public Domain Mark ("pdm"):
+
+  https://api.wellcomecollection.org/catalogue/v2/works/uqa27qrt?include=items
+  read on 2026-10-12 at 12:45:37 UTC (1,860 bytes, SHA-256
+  7fff5d4b1770a3a80c4cfcbe26f90fba513dd301a5f0c5e230b9bcfc33475070):
+  licence "Public Domain Mark" (pdm)
+
+and the image itself, read on 2026-10-12 at 12:45:37 UTC from
+
+  https://iiif.wellcomecollection.org/image/b28985266_0058.jp2/full/full/0/default.jpg
+  (1,286,874 bytes, SHA-256 de9354e9f7bd867c164f41f81be4730c88731ff63b3057d23a648348802474be)
+
+The template carries no part of the scan: only the positions read off
+it.
+
+What was read, by us, on 2026-10-12, and kept in trace.json beside the
+build (our own reading, given away under CC0 1.0):
+- the 13 pumps, each named by the street beside it on the map, as Snow
+  named none of them;
+- the death bars: found by detect.py (beside the build), which keeps ink
+  at least 4 pixels thick (Snow's bars are about 25 by 5 pixels; the
+  map's lines, letters and the dashes of its boundary line are thinner),
+  counts the bars of each stack by its ink against one bar's, and spreads
+  that many points over the stack. What the eye decided is in the
+  reading: the "PUMP" labels and six marks that are not bars (a stain,
+  four dashes of the boundary line, a smudge) left out, and two bars the
+  detector missed added. Of five small stacks checked bar by bar, three
+  were out by one bar (two under, one over); the total is 580 bars in
+  281 stacks. The count Rusty Dodson made of the same map in 1992, published
+  by Waldo Tobler, is 578: we use it only as a check, not as data;
+- 17 street junctions on the map, matched to today's streets.
+
+The map is laid on the ground with one affine transform fitted by least
+squares through the 17 junctions (the OpenStreetMap section below). The
+junctions sit 5.6 m from where the fit puts them, as a root mean square
+(9.1 m at most, at Lower John Street and Golden Square); left out one at
+a time, 7.1 m. Snow's Broad Street pump lands 4.0 m from the red granite
+kerbstone that marks the pump's site in Broadwick Street today, and
+4.5 m from the replica pump beside it. One junction was left out: on the
+map Poland Street and Cambridge Street (today Lexington Street) meet
+Broad Street in line, while today they are staggered.
+
+The bars stand where Snow drew them: a deep stack reaches back from the
+street into the house, so a death's point is the bar's place on the map,
+not an address.
+
+
+OpenStreetMap
+-------------
+
+Used for: the coordinates of the 17 junctions that place Snow's map on
+the ground, and so the positions of both datasets; and the kerbstone and
+replica pump the fit is checked against. No OpenStreetMap feature is
+carried in the template.
+
+Licence: ODbL-1.0, the Open Database License 1.0.
+https://opendatacommons.org/licenses/odbl/1-0/
+https://www.openstreetmap.org/copyright
+
+Credit: © OpenStreetMap contributors.
+
+Where and when: the nodes, read on 2026-10-12 at 12:45:37 UTC from the
+OpenStreetMap API (4,515 bytes, SHA-256
+ec027223adad21f190f53e080b18896334097a0d86aa31a8fbc5e498e0e27ea6):
+
+  https://api.openstreetmap.org/api/0.6/nodes.json?nodes=9512930,25473293,108072,9521025,25473287,25473285,25473295,25475478,25475484,5453319326,9512928,11751472416,1906612406,9512935,107326,9521031,108062,25473424,5776590973,5718464949
+
+  Berwick Street x Broadwick Street            node 9512930     6.6 m
+  Lexington Street x Broadwick Street          node 25473293    4.9 m
+  Marshall Street x Broadwick Street           node 108072      3.4 m
+  Poland Street x Great Marlborough Street     node 9521025     2.4 m
+  Upper James Street x Golden Square           node 25473287    3.8 m
+  Lower John Street x Golden Square            node 25473285    9.1 m
+  Beak Street x Warwick Street                 node 25473295    7.3 m
+  Beak Street x Great Pulteney Street          node 25475478    3.6 m
+  Brewer Street x Great Pulteney Street        node 25475484    3.8 m
+  Wardour Street x Peter Street                node 5453319326  1.7 m
+  Berwick Street x Peter Street                node 9512928     8.2 m
+  Berwick Street x Noel Street                 nodes 11751472416 and 1906612406, their middle  6.5 m
+  Dean Street x Old Compton Street             node 9512935     6.6 m
+  Carlisle Street x Soho Square                node 107326      2.1 m
+  Poland Street x Oxford Street                node 9521031     6.9 m
+  Wardour Street x Oxford Street               node 108062      6.9 m
+  Wardour Street x Brewer Street               node 25473424    4.0 m
+  The kerbstone at the pump's site             node 5776590973
+  The replica Broad Street pump                node 5718464949
+
+(the metres are each junction's residual in the fit.)
+
+
+The pictures
+------------
+
+The template's two pictures are the result map drawn by Dezfil's image
+export over the OpenFreeMap basemap; each picture carries its
+attribution: © OpenMapTiles, © OpenStreetMap contributors.

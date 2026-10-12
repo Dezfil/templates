@@ -1,0 +1,49 @@
+{
+  "formatVersion": 1,
+  "id": "which-pump",
+  "version": 1,
+  "kind": "workflow",
+  "title": "Which pump?",
+  "question": "Which street pump do the deaths of London's 1854 Broad Street cholera outbreak gather around?",
+  "place": "Soho, London, United Kingdom",
+  "tags": ["Analysis", "First map"],
+  "dataDate": "1854-09",
+  "sources": [
+    {
+      "name": "John Snow, Map 1 in On the mode of communication of cholera, 2nd edition (1855)",
+      "licence": "CC-PDM-1.0",
+      "credit": "After John Snow, 1855; scan: Wellcome Collection, Public Domain Mark"
+    },
+    {
+      "name": "OpenStreetMap",
+      "licence": "ODbL-1.0",
+      "credit": "© OpenStreetMap contributors"
+    }
+  ],
+  "howMade": {
+    "question": "In ten days from 31 August 1854 cholera killed more than 500 people in a few streets of Soho. John Snow, a London physician who held that cholera spread in drinking water rather than in bad air, mapped the deaths house by house, a black bar for each, together with the street pumps the households drew their water from. The deaths gather around one pump, in Broad Street, and on his evidence the parish took its handle off on 8 September.\n\nThe workflow asks his question again. Each death goes to its nearest pump and the deaths are counted per pump; then a ring of 100 metres around the Broad Street pump, about a minute's walk, measures what share of all the deaths fell that close to it. Distances are straight lines, where Snow also walked the streets: a house can be nearer one pump as the crow flies and another on foot.\n\nThe deaths and pumps are our own reading of his map, one point per bar, placed on today's streets.",
+    "datasets": [
+      {
+        "dataset": "deaths",
+        "source": "John Snow, Map 1 in On the mode of communication of cholera, 2nd edition (1855)",
+        "made": "One point per bar on Snow's Map 1, read on 2026-10-12 off the Wellcome Collection's scan: 580 bars in 281 stacks, counted from their ink and checked by eye (the 1992 count by Dodson is 578), placed through 17 OpenStreetMap junctions."
+      },
+      {
+        "dataset": "pumps",
+        "source": "John Snow, Map 1 in On the mode of communication of cholera, 2nd edition (1855)",
+        "made": "The 13 pumps on Snow's Map 1, read on 2026-10-12 and named by the street beside each; placed like the deaths. The Broad Street pump lands about 4 m from the kerbstone that marks its site in Broadwick Street today."
+      }
+    ],
+    "styling": [
+      "Each death as a dot in the colour of its nearest pump: red for Broad Street, a quieter colour for each of the others.",
+      "The 13 pumps as dark dots with their names, as Snow marked them on his map.",
+      "A red ring of 100 metres around the Broad Street pump.",
+      "Widgets: the deaths on the map, the share within 100 m of Broad Street, and the deaths by nearest pump, filtering the map.",
+      "The camera sits over Soho at street level, on a light basemap in either theme, like Snow's paper."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
