@@ -1,0 +1,79 @@
+Kruger's elephants and the heat (kruger-elephants), version 1
+=============================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- ThermochronTracking Elephants Kruger 2007, Movebank Data Repository (doi:10.5441/001/1.403h24q5), CC0-1.0: Slotow R, Thaker M, Vanak AT (2019) Data from: Fine-scale tracking of ambient temperature and movement reveals shuttling behavior of elephants to water. Movebank Data Repository. https://doi.org/10.5441/001/1.403h24q5
+
+
+ThermochronTracking Elephants Kruger 2007, Movebank Data Repository
+-------------------------------------------------------------------
+
+Dataset: elephant_fixes (283,688 GPS fixes of 14 elephant herds in Kruger
+National Park, South Africa, from 13 August 2007 to 12 August 2009, each
+with the temperature the collar measured)
+
+Publisher: the Movebank Data Repository, data package
+doi:10.5441/001/1.403h24q5 (handle 10255/move.980), its data file
+"ThermochronTracking Elephants Kruger 2007" (handle 10255/move.981,
+doi:10.5441/001/1.403h24q5/1), Movebank study 736029750.
+https://datarepository.movebank.org/handle/10255/move.980
+
+Terms: CC0 1.0 Universal. The repository's record of the data file states
+"CC0 1.0 Universal" (dc.rights) with
+http://creativecommons.org/publicdomain/zero/1.0/ (dc.rights.uri), and
+DataCite's record of the package "Creative Commons Zero v1.0 Universal"
+(SPDX cc0-1.0). The package's README, under "Terms of Use": "This data
+file is licensed by the Creative Commons Zero (CC0 1.0) license. [...]
+However, works published with this license must still be appropriately
+cited following professional and ethical standards for academic
+citation." The build refuses to go on unless the record and the README
+still say so.
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Credit, the package's citation as its README gives it:
+"Slotow R, Thaker M, Vanak AT (2019) Data from: Fine-scale tracking of
+ambient temperature and movement reveals shuttling behavior of elephants
+to water. Movebank Data Repository. https://doi.org/10.5441/001/1.403h24q5"
+
+The data are described in: Thaker M, Gupte PR, Prins HHT, Slotow R, Vanak
+AT (2019) Fine-scale tracking of ambient temperature and movement reveals
+shuttling behavior of elephants to water. Frontiers in Ecology and
+Evolution 7:4. https://doi.org/10.3389/fevo.2019.00004
+
+Version, and where and when: read on 2026-10-12 at 18:41 UTC through the
+repository's API:
+
+  https://datarepository.movebank.org/server/api/pid/find?id=hdl:10255/move.981
+  (the data file's record; 16,319 bytes, SHA-256 039d9a56d1974e117f3b4a3a524a47ab839a86dd56cb7865b7188220321fc6a9)
+  https://datarepository.movebank.org/server/api/core/bundles/82133439-dc84-40db-a67e-4d99fc5bc9ff/bitstreams
+  (the package's file list with each file's MD5; 6,002 bytes)
+  https://datarepository.movebank.org/server/api/core/bitstreams/09bb9678-356b-4bff-a950-cfa9217fc240/content
+  (README.txt; 12,143 bytes, SHA-256 17a926e3085df4b112a3ec03e799aac7ffd5edca0f2bbf9183cc5911050c588a)
+  https://datarepository.movebank.org/server/api/core/bitstreams/10240da1-0a99-42bf-a34f-eff15883bbfb/content
+  ("ThermochronTracking Elephants Kruger 2007.csv"; 43,776,326 bytes,
+  MD5 970ea06b9de69f1cc0d9f733d7f7e463 as the repository lists it,
+  SHA-256 21a3306571de0a1f25e335c8235be2f5b3f24fb7e44ea8a80087d14a4c554a5d)
+
+Modifications: every one of the file's 283,688 records is kept (none is
+marked invisible, none lacks a position or a temperature). Of each, only
+the herd's identifier (the collar's), the time, the collar's temperature
+(whole degrees Celsius, as recorded) and the position (rounded to five
+decimal places, about a metre) are kept. The time is moved from UTC to
+South African Standard Time, two hours ahead, so the map reads local
+time. The map's SQL joins each herd's fixes into stretches of one
+temperature band and measures each stretch's straight-line distance,
+duration and speed.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

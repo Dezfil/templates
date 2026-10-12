@@ -1,0 +1,90 @@
+Kampala's minibus taxis (kampala-taxis), version 1
+==================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Greater Kampala paratransit study, GIS layers, 2019-2020 (DigitalTransport4Africa), CC-BY-3.0-US: Kampala Capital City Authority and Ministry of Works and Transport; data created by Transitec, Suez Consulting, ODA, Transport for Cairo, Prome Consultants, Claudia Heim and Amanda Ngabirano for the AFD-sponsored Kampala paratransit study; via DigitalTransport4Africa
+
+
+Greater Kampala paratransit study, GIS layers, 2019-2020
+--------------------------------------------------------
+
+Datasets: taxi_trips (the study's 587 one-way minibus taxi and bus trips
+on 397 routes in Greater Kampala, Uganda, each with its route, the stages
+it starts and ends at, the vehicle, its length and the fare for the whole
+trip in the first quarter of 2020) and stages (the 110 stages, taxi parks
+and terminals, the trips start and end at, each with the number of trips
+starting and ending there)
+
+Publisher: DigitalTransport4Africa's Kampala repository, which holds the
+GIS layers, GTFS feed and transit maps of the "Study of the Paratransit
+Transport System and Street Usage in the Kampala Metropolitan Area",
+collected by MapUganda and Transport for Cairo, under a consortium led by
+Transitec, in late 2019 and early 2020, sponsored by the French
+Development Agency (AFD).
+https://gitlab.com/digitaltransport/data/africa/kampala
+
+Terms: Creative Commons Attribution 3.0 United States (CC-BY-3.0-US).
+The repository's licence file, LICENSE_CC-BY-3.0 at commit 42e89cd, is
+the legal code of the United States port of CC BY 3.0, not of the
+Unported licence: its definitions are the port's, "Collective Work" and
+"Derivative Work", where the Unported text defines "Collection" and
+"Adaptation", and it names the US Copyright Act: "subject to the
+compulsory license created by 17 USC Section 115 of the US Copyright Act
+(or the equivalent in other jurisdictions)". The build stops unless the
+file still has the SHA-256 below and those words. The study's codebook,
+in the same repository, says: "The data is published under a Creative
+Commons CC BY license."
+https://creativecommons.org/licenses/by/3.0/us/legalcode
+https://gitlab.com/digitaltransport/data/africa/kampala/-/blob/42e89cddcbd41d48fa59604e11fc22b66215a627/LICENSE_CC-BY-3.0
+
+Credit, the attribution the study's codebook asks for, under "License":
+"This data is owned by Kampala Capital City Authority and the Ministry of
+Works and Transport. Data was created by a consortium composed of
+Transitec Consulting Engineers, Suez Consulting, Organization Development
+Africa (ODA), Transport for Cairo, Prome Consultants, Claudia Heim, and
+Amanda Ngabirano under the 'Study of the Paratransit Transport System and
+Street Usage in the Kampala Metropolitan Area' project sponsored by the
+French Development Agency." The template's facts carry it shortened to
+the credit above; the map's note carries it in full.
+
+Version, and where and when: read on 2026-10-12 at 19:03 UTC from the
+repository's last commit, 42e89cddcbd41d48fa59604e11fc22b66215a627
+("GTFS renamed", 23 November 2020):
+
+  https://gitlab.com/digitaltransport/data/africa/kampala/-/raw/42e89cddcbd41d48fa59604e11fc22b66215a627/LICENSE_CC-BY-3.0
+  (12,840 bytes, SHA-256 6a53178c005a7527bb28988490b2fb83a8dd45ccab944a6a0f7ab14ca0385d5d)
+  https://gitlab.com/digitaltransport/data/africa/kampala/-/raw/42e89cddcbd41d48fa59604e11fc22b66215a627/README.md
+  (980 bytes, SHA-256 0e6491f7dde61c9143c85b5153aa611d1148554d7d45749f19de73beed9f0f98)
+  https://gitlab.com/digitaltransport/data/africa/kampala/-/raw/42e89cddcbd41d48fa59604e11fc22b66215a627/AfD_GKMA-Transit_Data_Codebook.pdf
+  (297,187 bytes, SHA-256 9e8459c6c64bdd57b6823751baddf48c90b9902c4f47da33df091e07b7d56e8e)
+  https://gitlab.com/digitaltransport/data/africa/kampala/-/raw/42e89cddcbd41d48fa59604e11fc22b66215a627/GIS/Unique_Trips.zip
+  (664,980 bytes, SHA-256 2c91993b588abc06bbeee00ed1c159b5962fe54e16e6ff9bf83673c7b15b347e;
+  the shapefile Unqiue_Trips, as the study spells it)
+  https://gitlab.com/digitaltransport/data/africa/kampala/-/raw/42e89cddcbd41d48fa59604e11fc22b66215a627/GIS/Stages.zip
+  (20,834 bytes, SHA-256 82da3ebf6761b6b02da3078f291fd1615233d182f1860b1f02317aab0ed97cf5)
+
+Modifications: every one of the 587 unique trips and 110 stages is kept.
+The fields are renamed; the vehicle is named from the agency code (taxi:
+"Minibus taxi", the codebook's 14-seater; bus: "Bus"); the two-letter
+district codes are named Kampala (KA), Wakiso (WA) and Mukono (MU). The
+codebook reads MU as Mpigi, but the three stages coded MU are Mukono Taxi
+Park, Seeta Stage and Misindye Ssonde, in Mukono District, so the
+template names it Mukono. A fare of 0 is read as no fare recorded (51
+trips). Lengths are rounded to 10 m and positions to five decimal places,
+about a metre. The study draws each stage as an outline; the template
+marks it with a point inside that outline. The map's SQL works out each
+trip's fare per kilometre and its band.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

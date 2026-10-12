@@ -1,0 +1,149 @@
+Rondônia's fishbone (rondonia-fishbone), version 1
+==================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its sources' terms,
+below. Both sources are under CC BY-SA 4.0, so the template's two
+datasets, made from them, are shared under CC BY-SA 4.0 too.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- INPE PRODES, yearly deforestation increment in the Legal Amazon since 2008 (TerraBrasilis), CC-BY-SA-4.0: INSTITUTO NACIONAL DE PESQUISAS ESPACIAIS (INPE). Amazônia Legal – Prodes (Desmatamento): Incremento anual do desmatamento (2008/2025). 2026. Disponível em: https://terrabrasilis.dpi.inpe.br/geonetwork/srv/eng/catalog.search#/metadata/a5220c18-f7fa-4e3e-b39b-feeb3ccc4830
+- INPE PRODES, deforestation accumulated in the Legal Amazon up to 2007 (TerraBrasilis), CC-BY-SA-4.0: INSTITUTO NACIONAL DE PESQUISAS ESPACIAIS (INPE). Amazônia Legal – Prodes (Desmatamento): Desmatamento acumulado até 2007. 2026. Disponível em: https://terrabrasilis.dpi.inpe.br/geonetwork/srv/eng/catalog.search#/metadata/415220fc-3013-4258-bd21-83014865cee5
+
+
+INPE PRODES on TerraBrasilis
+----------------------------
+
+Datasets: cleared_by_year (83,388 polygons of forest PRODES mapped as
+cleared in the state of Rondônia, Brazil, in the PRODES years 2008 to
+2025, 16,917 km², each with its PRODES year, the date of the image it was
+seen on and its area) and cleared_before_2008 (11,922 polygons of the
+forest cleared in Rondônia up to 2007, 82,658 km², each with its area)
+
+Publisher: INPE, Brazil's National Institute for Space Research, through
+its PRODES programme (BiomasBR, the Brazilian biomes monitoring
+programme) and TerraBrasilis, INPE's platform for its spatial data. The
+two layers' catalogue records:
+https://terrabrasilis.dpi.inpe.br/geonetwork/srv/eng/catalog.search#/metadata/a5220c18-f7fa-4e3e-b39b-feeb3ccc4830
+(prodes-legal-amz:yearly_deforestation)
+https://terrabrasilis.dpi.inpe.br/geonetwork/srv/eng/catalog.search#/metadata/415220fc-3013-4258-bd21-83014865cee5
+(prodes-legal-amz:accumulated_deforestation_2007)
+
+Terms: Creative Commons Attribution-ShareAlike 4.0 International. Each
+layer's catalogue record states its licence as "Creative Commons -
+Atribuição-CompartilhaIgual 4.0 Internacional", and the build refuses to
+go on unless both records still say so. TerraBrasilis's "Citations and
+Use Licence" page: "The work, Brazilian biomes monitoring program of
+NATIONAL INSTITUTE FOR SPACE RESEARCH. COORDINATION-GENERAL OFFICE OF
+EARTH SCIENCES, is licensed under a Creative Commons Attribution-
+ShareAlike 4.0 International License."
+https://terrabrasilis.dpi.inpe.br/en/citations-and-use-licence/
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Credit, each layer's citation as its catalogue record gives it:
+"INSTITUTO NACIONAL DE PESQUISAS ESPACIAIS (INPE). Amazônia Legal – Prodes
+(Desmatamento): Incremento anual do desmatamento (2008/2025). 2026.
+Disponível em: https://terrabrasilis.dpi.inpe.br/geonetwork/srv/eng/catalog.search#/metadata/a5220c18-f7fa-4e3e-b39b-feeb3ccc4830"
+"INSTITUTO NACIONAL DE PESQUISAS ESPACIAIS (INPE). Amazônia Legal – Prodes
+(Desmatamento): Desmatamento acumulado até 2007. 2026. Disponível em:
+https://terrabrasilis.dpi.inpe.br/geonetwork/srv/eng/catalog.search#/metadata/415220fc-3013-4258-bd21-83014865cee5"
+and the work as the licence page names it: "Brazilian biomes monitoring
+program of NATIONAL INSTITUTE FOR SPACE RESEARCH. COORDINATION-GENERAL
+OFFICE OF EARTH SCIENCES".
+
+Version, and where and when: read on 2026-10-12 between 18:30 and 18:33
+UTC. The catalogue records (yearly increments last updated 2026-06-16
+18:26:03, the accumulated mask 2026-06-16 18:22:05):
+
+  https://terrabrasilis.dpi.inpe.br/geonetwork/srv/por/csw?service=CSW&version=2.0.2&request=GetRecordById&elementSetName=full&outputSchema=http://www.isotc211.org/2005/gmd&id=a5220c18-f7fa-4e3e-b39b-feeb3ccc4830
+  (27,028 bytes, SHA-256 6311545b9d934f621c1950aadf2e06f7fb8a518de8d1a590ed5a64c180353e15)
+  https://terrabrasilis.dpi.inpe.br/geonetwork/srv/por/csw?service=CSW&version=2.0.2&request=GetRecordById&elementSetName=full&outputSchema=http://www.isotc211.org/2005/gmd&id=415220fc-3013-4258-bd21-83014865cee5
+  (24,436 bytes, SHA-256 25e2b096580faecba3c472b622a27d1c470bcbc3a141fed1942ebc4137326a11)
+
+The features, from TerraBrasilis's web feature service, cut to the state
+on the server and read in pages of 2,000 in a fixed order:
+
+  https://terrabrasilis.dpi.inpe.br/geoserver/prodes-legal-amz/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=prodes-legal-amz%3Ayearly_deforestation&CQL_FILTER=state%3D%27RO%27&outputFormat=application%2Fjson&sortBy=fid&count=2000&startIndex=<n>
+  (83,836 features in 42 pages, 130,620,750 bytes, read from 18:30:36 to
+  18:32:42 UTC)
+
+  startIndex=0        2,490,350 bytes  0de6a6315bd99e1e26f0d54874c85809752fb6e1dd4b9f73f372e1e556941738
+  startIndex=2000     2,620,411 bytes  7eb6552d78ef34df2d2d4aaecf7d1dd542ccad086f55d26fe0b4502be4ce3c78
+  startIndex=4000     2,605,027 bytes  ba5b5bae3418916d3b771babf2b36a23e50eb500b11d2120fc9bc006d768c8ee
+  startIndex=6000     2,598,176 bytes  907a318b31919c510016ef203d663be1c0c374451c0b22808f8fc00312f6e5f2
+  startIndex=8000     2,564,293 bytes  2e8ba28302847fc8ea7a817a638c78267956149da89bd6cdd36b3f52c2be8f89
+  startIndex=10000    2,160,245 bytes  36e29c530c8aefce16ea4312ef2a216cdace94528c07033c1b3157cb18bc2c0a
+  startIndex=12000    3,172,725 bytes  ebc143c47c57ca7e3bea12eb7b95b4793e9c987cb9a2293624a8b64289a9de3d
+  startIndex=14000    4,042,928 bytes  1b642e7764d2bdf10b92e382836f4d5e6012695ec689067f84be31ad1b2d9abe
+  startIndex=16000    4,024,334 bytes  9d19330e2d5bf7294a0cdffb1db401c82fee8df66358ff609e3c342537bfed9f
+  startIndex=18000    4,048,151 bytes  85c2099bb293064f94ba4aec3f4f79b273b32989ab1957e3755654c2cdc1ebe3
+  startIndex=20000    3,778,427 bytes  c2319f9486d7c7995e93eec5d67db0494deba07a18b7f6025a0d3d1ec0fd742c
+  startIndex=22000    3,652,932 bytes  a5f71d3e5c540b0763808d4309f676b7da33c287a5626dd31c396f752c375ab6
+  startIndex=24000    4,039,253 bytes  cbd009a9c99c8af1791d88c49b44e5e55c2edea0b189b66e7c5ced1a377f5b77
+  startIndex=26000    3,652,909 bytes  8ec2479cc22a61d7e9097444a58b44e12d02eb459f0b785a68425ed4be84ada0
+  startIndex=28000    3,206,978 bytes  64233720fe6a39dbeff3c71d373f6c92f9e80d987df4fd9f9ebea8be68c43338
+  startIndex=30000    3,093,013 bytes  95daa826eab998d534615064ab48ee19c0fb5c569d1c2f5715241ddd0df6a2c9
+  startIndex=32000    3,206,128 bytes  9ce74e7f74324f10c4539ee5fdbd77dcf09304900167e0494f418c64a89af8c9
+  startIndex=34000    3,326,556 bytes  f3d750236e25dc35712ddd026549c31c4bc28522dc85eea6c1f36c349efb31fc
+  startIndex=36000    3,355,285 bytes  d19187ad2a62e6812f932d4f1220d3339e1074148d4e05097540b6a8374f4771
+  startIndex=38000    3,352,091 bytes  c4f21c1c6b08e57472b52aa4a1676d0ed5d15e1cc7c515a16bacbfae7343946e
+  startIndex=40000    3,452,004 bytes  0f6bd8794c0131204a9551a355538e57529624692d2b615d3461a11d85346a6c
+  startIndex=42000    3,187,284 bytes  6c81b993b1bcaae4aeaa49e26fc676c9cd547a053fee4dc81f162850611a8e0a
+  startIndex=44000    3,133,987 bytes  b0ba4327960972bbe5c03dea81c82f35de6d2b5d63dd0fe88e6f341047a97a6a
+  startIndex=46000    3,029,088 bytes  1865d2bdd025985db45f303c695eefe157f41d2ca914e48c3bda87f721168660
+  startIndex=48000    2,975,851 bytes  db80ef3524472369a58a073c8640678d32cb9ba7715c8cf2773fc799de73d4e7
+  startIndex=50000    2,536,132 bytes  54556b998ef8ac9232992e594e87f24bb90d16f69af75e78d4fc118e6873fe31
+  startIndex=52000    2,739,721 bytes  89e31c900c7c0292217ca8eac35a4334fee98b6c60b9b4217db5b65e6025848e
+  startIndex=54000    2,789,219 bytes  c532b06449c5bd1b67f8d611d6bafe6fb21cdd108db99b7845973eb41bec6a25
+  startIndex=56000    2,619,452 bytes  604627c06c1b3e6b16bd85f5bbbba4023dc9df96674a6d324a7d183850a51f9e
+  startIndex=58000    2,537,178 bytes  f8d73c04d6b92c07179233fb52b17de6800ba42ffaa3df17760659873e4059b9
+  startIndex=60000    2,816,689 bytes  8d505da17b4894b0e234e5ae2b79f3a9c7ee2f4d3b0d79412210894ea2777ed1
+  startIndex=62000    3,009,770 bytes  15073ccb37a1c19be08c2f160caaa111f94c0ece92d7640fcfcfd7cbba6e83a5
+  startIndex=64000    3,123,772 bytes  e617fd2b60a132a37801d1d4bf326242452516babd8f9598b0e387470a523ed4
+  startIndex=66000    2,863,762 bytes  6006145be50db3f6c55e6593518b329670a6d1d131ee98042f35c946d8e4476d
+  startIndex=68000    2,920,652 bytes  7519b862bb1ead501fe4530b5e0e7b535989b0f410e0b85025e68aa3abf219d4
+  startIndex=70000    2,991,905 bytes  84c7ad676da2586e0d234aa21eaf9fac40e7e1de457bc114e6f62e26735e19c4
+  startIndex=72000    2,976,895 bytes  d117f3c94ce7f39566c2024ed6bda82a1cd6b078a8ade63b7d3929bc5973c12c
+  startIndex=74000    3,412,835 bytes  fbe2edb3e43a4b52c59698e06d3506e585bf155c3c8b834ac0940857a0ad5818
+  startIndex=76000    3,527,709 bytes  1e990356fe168529d7964090a9c1ce81b0ee1b4e69896c767f4972acaa595e60
+  startIndex=78000    3,255,399 bytes  c5b0df1c58f2450c758e695955365de11f69a2be2e128c94b8ef05ab9908ba26
+  startIndex=80000    2,684,268 bytes  e0fa6b23c1fe0523b8805f5f5105d1d8fafd9f432eb9e2450cdf281e8f395b1c
+  startIndex=82000    3,046,966 bytes  104a77b03e8e89982a7ec6061cd8d0717f7ead3c527ee85250ee51dc5ec28e24
+
+  https://terrabrasilis.dpi.inpe.br/geoserver/prodes-legal-amz/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=prodes-legal-amz%3Aaccumulated_deforestation_2007&CQL_FILTER=state%3D%27RO%27&outputFormat=application%2Fjson&sortBy=fid&count=2000&startIndex=<n>
+  (12,108 features in 7 pages, 49,692,254 bytes, read from 18:32:47 to
+  18:32:56 UTC)
+
+  startIndex=0       27,776,976 bytes  e421484ffab579d3c18d89db01f96cfc6b6a7715a0903ce5f57aea6b97150465
+  startIndex=2000     8,279,074 bytes  b4e67ccc53e1de48f3025f8f43befcf55774642a4cccd4893f0c889c2018fc86
+  startIndex=4000     2,524,765 bytes  bf6f23a97098d1ddfbfda24e08ffea4096976ca11053e8a986155b49f0093158
+  startIndex=6000     3,305,215 bytes  c5b03485c11f282a54646d7a1129b887e69f49c1e74b9a13d64d039c5facff02
+  startIndex=8000     2,906,907 bytes  8742d71fb64434ed8d90d5fd99594a09211030872912def24f7191a13a153050
+  startIndex=10000    4,572,430 bytes  4c5448a5e2b85635fa97f043e59ad6ee2cdcd6014fa5527656a3128ac608b3ea
+  startIndex=12000      326,887 bytes  11b83d1001e02f07121855df1e4cb4b4b31d0a0113ece3868352c7c72d88306e
+
+Modifications: only Rondônia's features are read (the Legal Amazon's
+other states are not). Of the yearly increments, every feature of the
+class DESMATAMENTO (all of them, here) is kept with its PRODES year, its
+image date and its area in km²; of the mask, each polygon's area. The
+other attributes are not kept. Each outline is repaired where it is
+invalid and simplified by about 55 m (0.0005 degrees), keeping its
+topology, and its coordinates rounded to four decimal places, as
+published. 634 slivers (448 of the increments, 186 of the mask), pieces
+cut at a satellite scene's edge that have no area left once their
+outline is repaired, are left out: 0.0519 km² in all by the published
+areas, the largest 0.0026 km². 162 small polygons that the
+simplification would have erased though they have an area are kept with
+their published outline. A PRODES year runs from August to July; the map's timeline
+places each increment on the 31 July its year ends. The map's third
+layer counts the increments into hexagons.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
