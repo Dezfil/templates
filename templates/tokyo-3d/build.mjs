@@ -1,15 +1,16 @@
-// Build "Japan in 3D": take Chiyoda's buildings from the 3D city model of
-// Tokyo's 23 wards (Project PLATEAU, the Ministry of Land, Infrastructure,
-// Transport and Tourism) and prepare the one dataset the map raises: every
-// building in the ward, its roof outline and its measured height.
+// Build "Tokyo's heart in 3D": take Chiyoda's buildings from the 3D city
+// model of Tokyo's 23 wards (Project PLATEAU, the Ministry of Land,
+// Infrastructure, Transport and Tourism) and prepare the one dataset the map
+// raises: every building in the ward, its roof outline and its measured
+// height.
 //
-//   node templates/japan-3d/build.mjs [work folder]
+//   node templates/tokyo-3d/build.mjs [work folder]
 //
 // The 23 wards' CityGML is one 5.3 GB archive. The build reads its
 // directory and fetches by range only the members holding the buildings of
 // the grid squares that cover Chiyoda, about 124 MB of it, reads each and
-// deletes it. Writes <work>/japan-3d/data/buildings.parquet and
-// <work>/japan-3d/build-record.json.
+// deletes it. Writes <work>/tokyo-3d/data/buildings.parquet and
+// <work>/tokyo-3d/build-record.json.
 
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -18,7 +19,7 @@ import { engine, literal, sha256 } from "../../tools/source.mjs";
 import { fetchMember, readBuildings, remoteDirectory } from "./plateau.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const work = path.resolve(process.argv[2] ?? path.join(here, "../../work"), "japan-3d");
+const work = path.resolve(process.argv[2] ?? path.join(here, "../../work"), "tokyo-3d");
 
 // The archive the catalogue record lists as "CityGML (v2)" for the 23
 // wards (G-spatial information center, dataset plateau-tokyo23ku), and the
@@ -141,7 +142,7 @@ try {
   outputs.buildings = { file: path.relative(work, file), rows: tally.buildings, sha256: sha256(await readFile(file)) };
 
   const record = {
-    template: "japan-3d",
+    template: "tokyo-3d",
     builtAt: new Date().toISOString(),
     slice: {
       ward: WARD,

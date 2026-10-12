@@ -1,10 +1,11 @@
-// Author "Japan in 3D" on a scratch Dezfil through its documented API: the
-// project, Chiyoda's buildings, the map with every building raised to its
-// measured height and coloured by it, the widgets and the credit note.
+// Author "Tokyo's heart in 3D" on a scratch Dezfil through its documented
+// API: the project, Chiyoda's buildings, the map with every building raised
+// to its measured height and coloured by it, the widgets and the credit
+// note.
 //
-//   node templates/japan-3d/author.mjs http://127.0.0.1:3811 [work folder]
+//   node templates/tokyo-3d/author.mjs http://127.0.0.1:3811 [work folder]
 //
-// Reads the build's output and writes <work>/japan-3d/authored.json (the
+// Reads the build's output and writes <work>/tokyo-3d/authored.json (the
 // project, map, layer and widget ids pack and pictures need).
 
 import { readFile, writeFile } from "node:fs/promises";
@@ -16,7 +17,7 @@ import { creditNote } from "../../tools/facts.mjs";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
 if (!base) throw new Error("Name the scratch instance, e.g. http://127.0.0.1:3811");
-const work = path.resolve(process.argv[3] ?? path.join(here, "../../work"), "japan-3d");
+const work = path.resolve(process.argv[3] ?? path.join(here, "../../work"), "tokyo-3d");
 
 const facts = JSON.parse(await readFile(path.join(here, "facts.json"), "utf8"));
 const record = JSON.parse(await readFile(path.join(work, "build-record.json"), "utf8"));

@@ -1,9 +1,9 @@
 {
   "formatVersion": 1,
-  "id": "japan-3d",
+  "id": "tokyo-3d",
   "version": 1,
   "kind": "map",
-  "title": "Japan in 3D",
+  "title": "Tokyo's heart in 3D",
   "question": "How high does Tokyo build at its heart, building by building?",
   "place": "Chiyoda, Tokyo, Japan",
   "tags": [
