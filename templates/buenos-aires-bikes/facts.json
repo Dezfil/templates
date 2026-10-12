@@ -1,0 +1,50 @@
+{
+  "formatVersion": 1,
+  "id": "buenos-aires-bikes",
+  "version": 1,
+  "kind": "map",
+  "title": "Buenos Aires by shared bike",
+  "question": "Where and when do people ride Buenos Aires' shared bikes?",
+  "place": "Buenos Aires, Argentina",
+  "tags": [
+    "Flows",
+    "Big data",
+    "Widgets"
+  ],
+  "dataDate": "2026-09",
+  "sources": [
+    {
+      "name": "Bicicletas públicas: recorridos realizados 2026 (Ecobici trips), BA Data",
+      "licence": "LicenseRef-CC-BY-2.5-AR",
+      "credit": "Ecobici trips, Gobierno de la Ciudad de Buenos Aires (BA Data), CC BY 2.5 AR"
+    }
+  ],
+  "howMade": {
+    "question": "Ecobici is Buenos Aires' public bike-share: some 400 stations across the city, and a record of every trip since 2010. Where do people ride, and when?\n\nEvery trip of January to September 2026, 2.2 million of them, is in the map. A trip record names the station where the ride began and the one where it ended, so the lines' SQL counts the trips between every pair of stations, in each part of the day, on weekdays and at weekends, as the map draws. It is a commuter's system: six trips in seven run on a weekday, most of them in the afternoon and evening, peaking between 5 and 7 pm. The stations show the morning rush: from 6 to 10 on a weekday, bikes leave the railway termini, Constitución and Retiro above all, and gather at the offices of Puerto Madero.",
+    "datasets": [
+      {
+        "dataset": "trips",
+        "source": "Bicicletas públicas: recorridos realizados 2026 (Ecobici trips), BA Data",
+        "made": "Every Ecobici trip that started from 1 January to 30 September 2026 between two stations in the city, 2,247,589 trips, from the city's 2026 trip file read on 2026-10-12; only the start (to the minute), the ride's length and the two stations kept."
+      },
+      {
+        "dataset": "stations",
+        "source": "Bicicletas públicas: recorridos realizados 2026 (Ecobici trips), BA Data",
+        "made": "The 405 stations the trips start or end at, from the same file read on 2026-10-12: each station's number, name and position as most of its trips give them."
+      }
+    ],
+    "styling": [
+      "Lines between stations, one per pair of stations, part of the day and weekday or weekend, counted in the layer's SQL over the 2.2 million trips; a pair is drawn when it saw at least 100 trips in the nine months, about one every three days. Rides that end where they began draw no line.",
+      "Lines widen and brighten with the number of trips, both ways together, and the quiet ones fade to a haze, so the busy corridors stand out; the busiest draw on top.",
+      "Straight lines seen from above rather than arcs: between 400 stations this close together, arcs rise into a dome that hides the corridors.",
+      "Stations sized by the trips that start there and coloured by a weekday morning, 6 to 10: blue where more bikes arrive than leave, red where more leave than arrive.",
+      "Widgets: the trips on the lines drawn, the part of the day, weekday or weekend, and the typical ride between the two stations, each one filtering the lines.",
+      "Parts of the day by the hour a ride starts: night 0 to 6, morning 6 to 10, midday 10 to 16, evening 16 to 20, late evening 20 to 24. The typical ride is the median length of all the pair's trips.",
+      "Times are Buenos Aires time, as the city records them."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

@@ -1,0 +1,67 @@
+Buenos Aires by shared bike (buenos-aires-bikes), version 1
+===========================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Bicicletas públicas: recorridos realizados 2026 (Ecobici trips), BA Data, LicenseRef-CC-BY-2.5-AR: Ecobici trips, Gobierno de la Ciudad de Buenos Aires (BA Data), CC BY 2.5 AR
+
+
+Bicicletas públicas: recorridos realizados 2026, BA Data
+--------------------------------------------------------
+
+Datasets: trips (2,247,589 trips on Ecobici, Buenos Aires' public
+bike-share, that started from 1 January to 30 September 2026, each with
+its start, its length in minutes and the stations it started and ended
+at) and stations (the 405 stations those trips start or end at, each with
+its number, name and position)
+
+Publisher: the Gobierno de la Ciudad de Buenos Aires, through BA Data,
+the city's open data portal; the dataset "Bicicletas Públicas." of the
+Secretaría de Transporte y Obras Públicas, Jefatura de Gabinete de
+Ministros, its file "2026 - Recorridos realizados (ZIP)".
+https://data.buenosaires.gob.ar/dataset/bicicletas-publicas
+
+Terms: Creative Commons Attribution 2.5 Argentina. The portal's
+catalogue record states the licence "CC-BY-2.5-AR" (license_id and
+license_title); the build refuses to go on unless it still does and
+still lists the file at the address below. SPDX does not list this
+port, so the template names it LicenseRef-CC-BY-2.5-AR.
+https://creativecommons.org/licenses/by/2.5/ar/
+
+Credit: "Ecobici trips, Gobierno de la Ciudad de Buenos Aires (BA Data),
+CC BY 2.5 AR"
+
+Version, and where and when: the catalogue record read on 2026-10-12 at
+18:11 UTC (last changed 2026-10-08 21:35:49), the trip file at 18:30 UTC
+(last modified Wed, 07 Oct 2026 14:41:41 GMT, by the server's word; the
+city replaces it monthly under the same address):
+
+  https://data.buenosaires.gob.ar/api/3/action/package_show?id=bicicletas-publicas
+  (81,234 bytes, SHA-256 1a5ff191248db9020260ac18349fe7026d3c7bcfeece8a3f6a61e2c710cb00af)
+  https://cdn.buenosaires.gob.ar/datosabiertos/datasets/transporte-y-obras-publicas/bicicletas-publicas/recorridos-realizados-2026.zip
+  (143,323,768 bytes, SHA-256 7e4c2c45d58bbc4ac638e1f6126f6d58872687f908e519851b489cb89fb1ce74;
+  one file, trips.csv)
+
+Modifications: of the file's 2,247,697 trip records, 2,247,589 are kept:
+107 that start or end at the depot, "[Valet] Galpón", which the records
+place at 0, 0, and one without a destination are left out. Of each trip
+only the start (to the minute), the ride's length (in minutes, to a
+tenth) and the two stations' numbers are kept; each rider's user number
+and gender and the bicycle's model are not. The stations are taken from
+the trips: each station's number, its name as most of its trips give it
+and its position as most of its trips give it (six decimal places). The
+map's SQL counts the trips between each pair of stations by part of the
+day and weekday or weekend, and each station's departures and arrivals.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
