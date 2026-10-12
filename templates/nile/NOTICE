@@ -1,0 +1,92 @@
+The Nile (nile), version 1
+==========================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Kontur Population: Egypt, population density for 400m H3 hexagons, CC-BY-4.0: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange
+- Natural Earth: the Nile, the Nile Delta and Egypt (1:10m), LicenseRef-Natural-Earth: Made with Natural Earth
+
+
+Kontur Population: Egypt
+------------------------
+
+Dataset: population_cells (95,818 populated H3 hexagons at resolution 8,
+about 400 m across, 112,739,197 people)
+
+Publisher: Kontur Inc., on the Humanitarian Data Exchange, dataset
+kontur-population-egypt, release 2023-11-01.
+https://data.humdata.org/dataset/kontur-population-egypt
+
+Licence: Creative Commons Attribution 4.0 International (CC-BY-4.0), as
+HDX's record states.
+https://creativecommons.org/licenses/by/4.0/
+
+Credit: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange.
+
+Where and when: read on 2026-10-12 at 18:07:18 UTC from the address HDX
+lists for the release:
+
+  https://geodata-eu-central-1-kontur-public.s3.amazonaws.com/kontur_datasets/kontur_population_EG_20231101.gpkg.gz
+  (6,761,524 bytes, SHA-256 bb3ba081752fef57ee95f6ab2e89084ae4dbb4d0d8f6b49ca65358cb9c4d8fb8;
+  unpacked 19,111,936 bytes, SHA-256 5963b052f5ba348dc98d9d9f61fb91c3c886dacc07a60b08540000c571e1048b)
+
+Kept: every hexagon, with its H3 cell and its people rounded to whole
+people; turned from Web Mercator (EPSG:3857) into longitude and latitude
+(EPSG:4326).
+
+
+Natural Earth
+-------------
+
+Datasets: nile (the Nile's centre line in Egypt, its course through Lake
+Nasser, and the Rosetta and Damietta branches: 4 lines), nile_delta (the
+Nile Delta region) and egypt (Egypt's outline).
+
+Publisher: Natural Earth, with the support of NACIS: the 1:10m rivers and
+lake centre lines (version 5.0.0), geographic regions (version 5.0.0) and
+admin-0 countries (version 5.1.1).
+https://www.naturalearthdata.com
+
+Licence: public domain, as Natural Earth's terms of use state: no
+permission is needed and crediting is not required.
+https://www.naturalearthdata.com/about/terms-of-use/
+
+Credit, the short form it suggests: Made with Natural Earth.
+
+Where and when: read on 2026-10-12 at 18:07:19 UTC from Natural Earth's
+download host:
+
+  https://naciscdn.org/naturalearth/10m/physical/ne_10m_rivers_lake_centerlines.zip
+  (2,079,507 bytes, SHA-256 ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38)
+  https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_regions_polys.zip
+  (2,038,519 bytes, SHA-256 cb7b9db200284ed1551f20eacc7f3333e9b5f311c19f7cb2670694529f688682)
+  https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries.zip
+  (4,930,492 bytes, SHA-256 ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6)
+
+Kept: the features named Nile, Rosetta Branch and Damietta Branch, with
+their name and kind (river or lake centre line), cut at Egypt's border; the
+region named Nile Delta; the country whose ADM0_A3 is EGY.
+
+
+The workflow's results
+----------------------
+
+The template carries each workflow step's result from its run on
+2026-10-12 (results/<step id>.parquet): the simplified river, the 10 km
+band, the band with the Delta, the valley merged and cut to Egypt, the land
+beyond it, both measured, the hexagons that touch the valley, their people,
+and the valley in numbers. They are made from both sources together and
+carry each one's terms: Kontur's CC-BY-4.0 credit goes with them.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
