@@ -64,11 +64,14 @@ export async function pack(base, templateDir, work, dist) {
   // step reads is its named inputs, or what authored.json says (a SQL
   // step's reads are its query's tables).
   if (facts.kind === "workflow") {
+    // Every input an operation names: a filter by location reads its mask,
+    // a clip its clip shape and a difference what it erases.
+    const INPUTS = ["input", "left", "right", "mask", "clip", "erase"];
     if (facts.steps) throw new Error("facts.json lists steps; pack reads them from the exported workflow.");
     const [entry] = manifest.contents.workflows;
     const workflow = JSON.parse(files.get(entry.file).toString("utf8"));
     facts.steps = workflow.steps.map((step) => {
-      const named = ["input", "left", "right"].map((key) => step.parameters[key]).filter((v) => typeof v === "string");
+      const named = INPUTS.map((key) => step.parameters[key]).filter((v) => typeof v === "string");
       const reads = authored.reads?.[step.id] ?? named;
       if (step.operation === "sql_step" && !authored.reads?.[step.id]) throw new Error(`authored.json names no reads for the SQL step ${step.id}.`);
       if (named.some((name) => !reads.includes(name))) throw new Error(`authored.json's reads for ${step.id} leave out its inputs ${named.join(", ")}.`);
