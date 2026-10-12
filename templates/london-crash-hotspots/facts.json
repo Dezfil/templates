@@ -1,0 +1,39 @@
+{
+  "formatVersion": 1,
+  "id": "london-crash-hotspots",
+  "version": 1,
+  "kind": "workflow",
+  "title": "London's crash hotspots",
+  "question": "Where in London do collisions that kill or seriously injure someone cluster more than chance would allow?",
+  "place": "London, United Kingdom",
+  "tags": ["Analysis"],
+  "dataDate": "2025",
+  "sources": [
+    {
+      "name": "Road Safety Data, personal injury collisions 2025, Department for Transport",
+      "licence": "OGL-UK-3.0",
+      "credit": "Department for Transport. Contains public sector information licensed under the Open Government Licence v3.0"
+    }
+  ],
+  "howMade": {
+    "question": "Every year the police in London record around twenty thousand road collisions in which someone is hurt; in nearly one in five, someone is killed or seriously injured. Some streets see more of those than others, but a few of them close together can happen by chance. The question is where they cluster more than chance would allow.\n\nThe workflow puts every collision of 2025 into a grid of H3 cells about 350 metres across, keeps the ones that killed or seriously injured someone, and counts them per cell. Every cell where anyone was hurt is scored, with a zero where no one was killed or seriously injured, so quiet streets count as quiet rather than being left out. A hot spot analysis (Getis-Ord Gi*) then asks which cells, together with the cells around them, stand out from the rest of London: those are the hot spots. Severity is as the police recorded it; the Metropolitan Police records it from the injuries themselves, which counts more injuries as serious than older ways of recording did.",
+    "datasets": [
+      {
+        "dataset": "collisions",
+        "source": "Road Safety Data, personal injury collisions 2025, Department for Transport",
+        "made": "Every personal injury collision the Metropolitan Police and the City of London Police recorded in 2025, 20,901 collisions read from the DfT's 2025 collision file on 2026-10-12; date, time, severity, road type, speed limit and light kept, decoded with the DfT's data guide."
+      }
+    ],
+    "styling": [
+      "The hot spot cells coloured by confidence: red for hot spots at 99, 95 and 90%, blue for cold spots, a faint grey where a cell does not stand out.",
+      "Only cells where someone was hurt in 2025 are scored: elsewhere there is no street with a collision to compare.",
+      "Every collision that killed or seriously injured someone as a small dark point.",
+      "Widgets: the collisions by severity and by type of road, each filtering the points, the cells by confidence, and the count of collisions.",
+      "The camera sits on inner London at city level; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
