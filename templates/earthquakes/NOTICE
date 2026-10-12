@@ -1,4 +1,4 @@
-Forty years of big earthquakes (earthquakes), version 1
+Forty years of big earthquakes (earthquakes), version 2
 =======================================================
 
 The scripts in this folder are under this repository's Apache-2.0 licence.
@@ -26,7 +26,7 @@ https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credit
 Credit, as the same page asks for it: "Credit: U.S. Geological Survey"
 
 Where and when: the USGS FDSN event service, one query per calendar year
-from 1986 to 2025, read on 2026-10-12 between 08:16:55 and 08:17:57 UTC:
+from 1986 to 2025, read on 2026-10-12 between 11:37:40 and 11:38:40 UTC:
 
   https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&starttime=<year>-01-01T00:00:00&endtime=<year>-12-31T23:59:59.999&minmagnitude=5&eventtype=earthquake&orderby=time-asc
 
@@ -52,7 +52,7 @@ boundaries, Geochemistry Geophysics Geosystems, 4(3), 1027,
 doi:10.1029/2001GC000252. Converted to GIS formats by Hugo Ahlenius,
 Nordpil; GeoJSON by csterling.
 
-Where and when: read on 2026-10-12 at 08:17:57 UTC from the publisher's
+Where and when: read on 2026-10-12 at 11:38:41 UTC from the publisher's
 repository at a pinned commit:
 
   https://raw.githubusercontent.com/fraxen/tectonicplates/339b0c56563c118307b1f4542703047f5f698fae/GeoJSON/PB2002_boundaries.json

@@ -17,6 +17,7 @@ import { engine } from "../../tools/source.mjs";
 import {
   fetchSupply,
   fetchTrips,
+  keepLicence,
   parkingSpaces,
   readSupply,
   readTrips,
@@ -85,6 +86,8 @@ try {
       },
     },
     outputs,
+    // The trips' licence, kept word for word for the note and the NOTICE.
+    licenceText: await keepLicence(work, trips),
   };
   await writeFile(path.join(work, "build-record.json"), JSON.stringify(record, null, 2) + "\n");
   process.stdout.write(`search_points: ${points} on ${searching_trips} trips, ${minutes} minutes; parking_spaces: ${outputs.parking_spaces.rows}\n`);

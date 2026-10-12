@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "frankfurt-parking",
-  "version": 1,
+  "version": 2,
   "kind": "map",
   "title": "Hunting for a parking spot in Frankfurt",
   "question": "Where do drivers circle for a parking spot in Frankfurt, and how long does the hunt take?",
@@ -12,7 +12,7 @@
     {
       "name": "start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences",
       "licence": "BSD-3-Clause",
-      "credit": "start2park, ReLUT, Frankfurt University of Applied Sciences. Copyright (c) 2023, ReLUT"
+      "credit": "ReLUT, Frankfurt University of Applied Sciences"
     },
     {
       "name": "Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences",

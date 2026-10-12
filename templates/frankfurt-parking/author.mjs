@@ -12,6 +12,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
+import { readLicence } from "./sources.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -21,6 +22,9 @@ const work = path.resolve(process.argv[3] ?? path.join(here, "../../work"), "fra
 const facts = JSON.parse(await readFile(path.join(here, "facts.json"), "utf8"));
 const record = JSON.parse(await readFile(path.join(work, "build-record.json"), "utf8"));
 const [trips, supply] = facts.sources;
+// The trips are under BSD-3-Clause: its notice, word for word, travels in
+// the map's note beside their credit.
+const licence = await readLicence(work, record);
 
 const rgb = (hex, a = 1) => ({ r: parseInt(hex.slice(1, 3), 16), g: parseInt(hex.slice(3, 5), 16), b: parseInt(hex.slice(5, 7), 16), a });
 // Read on light and dark basemaps alike: driving recedes, searching burns.
@@ -107,7 +111,6 @@ const widget = (id, type, title, more) => ({
 });
 // Each widget counts trips: one stretch of every trip carries trips = 1.
 const byTrips = { agg: "sum", aggField: "trips" };
-const searchDays = `${record.slice.tripsFrom.slice(0, 7)} to ${record.slice.tripsTo.slice(0, 7)}`;
 await api.mapWrite(map.id, "PATCH", `/api/maps/${map.id}`, {
   viewport: { lng: 8.6795, lat: 50.1195, zoom: 14.15, pitch: 0, bearing: 0 },
   basemap: null,
@@ -121,13 +124,11 @@ await api.mapWrite(map.id, "PATCH", `/api/maps/${map.id}`, {
     widget("widget-cost", "category", "Parking was", { field: "cost", ...byTrips }),
     widget("widget-sources", "note", "Sources", {
       layerId: null,
+      // A note holds 2,000 characters and the notice takes 1,492 of them,
+      // so the links stay short.
       note: creditNote(facts, {
-        [trips.name]:
-          `The start2park Park-and-Visit trips that end in Frankfurt, ${searchDays}. ` +
-          "[github.com/ReLUT/parking-search-prediction](https://github.com/ReLUT/parking-search-prediction)",
-        [supply.name]:
-          "Processed from OpenStreetMap with the OSM Parkraum processing; " +
-          "[mobilithek.info, offer 886571101635461120](https://mobilithek.info/offers/886571101635461120)",
+        [trips.name]: `[ReLUT on GitHub](https://github.com/ReLUT/parking-search-prediction)\n\n${licence.trim()}`,
+        [supply.name]: "[Mobilithek](https://mobilithek.info/offers/886571101635461120)",
       }),
     }),
   ],

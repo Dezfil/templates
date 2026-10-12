@@ -1,0 +1,105 @@
+Storm tracks since 1980 (storm-tracks), version 1
+=================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- NOAA NCEI, International Best Track Archive for Climate Stewardship (IBTrACS), version 4.01, CC-PDDC: NOAA's International Best Track Archive for Climate Stewardship (IBTrACS) data, accessed on 2026-10-12
+
+
+NOAA NCEI, International Best Track Archive for Climate Stewardship (IBTrACS)
+-----------------------------------------------------------------------------
+
+Dataset: storm_track_points (300,420 track points of the 4,789 storms that
+formed from 1980 to 2025)
+
+Publisher: NOAA National Centers for Environmental Information (NCEI).
+https://www.ncei.noaa.gov/products/international-best-track-archive
+
+Terms, as the product page states them under "Terms of Use" (read
+2026-10-12): "IBTrACS was developed to support scientific research
+efforts. The IBTrACS data usage policy follows the World Data Center for
+Meteorology (WDC), which provides full and open access to the data. We
+have agreements from the Regional Specialized Meteorological Centers that
+provide track data to make IBTrACS data open for distribution to
+contribute to global tropical cyclone research. We also use the World
+Meteorological Organization's Resolution 40 policy as the guide for
+commercial use of IBTrACS data."
+
+The archive's own files state the licence, in their global attribute
+"license": "These data may be redistributed and used without
+restriction." Read from NOAA AOML's ERDDAP, which serves the since1980
+files and their attributes (the file it shows the attributes of is
+2022008S13148.ibtracs_int.v04r01.nc, product version v04r01, publisher
+"National Centers for Environmental Information, NESDIS, NOAA, U.S.
+Department of Commerce"), on 2026-10-12 at 12:57:20 UTC:
+
+  https://erddap.aoml.noaa.gov/hdb/erddap/info/IBTrACS_since1980_1/index.json
+  (127,387 bytes, SHA-256 d0337d92f30e4040068f0c18083281e781a744780ce9bdaf9af2eca5ea6b7823)
+
+The build refuses to go on unless the attribute still reads so.
+
+Licence: recorded as CC-PDDC, the Creative Commons Public Domain
+Dedication and Certification, as for the earthquakes' US-government
+source: IBTrACS is published by NCEI, part of NOAA, a US federal agency,
+and its files say it may be redistributed and used without restriction.
+https://creativecommons.org/licenses/publicdomain/
+
+On commercial use the page names WMO Resolution 40 as NCEI's guide: under
+it the members of the World Meteorological Organization exchange
+essential data free and without conditions on their use, and may attach
+conditions to the commercial re-export of "additional" data. The page
+asks nothing more of users than the credit below. The record of the
+dataset (NCEI, gov.noaa.ncdc:C01552) adds: "NOAA and NCEI make no
+warranty, expressed or implied, regarding these data, nor does the fact
+of distribution constitute such a warranty."
+
+Credit, as the page asks when a work has no bibliography: "NOAA's
+International Best Track Archive for Climate Stewardship (IBTrACS) data,
+accessed on 2026-10-12"
+
+Citation, as the page and the record ask for it:
+  Gahtan, Jennifer; Knapp, Kenneth R.; Schreck, Carl J. III; Diamond,
+  Howard J.; Kossin, James P.; Kruk, Michael C. (2024). International Best
+  Track Archive for Climate Stewardship (IBTrACS) Project, Version 4.01.
+  since1980. NOAA National Centers for Environmental Information.
+  https://doi.org/10.25921/82ty-9e16 [2026-10-12].
+  Knapp, K. R., M. C. Kruk, D. H. Levinson, H. J. Diamond, and C. J.
+  Neumann, 2010: The International Best Track Archive for Climate
+  Stewardship (IBTrACS): Unifying tropical cyclone best track data.
+  Bulletin of the American Meteorological Society, 91, 363-376.
+  doi:10.1175/2009BAMS2755.1
+
+Where and when: read on 2026-10-12 at 12:57:20 UTC from NCEI (the same
+bytes as a first read at 11:53:02 UTC). The file is
+updated three times a week and no dated copy is kept, so its bytes and
+hash identify the version read:
+
+  https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r01/access/csv/ibtracs.since1980.list.v04r01.csv
+  (145,001,199 bytes, SHA-256 3043896e25fead6114f29bf85be987104abb2865db9f816edff0562b1c31820d)
+
+Kept: of the file's 311,600 rows (5,003 storms), each storm's main
+track (the 11,161 rows of spur tracks, alternative positions kept for storms
+that merged or split, left out), for the 4,789 storms whose first point
+falls from 1980 to 2025 (the newest season, still provisional, left out).
+Of each point: the storm's id, name, season, the basin the point lies in,
+the time (UTC), the one-minute sustained wind of the US agencies
+(USA_WIND, knots), the Saffir-Simpson category IBTrACS derives from it
+(USA_SSHS), and the distance to land. Longitudes that IBTrACS keeps
+continuous past 180° (7,365 points) are brought back into -180 to 180.
+Positions rounded to 0.01°. The points include the archive's 3-hourly
+interpolated positions. The map's SQL joins each storm's points into
+stretches of one category and splits a track where it crosses the
+antimeridian, at the latitude where the step crosses.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

@@ -1,4 +1,4 @@
-Where New York's taxis go (nyc-taxis), version 1
+Where New York's taxis go (nyc-taxis), version 2
 ================================================
 
 The scripts in this folder are under this repository's Apache-2.0 licence.
@@ -8,7 +8,7 @@ below.
 Sources, licences and credits, as the template's facts and its map's note
 carry them:
 
-- NYC Taxi & Limousine Commission (TLC) Trip Record Data and Taxi Zones, CC-PDDC: NYC Taxi & Limousine Commission (TLC)
+- NYC Taxi & Limousine Commission (TLC) Trip Record Data and Taxi Zones, LicenseRef-NYC-Open-Data-Law: NYC Taxi & Limousine Commission (TLC)
 
 
 NYC Taxi & Limousine Commission (TLC) Trip Record Data and Taxi Zones
@@ -31,14 +31,16 @@ data was not created by the TLC, and TLC makes no representations as to
 the accuracy of these data." The trip records are facts reported by the
 taxis' technology providers.
 
-Recorded as CC-PDDC: the TLC names no licence, the law grants use without
-any licence requirement or restriction, and CC-PDDC (public domain) is the
-nearest identifier Dezfil admits. The source, version and modifications
-the law allows the city to ask for are stated below and in the map's note.
+Recorded as LicenseRef-NYC-Open-Data-Law, the name Dezfil gives these
+terms: the TLC names no licence, and the law grants use without any
+licence requirement or restriction. (Version 1 of this template recorded
+them as CC-PDDC, the nearest identifier Dezfil admitted then.) The source,
+version and modifications the law allows the city to ask for are stated
+below and in the map's note.
 
 Credit: "NYC Taxi & Limousine Commission (TLC)"
 
-Version, and where and when: read on 2026-10-12 at 08:52 UTC from the
+Version, and where and when: read on 2026-10-12 at 11:38 UTC from the
 addresses the TLC's trip record page links to
 (https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page):
 

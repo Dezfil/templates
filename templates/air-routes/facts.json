@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "air-routes",
-  "version": 1,
+  "version": 2,
   "kind": "map",
   "title": "The world's air routes",
   "question": "How is the world wired by air?",

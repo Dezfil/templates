@@ -14,6 +14,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
+import { readLicence } from "../frankfurt-parking/sources.mjs";
 import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -24,6 +25,9 @@ const work = path.resolve(process.argv[3] ?? path.join(here, "../../work"), "fra
 const facts = JSON.parse(await readFile(path.join(here, "facts.json"), "utf8"));
 const record = JSON.parse(await readFile(path.join(work, "build-record.json"), "utf8"));
 const [trips, supply] = facts.sources;
+// The trips are under BSD-3-Clause: its notice, word for word, travels in
+// a note on the workflow's canvas.
+const licence = await readLicence(work, record);
 
 // H3 resolution 10, cells about 150 m across (a street block or two), and
 // a neighbourhood of two rings around each, about 300 m: fine enough that
@@ -122,6 +126,11 @@ await setLayout(api, workflow.id, {
       text:
         "Gi* compares each cell and the cells within two rings of it with every searched cell. " +
         "A z-score above 1.65, 1.96 or 2.58 marks a hot spot at 90, 95 or 99% confidence.",
+    },
+    {
+      id: "note-licence",
+      x: 20, y: 580, w: 560, h: 520, color: "grey",
+      text: `The start2park trips are published by ReLUT, Frankfurt University of Applied Sciences, under this licence:\n\n${licence.trim()}`,
     },
   ],
 });

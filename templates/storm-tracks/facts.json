@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "id": "storm-tracks",
+  "version": 1,
+  "kind": "map",
+  "title": "Storm tracks since 1980",
+  "question": "Where do the world's hurricanes, typhoons and cyclones run, and where do they grow strongest?",
+  "place": "World",
+  "tags": ["Time", "Big data", "Widgets"],
+  "dataDate": "2025",
+  "sources": [
+    {
+      "name": "NOAA NCEI, International Best Track Archive for Climate Stewardship (IBTrACS), version 4.01",
+      "licence": "CC-PDDC",
+      "credit": "NOAA's International Best Track Archive for Climate Stewardship (IBTrACS) data, accessed on 2026-10-12"
+    }
+  ],
+  "howMade": {
+    "question": "Hurricanes in the Atlantic and the eastern Pacific, typhoons in the western Pacific, cyclones in the Indian Ocean and the South Pacific: they are one kind of storm, and the world's warning centres track every one of them. Where do they form, where do they run, and where do they grow strongest?\n\nEvery storm that formed from 1980 to 2025, 4,782 tracks, is drawn from the archive that gathers the centres' best tracks. The colour is the storm's Saffir-Simpson category at that moment, so each track warms as the storm strengthens and cools as it weakens over land or cold water. The western Pacific is the busiest ocean and the fiercest: 122 of the 219 storms that reached category 5 formed there. The tracks curve away from the equator and bend east as they meet the westerlies, and almost none cross the equator or form in the South Atlantic.",
+    "datasets": [
+      {
+        "dataset": "storm_track_points",
+        "source": "NOAA NCEI, International Best Track Archive for Climate Stewardship (IBTrACS), version 4.01",
+        "made": "Every point on the main track of the 4,789 storms that formed from 1980 to 2025, 300,420 points, from the IBTrACS since1980 CSV read from NCEI on 2026-10-12; name, season, basin, time, the US agencies' wind and category kept."
+      }
+    ],
+    "styling": [
+      "The tracks are built in the layer's SQL from the 300,420 points: each storm's track cut into stretches of one category, and split at the antimeridian so a track crossing it runs on unbroken.",
+      "Each stretch coloured and widened by its Saffir-Simpson category, from faint grey below tropical storm strength to magenta at category 5; stronger stretches draw on top.",
+      "Category from the one-minute winds of the US agencies (NHC and JTWC), which track every basin; other agencies' ten-minute winds read lower.",
+      "A timeline docked on each stretch's start plays the 46 years.",
+      "Widgets count storms: the total, the strongest category each reached and the basin where each formed, each one filtering the tracks.",
+      "The camera centres the Pacific, so every basin shows whole; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

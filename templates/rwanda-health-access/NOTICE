@@ -1,4 +1,4 @@
-Health access in Rwanda (rwanda-health-access), version 1
+Health access in Rwanda (rwanda-health-access), version 2
 =========================================================
 
 The scripts in this folder are under this repository's Apache-2.0 licence.
@@ -29,7 +29,7 @@ https://creativecommons.org/licenses/by/4.0/
 
 Credit: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange.
 
-Where and when: read on 2026-10-12 at 08:54:06 UTC from the address HDX
+Where and when: read on 2026-10-12 at 11:38:46 UTC from the address HDX
 lists for the release:
 
   https://geodata-eu-central-1-kontur-public.s3.amazonaws.com/kontur_datasets/kontur_population_RW_20231101.gpkg.gz
@@ -60,7 +60,7 @@ Credit, as the data's citation asks: Snow RW, Maina J, Ouma PO, Macharia
 PM, Alegana VA, Mitto B, et al. (2019). Public health facilities in sub
 Saharan Africa. figshare. doi:10.6084/m9.figshare.7725374.v1
 
-Where and when: read on 2026-10-12 at 08:54:07 UTC from the record's one
+Where and when: read on 2026-10-12 at 11:38:47 UTC from the record's one
 file (file 14379593), whose MD5 the build holds to the one figshare lists:
 
   https://ndownloader.figshare.com/files/14379593
@@ -89,7 +89,7 @@ boundaries from Open Data Rwanda. Runfola D, et al. (2020) geoBoundaries:
 A global database of political administrative boundaries. PLoS ONE 15(4):
 e0231866.
 
-Where and when: read on 2026-10-12 at 08:54:08 UTC from the publisher's
+Where and when: read on 2026-10-12 at 11:38:48 UTC from the publisher's
 repository at commit 9469f09592ced973a3448cf66b6100b741b64c0d:
 
   https://github.com/wmgeolab/geoBoundaries/raw/9469f09592ced973a3448cf66b6100b741b64c0d/releaseData/gbOpen/RWA/ADM2/geoBoundaries-RWA-ADM2_simplified.geojson
