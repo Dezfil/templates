@@ -1,0 +1,49 @@
+{
+  "formatVersion": 1,
+  "id": "kampala-taxis",
+  "version": 1,
+  "kind": "map",
+  "title": "Kampala's minibus taxis",
+  "question": "Where do Kampala's minibus taxis run from the city's taxi parks, and what does a ride cost per kilometre?",
+  "place": "Kampala, Uganda",
+  "tags": [
+    "Flows",
+    "Widgets"
+  ],
+  "dataDate": "2020",
+  "sources": [
+    {
+      "name": "Greater Kampala paratransit study, GIS layers, 2019-2020 (DigitalTransport4Africa)",
+      "licence": "CC-BY-3.0-US",
+      "credit": "Kampala Capital City Authority and Ministry of Works and Transport; data created by Transitec, Suez Consulting, ODA, Transport for Cairo, Prome Consultants, Claudia Heim and Amanda Ngabirano for the AFD-sponsored Kampala paratransit study; via DigitalTransport4Africa"
+    }
+  ],
+  "howMade": {
+    "question": "Kampala travels by minibus taxi: 14-seat vans that leave from the city's taxi parks and run out along the main roads to the suburbs and the towns around. In late 2019 and early 2020 a study for Kampala Capital City Authority and Uganda's Ministry of Works and Transport rode and mapped the routes. Where do the taxis run from each park, and what does a ride cost?\n\nThe map draws the study's 587 one-way trips on 397 routes, nearly all of them taxis and a few buses, coloured by the fare per kilometre: the fare for the whole trip, as surveyed in early 2020, over its length. Two parks in the old town, the Old Taxi Park and the New Taxi Park, start more than a hundred of the trips between them. Short trips cost most per kilometre: about 280 shillings on trips under 5 km against about 105 on trips over 20 km, while three fares in four are between 1,000 and 2,000 shillings. Pick a taxi park in the widget to see where its taxis go.",
+    "datasets": [
+      {
+        "dataset": "taxi_trips",
+        "source": "Greater Kampala paratransit study, GIS layers, 2019-2020 (DigitalTransport4Africa)",
+        "made": "The study's 587 one-way taxi and bus trips (its unique trips layer), read from the repository at commit 42e89cd on 2026-10-12: route, start and end stage, vehicle, length and the fare for the whole trip in early 2020 (none recorded for 51)."
+      },
+      {
+        "dataset": "stages",
+        "source": "Greater Kampala paratransit study, GIS layers, 2019-2020 (DigitalTransport4Africa)",
+        "made": "The 110 stages, taxi parks and terminals, that the trips start and end at, from the same commit read on 2026-10-12, with the number of trips the study counted starting and ending at each."
+      }
+    ],
+    "styling": [
+      "Each trip drawn along the roads it takes, as the study's field teams recorded it, and coloured by its fare per kilometre, worked out in the layer's SQL: the trip's fare over its length.",
+      "Fares per kilometre in five bands, from blue under 100 shillings to red at 300 and more; the dearer trips draw on top, and the 51 trips with no recorded fare are grey, underneath.",
+      "Most routes run both ways, so most roads carry two trips, one over the other.",
+      "Stages sized by the number of trips that start there, each marked by a point inside the outline the study drew of it.",
+      "Widgets: the average fare per kilometre, the stage a trip starts from, its length and the district it ends in, each one filtering the trips.",
+      "The fare is the study's fare for the whole trip in the first quarter of 2020, in Ugandan shillings.",
+      "The routes are those of late 2019 and early 2020; the network has changed since."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
