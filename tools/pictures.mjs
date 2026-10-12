@@ -37,7 +37,17 @@ export async function makePictures(base, work) {
     // in it and says so in a header: such a picture is never kept.
     let bytes;
     for (let attempt = 1; ; attempt++) {
-      const response = await api.raw("POST", `/api/maps/${authored.mapId}/export/image`, { definition });
+      // A render can also run out of its time budget now and then (a tile
+      // that never answers, a busy machine) and succeed at once when asked
+      // again: up to three tries.
+      let response;
+      try {
+        response = await api.raw("POST", `/api/maps/${authored.mapId}/export/image`, { definition });
+      } catch (error) {
+        if (error.code !== "render_timeout" || attempt === 3) throw error;
+        process.stderr.write(`${appearance}: the render ran out of time; rendering again\n`);
+        continue;
+      }
       bytes = Buffer.from(await response.arrayBuffer());
       const abandoned = response.headers.get("x-dezfil-export-abandoned");
       if (!abandoned) break;
