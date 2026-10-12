@@ -1,0 +1,64 @@
+London's crash hotspots (london-crash-hotspots), version 1
+==========================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Road Safety Data, personal injury collisions 2025, Department for Transport, OGL-UK-3.0: Department for Transport. Contains public sector information licensed under the Open Government Licence v3.0
+
+
+Road Safety Data
+----------------
+
+Dataset: collisions (20,901 personal injury collisions the Metropolitan
+Police and the City of London Police recorded in 2025, one point each)
+
+Publisher: the Department for Transport, "Road safety open data" (STATS19:
+personal injury collisions on public roads reported to the police in Great
+Britain), its page last updated on 30 July 2026, "2025 final data added".
+https://www.gov.uk/government/statistical-data-sets/road-safety-open-data
+
+Licence: Open Government Licence v3.0 (OGL-UK-3.0), under which the
+publisher's page says its content is available.
+https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+
+Credit: Department for Transport. Contains public sector information
+licensed under the Open Government Licence v3.0.
+
+Where and when: read on 2026-10-12 from the publisher's own files:
+
+  https://data.dft.gov.uk/road-accidents-safety-data/dft-road-casualty-statistics-collision-2025.csv
+  (19,349,153 bytes, SHA-256 e699c19bdb82e47e449b6f3381ac87631865f6a31cef118c9955ba80ca870e2b)
+  https://assets.publishing.service.gov.uk/media/6ab2a71d997a4b2950cced58/dft-road-casualty-statistics-road-safety-open-dataset-data-guide-2025.xlsx
+  (the open dataset's data guide, 85,112 bytes, SHA-256 51b08606ef3dad1ae5d4c8726241b022fc8e4bbdc910ef0e5cc2fb92b054fc12)
+
+Kept: of the 101,525 collisions of 2025, the 20,901 recorded by police
+forces 1 (Metropolitan Police) and 48 (City of London), whose areas
+together are Greater London; for each, its collision reference, date,
+time, severity, road type, speed limit and light conditions, the coded
+values decoded with the data guide, and its place from the file's
+longitude and latitude. Severity is as the police recorded it (the file's
+collision_severity), not the DfT's adjusted estimate. Nothing else of the
+record is kept.
+
+
+The workflow's results
+----------------------
+
+The template carries each workflow step's result from its run on
+2026-10-12 (results/<step id>.parquet): the collisions with their H3 cells,
+those that killed or seriously injured someone, their count per cell,
+every cell with its count, and the hot spot scores. They are made from the
+Road Safety Data and carry its terms.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
