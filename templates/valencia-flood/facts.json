@@ -1,0 +1,61 @@
+{
+  "formatVersion": 1,
+  "id": "valencia-flood",
+  "version": 1,
+  "kind": "map",
+  "title": "Valencia's 2024 flood footprint",
+  "question": "Where did the flood of 29 October 2024 reach in the towns south of Valencia, and which buildings did it damage?",
+  "place": "l'Horta Sud, Valencia, Spain",
+  "tags": [
+    "Widgets"
+  ],
+  "dataDate": "2024-10-31",
+  "sources": [
+    {
+      "name": "Copernicus Emergency Management Service, EMSR773 Horta Sud (AOI03) grading map",
+      "licence": "LicenseRef-Copernicus-Data-Policy",
+      "credit": "Copernicus Emergency Management Service (© 2024 European Union), [EMSR773] Horta Sud (AOI03): Grading Map"
+    },
+    {
+      "name": "Overture Maps divisions",
+      "licence": "ODbL-1.0",
+      "credit": "© OpenStreetMap contributors, Overture Maps Foundation"
+    }
+  ],
+  "howMade": {
+    "question": "On 29 October 2024 torrential rain fell on the hills west of Valencia, and the ravines that drain them, the Poyo above all, flooded the towns of l'Horta Sud that evening. More than two hundred people died. On 31 October the GeoEye-1 satellite photographed the area, and the Copernicus Emergency Management Service, at the request of Spain's civil protection, mapped what the image showed.\n\nThis is that grading map, version 2 of 6 November 2024: where water still stood, where it had gone and left mud and debris, and 3,906 buildings graded destroyed, damaged or possibly damaged. Each graded building takes the municipality it stands in from a spatial join in the layer's SQL.\n\nA picture from above sees roofs, streets and mud, not ground floors and cellars, so the footprint and the grades are what one image showed, not the whole of the flood or of the damage. Outside the outlined area this map says nothing.",
+    "datasets": [
+      {
+        "dataset": "flood",
+        "source": "Copernicus Emergency Management Service, EMSR773 Horta Sud (AOI03) grading map",
+        "made": "The 1,528 patches of the grading map's observed flood, read from the service's archive on 2026-10-12: 1,002 of standing water (6.5 km²) and 526 of flood traces (36.5 km²); classes named in English, areas in km²."
+      },
+      {
+        "dataset": "graded_buildings",
+        "source": "Copernicus Emergency Management Service, EMSR773 Horta Sud (AOI03) grading map",
+        "made": "The 3,906 buildings the analysts graded from the image, one point each, read on 2026-10-12: 37 destroyed, 3,258 damaged, 611 possibly damaged; grade, kind (residential, non-residential or unclassified) and the name where the map gives one kept."
+      },
+      {
+        "dataset": "area_mapped",
+        "source": "Copernicus Emergency Management Service, EMSR773 Horta Sud (AOI03) grading map",
+        "made": "The grading map's area of interest, Horta Sud (AOI03), 169.8 km², read from the same archive on 2026-10-12, as one outline."
+      },
+      {
+        "dataset": "towns",
+        "source": "Overture Maps divisions",
+        "made": "The 24 municipalities the area takes in, from Overture's release 2026-09-23.1 read on 2026-10-12, outline and name from OpenStreetMap; the comarcas, which hold several municipalities, left out."
+      }
+    ],
+    "styling": [
+      "The flood's footprint as the service mapped it from the image of 31 October: standing water in blue, flood traces, where the water had gone and left mud and debris, in brown.",
+      "Each graded building as a small point, the worst on top: destroyed in dark red, damaged in orange, possibly damaged in yellow.",
+      "The area the service mapped, 169.8 km², outlined in grey.",
+      "Widgets: the footprint's area, the graded buildings, by grade and by municipality.",
+      "The camera holds the whole area mapped; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
