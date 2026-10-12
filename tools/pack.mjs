@@ -58,6 +58,25 @@ export async function pack(base, templateDir, work, dist) {
   // The export's manifest stays as exported unless a result left it.
   if (Object.keys(authored.results ?? {}).length) files.set("project.json", Buffer.from(JSON.stringify(manifest, null, 2) + "\n"));
 
+  // A workflow example's step list, which its card draws the graph from,
+  // is the exported workflow's own: the server names the steps, so the
+  // list is read from the export rather than kept in facts.json. What each
+  // step reads is its named inputs, or what authored.json says (a SQL
+  // step's reads are its query's tables).
+  if (facts.kind === "workflow") {
+    if (facts.steps) throw new Error("facts.json lists steps; pack reads them from the exported workflow.");
+    const [entry] = manifest.contents.workflows;
+    const workflow = JSON.parse(files.get(entry.file).toString("utf8"));
+    facts.steps = workflow.steps.map((step) => {
+      const named = ["input", "left", "right"].map((key) => step.parameters[key]).filter((v) => typeof v === "string");
+      const reads = authored.reads?.[step.id] ?? named;
+      if (step.operation === "sql_step" && !authored.reads?.[step.id]) throw new Error(`authored.json names no reads for the SQL step ${step.id}.`);
+      if (named.some((name) => !reads.includes(name))) throw new Error(`authored.json's reads for ${step.id} leave out its inputs ${named.join(", ")}.`);
+      if (!authored.results?.[step.id]) throw new Error(`authored.json bundles no result for the step ${step.id}.`);
+      return { id: step.id, operation: step.operation, output: step.parameters.name, reads };
+    });
+  }
+
   const named = new Set(facts.howMade.datasets.map((d) => d.dataset));
   const held = new Set(manifest.contents.datasets.map((d) => d.name));
   if (named.size !== held.size || [...named].some((n) => !held.has(n))) {

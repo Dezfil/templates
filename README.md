@@ -21,6 +21,7 @@ tools/                the shared helpers, plain Node ESM
   client.mjs          a small client for a scratch Dezfil's API
   source.mjs          fetch a source into a folder of its own; DuckDB with spatial
   facts.mjs           read a template's facts; write its credit note
+  workflow.mjs        create a workflow, add its steps, lay out its canvas, run it
   pictures.mjs        the light and dark pictures, from the server's image export
   pack.mjs            the project export plus facts, results and pictures, as one archive
   zip.mjs             read and write ZIP archives, deterministically
@@ -87,12 +88,30 @@ and the validating one on 3752.
    admitted (Dezfil's own rules: licence, credit note, references, the
    render cap, sizes), its pictures are the release's, the template's map
    opens read-only and every layer draws, a copy lands, and the copy's
-   layers draw what the template's do. It prints what it saw and exits
-   non-zero on a failure.
+   layers draw what the template's do. For a workflow example it also
+   checks that every step of the copied workflow shows the template's
+   result until its first run, that the whole copy runs on the instance
+   with no outside service, and that afterwards no step shows the
+   template's result. It prints what it saw and exits non-zero on a
+   failure. The instance reads its catalogue at most once in ten minutes:
+   validating a second release on the same instance inside that window
+   fails with the time to try again.
 
 A new version of a template raises `version` in its facts; a listed
 version is never changed.
 
 A workflow example names its bundled results in `authored.json` as
-`{ "results": { "<step id>": "<dataset name>" } }`; pack moves each named
-dataset out of the export's datasets into `results/<step id>.parquet`.
+`{ "results": { "<step id>": "<dataset name>" } }`, one per step; pack
+moves each named dataset out of the export's datasets into
+`results/<step id>.parquet`. Its facts list no `steps`: pack reads them
+from the exported workflow (id, operation, output) and writes them into
+`template.json`. What a step reads is its named inputs; a SQL step's
+tables are named in `authored.json` as
+`{ "reads": { "<step id>": ["<dataset>", ...] } }`, and pack refuses a SQL
+step without them.
+
+Two templates can share their fetching: `frankfurt-parking-hardest` reads
+its sources through `templates/frankfurt-parking/sources.mjs`. That file
+fetches the Mobilithek archive with `curl` (which verifies the server's
+certificate) because Node's own fetch does not complete the TLS handshake
+with that server; every other source uses `tools/source.mjs`.
