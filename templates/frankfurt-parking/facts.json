@@ -1,0 +1,55 @@
+{
+  "formatVersion": 1,
+  "id": "frankfurt-parking",
+  "version": 1,
+  "kind": "map",
+  "title": "Hunting for a parking spot in Frankfurt",
+  "question": "Where do drivers circle for a parking spot in Frankfurt, and how long does the hunt take?",
+  "place": "Frankfurt am Main, Germany",
+  "tags": ["Widgets", "Flows"],
+  "dataDate": "2021-06",
+  "sources": [
+    {
+      "name": "start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences",
+      "licence": "BSD-3-Clause",
+      "credit": "start2park, ReLUT, Frankfurt University of Applied Sciences. Copyright (c) 2023, ReLUT"
+    },
+    {
+      "name": "Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences",
+      "licence": "ODbL-1.0",
+      "credit": "© OpenStreetMap contributors"
+    }
+  ],
+  "howMade": {
+    "question": "When you drive into a city centre, the trip is not over when you arrive: you still have to find somewhere to leave the car. How long does that hunt take, and where does it happen?\n\nThe start2park study followed drivers on their everyday trips with a phone app that marked each stretch as driving, searching for parking or walking on to the destination. These are the trips that ended in Frankfurt, drawn whole, over the city's street parking: every space on the kerb and every street coloured by how many spaces it holds per 100 m. Most hunts are short: 63 of the 96 trips searched for under a minute or not at all, while 15 searched for 3 minutes or more, the longest for 22.",
+    "datasets": [
+      {
+        "dataset": "trip_phases",
+        "source": "start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences",
+        "made": "The 96 trips that end in Frankfurt (Nov 2020 to Jun 2021), read at commit de394ee on 2026-10-12; each cut into stretches of driving, searching and walking, joined to its trip's search time, place and cost."
+      },
+      {
+        "dataset": "parking_spaces",
+        "source": "Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences",
+        "made": "All 29,215 parking spaces of the supply, one point each, read from Mobilithek offer 886571101635461120 on 2026-10-12; street, side, orientation and position kept."
+      },
+      {
+        "dataset": "parking_segments",
+        "source": "Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences",
+        "made": "The supply's 5,518 street segments, read from the same offer on 2026-10-12; spaces per 100 m worked out from each segment's capacity and length, zero where parking is not allowed."
+      }
+    ],
+    "styling": [
+      "Each trip drawn whole, its stretches coloured by what the driver was doing: driving grey, searching red, walking green.",
+      "Searching draws over walking and driving, so no hunt hides under another trip.",
+      "Street segments coloured by parking spaces per 100 m of kerb, in five classes from none to 30 or more; segments with no figure in the supply are left out.",
+      "Every parking space as a small grey point along the kerb.",
+      "Widgets count trips: the total, the search time in four bins, on-street or off-street, and free, paid or illegal parking, each one filtering the trips.",
+      "The camera sits on the city centre at street level; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

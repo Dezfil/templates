@@ -1,0 +1,49 @@
+{
+  "formatVersion": 1,
+  "id": "frankfurt-parking-hardest",
+  "version": 1,
+  "kind": "workflow",
+  "title": "Where is parking hardest in Frankfurt?",
+  "question": "Where in Frankfurt do drivers spend the most time hunting for parking for the spaces there are?",
+  "place": "Frankfurt am Main, Germany",
+  "tags": ["Analysis"],
+  "dataDate": "2021-06",
+  "sources": [
+    {
+      "name": "start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences",
+      "licence": "BSD-3-Clause",
+      "credit": "start2park, ReLUT, Frankfurt University of Applied Sciences. Copyright (c) 2023, ReLUT"
+    },
+    {
+      "name": "Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences",
+      "licence": "ODbL-1.0",
+      "credit": "© OpenStreetMap contributors"
+    }
+  ],
+  "howMade": {
+    "question": "A street with many drivers circling is not hard to park in if it has plenty of spaces; a short street with few spaces can be. So the question is not where drivers search, but where they search long for the spaces there are.\n\nThe workflow puts every waypoint the start2park app marked as searching into a grid of H3 cells and adds up the minutes of searching in each, counts the parking spaces in the same cells, and divides one by the other. A hot spot analysis (Getis-Ord Gi*) then asks which cells, together with their neighbours, stand out from the rest: those are where parking is significantly hard. It is a small study, 65 trips with a search and about two hours of searching in all, so read the hot spots as where these drivers struggled, not as a census.",
+    "datasets": [
+      {
+        "dataset": "search_points",
+        "source": "start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences",
+        "made": "Every waypoint marked as searching on the trips that end in Frankfurt, 1,147 points read at commit de394ee on 2026-10-12; each worth the minutes until the trip's next waypoint."
+      },
+      {
+        "dataset": "parking_spaces",
+        "source": "Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences",
+        "made": "All 29,215 parking spaces of the supply, one point each, read from Mobilithek offer 886571101635461120 on 2026-10-12; street, side, orientation and position kept."
+      }
+    ],
+    "styling": [
+      "The hot spot cells coloured by confidence: red for hot spots at 99, 95 and 90%, blue for cold spots, grey where no cell stands out.",
+      "Only cells with both searching and parking spaces are scored: outside the supply's area there is nothing to divide by.",
+      "Every searching waypoint as a small dark point, every parking space as a faint grey one.",
+      "Widgets: the cells by confidence, filtering the map, and the minutes of searching.",
+      "The camera sits on the city centre at street level; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

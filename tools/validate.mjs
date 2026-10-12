@@ -2,8 +2,9 @@
 // admission being the gate: write the folder catalogue the instance reads
 // (DEZFIL_TEMPLATES_CATALOGUE names it), then through the API: the list
 // shows each template, the read of one answers, the download is admitted,
-// the template's map opens read-only and draws, a copy lands, and the
-// copy's layers draw what the template's do.
+// the template's map opens read-only and draws, a copy lands, the copy's
+// layers draw what the template's do, and a workflow example's copy shows
+// the template's results until it runs once, offline, as its own.
 //
 //   node tools/validate.mjs <validation instance> <dist folder> <catalogue folder>
 //
@@ -35,9 +36,16 @@ export async function validate(base, dist, folder) {
   const api = await connect(base);
   const report = { instance: api.origin, templates: [] };
 
+  const asked = Date.now();
   const refreshed = await api.post("/api/templates/refresh", {});
   report.catalogue = refreshed.catalogue ?? refreshed;
   if (report.catalogue.state !== "listed") throw new Error(`The catalogue reads as ${report.catalogue.state}: ${JSON.stringify(report.catalogue)}`);
+  // A refresh reads the catalogue at most once in ten minutes; inside that
+  // window it answers the last read, which is not this release's index.
+  const readAt = Date.parse(report.catalogue.readAt);
+  if (!(readAt >= asked - 1000)) {
+    throw new Error(`The instance last read its catalogue at ${report.catalogue.readAt}, inside its ten-minute window: validate again after ${new Date(readAt + 600_000).toISOString()}, or on a fresh instance.`);
+  }
 
   for (const entry of index.templates) {
     const { id, version } = entry.facts;
@@ -97,8 +105,39 @@ export async function validate(base, dist, folder) {
     for (const table of tables) checks.copy.datasets.push({ name: table.name, rows: table.rowCount, source: table.source });
     const copiedValues = await api.post(`/api/maps/${copied.id}/widget-values`, {});
     checks.copy.widgetValues = copiedValues.widgets.filter((w) => w.value !== undefined).map((w) => ({ id: w.id, value: w.value }));
+
+    // A workflow example's copy: every step shows the template's result
+    // until its first run, the whole workflow runs on this instance with no
+    // outside service, and afterwards every step's output is its own run's.
+    if (entry.facts.kind === "workflow") checks.copy.workflow = await runsAsCopied(api, copy.project.id, entry.facts);
   }
   return report;
+}
+
+async function runsAsCopied(api, projectId, facts) {
+  const { recipes } = await api.get(`/api/projects/${projectId}/members`);
+  if (recipes.length !== 1) throw new Error(`The copy of ${facts.id} holds ${recipes.length} workflows.`);
+  const read = async () => (await api.get(`/api/recipes/${recipes[0].id}`)).recipe;
+  const before = await read();
+  // A second copy by one account renames its outputs, so the steps are
+  // held to the facts by their operations, in order.
+  const listed = facts.steps.map((s) => s.operation).join(", ");
+  if (before.steps.map((s) => s.operation).join(", ") !== listed) throw new Error(`The copied workflow's steps are not the facts' ${listed}.`);
+  for (const step of before.steps) {
+    if (step.templateResult?.template !== facts.id) throw new Error(`The copied step ${step.parameters.name} does not show the template's result.`);
+  }
+  const { run } = await api.post(`/api/recipes/${before.id}/runs`, {}, { "x-edit-revision": before.editRevision });
+  let outcome = null;
+  for (let waited = 0; !outcome; waited++) {
+    if (waited > 600) throw new Error(`The copied workflow of ${facts.id} did not finish in ten minutes.`);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    outcome = (await api.get(`/api/recipes/${before.id}/runs/${run.id}`)).run.outcome;
+  }
+  if (outcome !== "completed") throw new Error(`The copied workflow of ${facts.id} ran ${outcome}.`);
+  const after = await read();
+  const stillCopied = after.steps.filter((s) => s.templateResult !== null).map((s) => s.parameters.name);
+  if (stillCopied.length) throw new Error(`After a run, ${stillCopied.join(", ")} still show the template's result.`);
+  return { steps: before.steps.length, copiedUntilRun: true, run: outcome, ownOutputsAfter: after.steps.map((s) => s.output?.name) };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
