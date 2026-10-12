@@ -88,9 +88,9 @@ try {
            p.geom
     FROM places p
     CROSS JOIN LATERAL (
-      SELECT bezeichnung, richtung_in, richtung_out, ST_Distance_Sphere(p.geom, geom) AS distance_m
+      SELECT bezeichnung, richtung_in, richtung_out, ST_Distance_Sphere(ST_FlipCoordinates(p.geom), ST_FlipCoordinates(geom)) AS distance_m
       FROM register
-      ORDER BY round(ST_Distance_Sphere(p.geom, geom)), status = 'aktuell' DESC
+      ORDER BY round(ST_Distance_Sphere(ST_FlipCoordinates(p.geom), ST_FlipCoordinates(geom))), status = 'aktuell' DESC
       LIMIT 1
     ) r
     ORDER BY p.counter`);
