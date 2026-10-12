@@ -1,0 +1,51 @@
+{
+  "formatVersion": 1,
+  "id": "black-summer",
+  "version": 1,
+  "kind": "workflow",
+  "title": "Black Summer fires",
+  "question": "How many separate fires burned in New South Wales and Victoria from November 2019 to January 2020, and how big were they?",
+  "place": "New South Wales and Victoria, Australia",
+  "tags": [
+    "Analysis",
+    "Time"
+  ],
+  "dataDate": "2020-01",
+  "sources": [
+    {
+      "name": "NASA FIRMS: MODIS active fire detections (MCD14ML), Australia, 2019 and 2020",
+      "licence": "CC0-1.0",
+      "credit": "NASA FIRMS. MODIS Thermal Anomalies/Fire Products (MCD14ML), Giglio, doi:10.5067/FIRMS/MODIS/MCD14ML. We acknowledge the use of imagery from the NASA LANCE FIRMS (https://earthdata.nasa.gov/firms), part of the NASA Earth Science Data and Information System (ESDIS)."
+    },
+    {
+      "name": "Natural Earth: New South Wales, Victoria and the territories (1:10m states and provinces)",
+      "licence": "LicenseRef-Natural-Earth",
+      "credit": "Made with Natural Earth"
+    }
+  ],
+  "howMade": {
+    "question": "Australia's 2019 to 2020 fire season, Black Summer, burned through the forests of New South Wales and Victoria for months. From satellites' fire detections alone, how many separate fires were there between November and January, and how big were they?\n\nNASA's MODIS instruments on Terra and Aqua flag each pixel of about 1 km that holds a fire as they pass over, several times a day. The workflow keeps the 52,865 detections FIRMS rates 80 or more out of 100, puts them into H3 cells of about 36 km², adds up each cell's detections and fire radiative power, and clusters the cells' middles: burning cells that neighbour one another, within 9 km, make one fire. It gives every detection its fire, wraps each fire's detections in a convex hull, cuts the hulls to land, measures them, and joins on each fire's summed and peak fire radiative power.\n\nThe answer: 205 fires, 28 of them with an outline of 1,000 km² or more; the largest, in East Gippsland, 14,708 km². A convex hull wraps a fire's bays and unburnt gaps, and fires that met join into one, so an outline is an upper bound on the ground that burned, not a burnt area; a detection marks a pixel with fire in it, not a fire's edge. Clouds and smoke can hide a fire from a pass.",
+    "datasets": [
+      {
+        "dataset": "fire_detections",
+        "source": "NASA FIRMS: MODIS active fire detections (MCD14ML), Australia, 2019 and 2020",
+        "made": "The 95,392 MODIS detections in FIRMS's 2019 and 2020 files for Australia from 1 November 2019 to 31 January 2020 in NSW, Victoria, the ACT and Jervis Bay, presumed vegetation fires (type 0), read on 2026-10-12: day, UTC time, satellite, confidence, radiative power, brightness, day or night, state."
+      },
+      {
+        "dataset": "states",
+        "source": "Natural Earth: New South Wales, Victoria and the territories (1:10m states and provinces)",
+        "made": "The four outlines from Natural Earth's states and provinces (version 5.1.1), read on 2026-10-12."
+      }
+    ],
+    "styling": [
+      "The fires over the season as outlines, coloured by their area: under 10 km², 10 to 100, 100 to 1,000, 1,000 km² or more; the largest labelled with their area. Fires of one detection or a line of them show as small rings and lines.",
+      "The detections as a heatmap weighted by fire radiative power, under a timeline by day; its window opens on 28 December 2019 to 4 January 2020.",
+      "Widgets: the detections in the timeline's window, the fires by size, the largest outline; the sources.",
+      "The camera holds eastern New South Wales and Victoria; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
