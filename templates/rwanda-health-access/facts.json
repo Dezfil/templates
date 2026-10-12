@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "id": "rwanda-health-access",
+  "version": 1,
+  "kind": "workflow",
+  "title": "Health access in Rwanda",
+  "question": "How many people in Rwanda live more than 5 km from a public health facility, district by district?",
+  "place": "Rwanda",
+  "tags": ["Analysis"],
+  "dataDate": "2023-11",
+  "sources": [
+    {
+      "name": "Kontur Population: Rwanda, population density for 400m H3 hexagons",
+      "licence": "CC-BY-4.0",
+      "credit": "Kontur Population, Kontur Inc., via the Humanitarian Data Exchange"
+    },
+    {
+      "name": "Public health facilities in sub-Saharan Africa, Maina et al. (2019)",
+      "licence": "CC0-1.0",
+      "credit": "Snow RW, Maina J, Ouma PO, Macharia PM, Alegana VA, Mitto B, et al. (2019). Public health facilities in sub Saharan Africa. figshare. doi:10.6084/m9.figshare.7725374.v1"
+    },
+    {
+      "name": "geoBoundaries Rwanda districts (ADM2), from Open Data Rwanda",
+      "licence": "CC-BY-4.0",
+      "credit": "geoBoundaries (www.geoboundaries.org), Runfola et al. (2020); boundaries from Open Data Rwanda"
+    }
+  ],
+  "howMade": {
+    "question": "Five kilometres is about an hour's walk, and for many people in rural Rwanda walking is how they reach a clinic. How many people live further than that from the nearest public health facility, and in which districts?\n\nThe workflow takes Kontur's population grid (hexagons about 400 m across), finds the nearest public health facility in the Maina et al. inventory to the middle of each hexagon, keeps the people more than 5 km away, and adds them up per district with two spatial joins, the second beside the district's whole population, so a SQL step can give each district its share. The nearest facility is found by a SQL step that measures on the ellipsoid: the nearest join measures within one UTM zone, and Rwanda straddles two.\n\nThe distance is a straight line, not the road or the path people actually take: it understates the real journey, most in the hills. About 177,000 people live in hexagons whose middle lies across the border, and no district counts them.",
+    "datasets": [
+      {
+        "dataset": "population_cells",
+        "source": "Kontur Population: Rwanda, population density for 400m H3 hexagons",
+        "made": "All 24,764 populated H3 hexagons of the 2023-11-01 release, 14.3 million people, read from Kontur's address on HDX on 2026-10-12; turned from Web Mercator into longitude and latitude."
+      },
+      {
+        "dataset": "health_facilities",
+        "source": "Public health facilities in sub-Saharan Africa, Maina et al. (2019)",
+        "made": "The inventory's 572 facilities in Rwanda, read from figshare article 7725374 version 1 on 2026-10-12; name, type, ownership and province kept, placed by their latitude and longitude."
+      },
+      {
+        "dataset": "districts",
+        "source": "geoBoundaries Rwanda districts (ADM2), from Open Data Rwanda",
+        "made": "The 30 district outlines, simplified, read from the geoBoundaries repository at commit 9469f09 on 2026-10-12; the district name kept."
+      }
+    ],
+    "styling": [
+      "Every populated hexagon coloured by the straight-line distance to its nearest public health facility: under 2 km, 2 to 5, 5 to 10, 10 km or more.",
+      "The districts outlined and labelled with the share of their people more than 5 km from a facility.",
+      "Every public health facility as a small dark point.",
+      "Widgets: the people in each distance band, filtering the hexagons; the people more than 5 km away; the facilities.",
+      "The camera holds the whole country; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

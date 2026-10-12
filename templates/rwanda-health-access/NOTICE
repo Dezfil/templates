@@ -1,0 +1,117 @@
+Health access in Rwanda (rwanda-health-access), version 1
+=========================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Kontur Population: Rwanda, population density for 400m H3 hexagons, CC-BY-4.0: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange
+- Public health facilities in sub-Saharan Africa, Maina et al. (2019), CC0-1.0: Snow RW, Maina J, Ouma PO, Macharia PM, Alegana VA, Mitto B, et al. (2019). Public health facilities in sub Saharan Africa. figshare. doi:10.6084/m9.figshare.7725374.v1
+- geoBoundaries Rwanda districts (ADM2), from Open Data Rwanda, CC-BY-4.0: geoBoundaries (www.geoboundaries.org), Runfola et al. (2020); boundaries from Open Data Rwanda
+
+
+Kontur Population: Rwanda
+-------------------------
+
+Dataset: population_cells (24,764 populated H3 hexagons at resolution 8,
+about 400 m across, 14,275,249 people)
+
+Publisher: Kontur Inc., on the Humanitarian Data Exchange, dataset
+kontur-population-rwanda, release 2023-11-01.
+https://data.humdata.org/dataset/kontur-population-rwanda
+
+Licence: Creative Commons Attribution 4.0 International (CC-BY-4.0), as
+HDX's record states.
+https://creativecommons.org/licenses/by/4.0/
+
+Credit: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange.
+
+Where and when: read on 2026-10-12 at 08:54:06 UTC from the address HDX
+lists for the release:
+
+  https://geodata-eu-central-1-kontur-public.s3.amazonaws.com/kontur_datasets/kontur_population_RW_20231101.gpkg.gz
+  (1,663,647 bytes, SHA-256 ff26bff7b6ff711953575af4d81107fc8ea44aeded270ba3a185c2310dd657be;
+  unpacked 4,980,736 bytes, SHA-256 2017809a0429c44a47085e5030d8f59779e89c83721c60a28e8a6c6f36bb0a43)
+
+Kept: every hexagon, with its H3 cell and its people rounded to whole
+people; turned from Web Mercator (EPSG:3857) into longitude and latitude
+(EPSG:4326).
+
+
+Public health facilities in sub-Saharan Africa
+----------------------------------------------
+
+Dataset: health_facilities (the inventory's 572 public health facilities
+in Rwanda)
+
+Publisher: Maina J, Ouma PO, Macharia PM, et al., "A spatial database of
+health facilities managed by the public health sector in sub Saharan
+Africa", Scientific Data 6, 134 (2019), doi:10.1038/s41597-019-0142-2; the
+data on figshare, article 7725374, version 1.
+https://doi.org/10.6084/m9.figshare.7725374.v1
+
+Licence: CC0 1.0 Universal (CC0-1.0), as the figshare record states.
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Credit, as the data's citation asks: Snow RW, Maina J, Ouma PO, Macharia
+PM, Alegana VA, Mitto B, et al. (2019). Public health facilities in sub
+Saharan Africa. figshare. doi:10.6084/m9.figshare.7725374.v1
+
+Where and when: read on 2026-10-12 at 08:54:07 UTC from the record's one
+file (file 14379593), whose MD5 the build holds to the one figshare lists:
+
+  https://ndownloader.figshare.com/files/14379593
+  (5,495,174 bytes, SHA-256 6ab31b0d2601e0cd53e6360c5f6f9b415b2f6e2895b7a687b35f2ddedc3950b1,
+  MD5 3bf56fc31081c8fd798789a3d70564b8)
+
+Kept: the rows whose country is Rwanda; each facility's name, type,
+ownership and province, placed by its latitude and longitude.
+
+
+geoBoundaries Rwanda districts
+------------------------------
+
+Dataset: districts (Rwanda's 30 districts, simplified outlines)
+
+Publisher: geoBoundaries, William & Mary geoLab, gbOpen release; the
+boundaries' own source is Open Data Rwanda.
+https://www.geoboundaries.org
+
+Licence: Creative Commons Attribution 4.0 International (CC-BY-4.0), the
+licence the geoBoundaries API gives for this boundary.
+https://creativecommons.org/licenses/by/4.0/
+
+Credit: geoBoundaries (www.geoboundaries.org), Runfola et al. (2020);
+boundaries from Open Data Rwanda. Runfola D, et al. (2020) geoBoundaries:
+A global database of political administrative boundaries. PLoS ONE 15(4):
+e0231866.
+
+Where and when: read on 2026-10-12 at 08:54:08 UTC from the publisher's
+repository at commit 9469f09592ced973a3448cf66b6100b741b64c0d:
+
+  https://github.com/wmgeolab/geoBoundaries/raw/9469f09592ced973a3448cf66b6100b741b64c0d/releaseData/gbOpen/RWA/ADM2/geoBoundaries-RWA-ADM2_simplified.geojson
+  (289,074 bytes, SHA-256 56b0995c7a7735847659b766e00c5cfa29b1b3a197f231dc396f399948c46c09)
+
+Kept: each district's name and outline.
+
+
+The workflow's results
+----------------------
+
+The template carries each workflow step's result from its run on
+2026-10-12 (results/<step id>.parquet): the hexagons' middles, each
+middle's nearest facility and its distance, the people more than 5 km
+away, and the people per district with their share. They are made from
+all three sources together and carry each one's terms: the credits of the
+two CC-BY-4.0 sources go with them.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
