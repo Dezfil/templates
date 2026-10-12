@@ -1,0 +1,114 @@
+Japan in 3D (japan-3d), version 1
+=================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- 3D City Model (Project PLATEAU), Tokyo 23 wards, Ministry of Land, Infrastructure, Transport and Tourism, CC-BY-4.0: Source: 3D City Model (Project PLATEAU) Tokyo 23 wards (Ministry of Land, Infrastructure, Transport and Tourism), processed. 出典：「3D都市モデル（Project PLATEAU）東京都23区」（国土交通省）を加工して作成
+
+
+3D City Model (Project PLATEAU), Tokyo 23 wards
+-----------------------------------------------
+
+Dataset: buildings (11,139 buildings of Chiyoda ward, city code 13101, each
+its roof outline and measured height; surveyed in 2016)
+
+Publisher: the Ministry of Land, Infrastructure, Transport and Tourism
+(MLIT), Project PLATEAU, on the G-spatial information center, dataset
+"3D都市モデル（Project PLATEAU）東京都23区" (plateau-tokyo23ku), the
+resource "CityGML（v2）". The copyright of the 3D city models published
+there belongs to the local governments; the site policy sets the terms.
+https://www.geospatial.jp/ckan/dataset/plateau-tokyo23ku
+
+Licence: the dataset's licence is "PLATEAU Site Policy「３．著作権について」に拠る",
+the PLATEAU site policy, section 3 (https://www.mlit.go.jp/plateau/site-policy/):
+its content may be used under the Public Data License (公共データ利用規約
+（第1.0版）, PDL1.0), and the policy states that these terms are compatible
+with Creative Commons Attribution 4.0 International and that MLIT's City
+Bureau permits users to use the content under CC BY 4.0
+("利用者がCC BYに従って利用することを許諾します"). This template uses it
+under that permission: Creative Commons Attribution 4.0 International
+(CC-BY-4.0), https://creativecommons.org/licenses/by/4.0/legalcode. The
+policy notes that some content may carry restrictions under particular
+laws, naming the Survey Act for public survey results.
+
+Credit: as the site policy asks, the source with a statement that it was
+processed: Source: 3D City Model (Project PLATEAU) Tokyo 23 wards
+(Ministry of Land, Infrastructure, Transport and Tourism), processed.
+出典：「3D都市モデル（Project PLATEAU）東京都23区」（国土交通省）を加工して作成
+
+Where and when: read on 2026-10-12 from the publisher's archive,
+
+  https://assets.cms.plateau.reearth.io/assets/ec/d51c64-a47f-4a56-aa64-340d1d3c720b/13100_tokyo23-ku_2020_citygml_4_2_op.zip
+  (5,333,703,547 bytes, last modified Sun, 19 Mar 2023 15:12:41 GMT)
+
+by range requests: its directory, then the building files of the 42
+third-order grid squares around Chiyoda, of which these 21 hold the ward's
+buildings (the other 21, 53393597, 53393598, 53393599, 53393690, 53393691,
+53393692, 53393693, 53394507, 53394508, 53394517, 53394527, 53394537,
+53394547, 53394548, 53394602, 53394603, 53394612, 53394613, 53394623,
+53394633, 53394643, hold none):
+
+  53394509_bldg_6697_2_op.gml
+    (56,598,678 bytes, SHA-256 5ad3376469ab80b45b17735e875b5d30f4afc4b1f639aa954248ef7d251fd189; 41 of Chiyoda's buildings)
+  53394518_bldg_6697_2_op.gml
+    (18,002,809 bytes, SHA-256 3051cfccd54e1b06a0b8e9b42a783f8c1f65d4198bcd8b451ec15bedc94b74a3; 74 of Chiyoda's buildings)
+  53394519_bldg_6697_2_op.gml
+    (3,595,911 bytes, SHA-256 f3679ab7ebc8d743d79da369097986ff1c944deb10e1eca77e98c285dfa552cf; 382 of Chiyoda's buildings)
+  53394528_bldg_6697_2_op.gml
+    (15,721,567 bytes, SHA-256 f231ff30e476306f719c6e42030e6191fc93048a0730388d100a44d291cd24ce; 457 of Chiyoda's buildings)
+  53394529_bldg_6697_2_op.gml
+    (6,770,299 bytes, SHA-256 bc606bd22ca6d4ede581546b456250ad50e09578fc8eca6b2ec3dd0073f2e253; 806 of Chiyoda's buildings)
+  53394538_bldg_6697_2_op.gml
+    (16,314,202 bytes, SHA-256 5828220f32146bb8a349d44d5ffdf3997a79de5138cda22d2a9b548b8b3871c1; 5 of Chiyoda's buildings)
+  53394539_bldg_6697_2_op.gml
+    (10,286,309 bytes, SHA-256 dccf73e22e2be66799e06b459d86d784615853d059b8406ad2985bd43802d430; 952 of Chiyoda's buildings)
+  53394549_bldg_6697_2_op.gml
+    (17,460,774 bytes, SHA-256 687bf592b839f6aedf11c4fee05ead55255f61dd6da7e2eaf2513ba8d300af66; 251 of Chiyoda's buildings)
+  53394600_bldg_6697_2_op.gml
+    (81,036,076 bytes, SHA-256 7e7e4278df58f17111bcbcb4160ff2ef2790662f59577107fcfdc4d718d2cc9e; 148 of Chiyoda's buildings)
+  53394601_bldg_6697_2_op.gml
+    (162,188,587 bytes, SHA-256 ecfb3dd29ebbee7cb7d5303be42e3b6d3a9f46c0caba9390dddab907e8174952; 9 of Chiyoda's buildings)
+  53394610_bldg_6697_2_op.gml
+    (2,730,614 bytes, SHA-256 34884ef9baaf4b646d575bfd02a907fe28a351e8d9e3ce700a7a05c6325f09c4; 41 of Chiyoda's buildings)
+  53394611_bldg_6697_2_op.gml
+    (66,552,157 bytes, SHA-256 4ca14484db9848302852c0ad8d970d34a05cba20611cf354af3e03d3f16cbf77; 92 of Chiyoda's buildings)
+  53394620_bldg_6697_2_op.gml
+    (4,715,597 bytes, SHA-256 78039ecdbf4332015d31850d3491fece7730a1690e526f9673f3c0061b61d097; 67 of Chiyoda's buildings)
+  53394621_bldg_6697_2_op.gml
+    (51,578,631 bytes, SHA-256 c6c03cb1973852cd78902e25ef6953c1aa6322d2df4b8c3b58740d5a7b945c3d; 773 of Chiyoda's buildings)
+  53394622_bldg_6697_2_op.gml
+    (35,163,819 bytes, SHA-256 029c426776ba8fe57db876ca9c9cc813a6e90111546b9320da4c0848fb629235; 25 of Chiyoda's buildings)
+  53394630_bldg_6697_2_op.gml
+    (13,669,580 bytes, SHA-256 30a42542101425118ea25a03fb0002dc6a515543a8463a6c6131fc6615e75445; 1,786 of Chiyoda's buildings)
+  53394631_bldg_6697_2_op.gml
+    (18,504,169 bytes, SHA-256 4101795588f6ab46f8c8315f443442cd2d8fee087eb78c6b49f6b00fb50e69d3; 2,362 of Chiyoda's buildings)
+  53394632_bldg_6697_2_op.gml
+    (29,566,491 bytes, SHA-256 195d4459320b5490a3cd1ab2d7e508dbdd20036685055b606753d04857778140; 1,485 of Chiyoda's buildings)
+  53394640_bldg_6697_2_op.gml
+    (14,289,494 bytes, SHA-256 5f4b9fdabb2b672f79b9b071fd53fca1906e0368e485fefe1fa4fe1327241d91; 387 of Chiyoda's buildings)
+  53394641_bldg_6697_2_op.gml
+    (25,265,674 bytes, SHA-256 cc046cebfd89e28dd4080737ec85956aefd96c7192af81ddf0a07f8139d8ed01; 919 of Chiyoda's buildings)
+  53394642_bldg_6697_2_op.gml
+    (43,662,053 bytes, SHA-256 271549e697745d14846cb859d1a6d2691fe10173385772e54bc491634b23a4b5; 77 of Chiyoda's buildings)
+
+Kept: of each building whose city code is 13101 (Chiyoda), its id in the
+model (gml:id), its name where the model gives one, its measured height
+(bldg:measuredHeight, rounded to 0.1 m) and its roof outline (LOD0,
+bldg:lod0RoofEdge) as longitude and latitude in JGD2011, made valid and
+rounded to 1e-7 degrees; a height band (under 10 m, 10 to 30 m, 30 to
+60 m, 60 to 100 m, 100 m and over) is added. Nothing else of the model is
+kept: not the 3D solids, the textures, the addresses or the flood risk
+attributes. This is a modified version of the data.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

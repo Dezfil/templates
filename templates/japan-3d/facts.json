@@ -1,0 +1,42 @@
+{
+  "formatVersion": 1,
+  "id": "japan-3d",
+  "version": 1,
+  "kind": "map",
+  "title": "Japan in 3D",
+  "question": "How high does Tokyo build at its heart, building by building?",
+  "place": "Chiyoda, Tokyo, Japan",
+  "tags": [
+    "3D",
+    "Widgets"
+  ],
+  "dataDate": "2016",
+  "sources": [
+    {
+      "name": "3D City Model (Project PLATEAU), Tokyo 23 wards, Ministry of Land, Infrastructure, Transport and Tourism",
+      "licence": "CC-BY-4.0",
+      "credit": "Source: 3D City Model (Project PLATEAU) Tokyo 23 wards (Ministry of Land, Infrastructure, Transport and Tourism), processed. 出典：「3D都市モデル（Project PLATEAU）東京都23区」（国土交通省）を加工して作成"
+    }
+  ],
+  "howMade": {
+    "question": "Japan's Ministry of Land, Infrastructure, Transport and Tourism has modelled its cities in 3D, building by building, and publishes the models openly as Project PLATEAU.\n\nThis map raises every building of Chiyoda, the ward at the heart of Tokyo, to the height measured from the air. The towers of Marunouchi and Otemachi stand around Tokyo Station, over 200 metres at the top; behind them the Imperial Palace keeps a wide green hollow where nothing is built; north and east, Kanda and Akihabara are streets of ten- to thirty-metre blocks. Colour follows height as well, so the few towers glow above a city that mostly stays under thirty metres.",
+    "datasets": [
+      {
+        "dataset": "buildings",
+        "source": "3D City Model (Project PLATEAU), Tokyo 23 wards, Ministry of Land, Infrastructure, Transport and Tourism",
+        "made": "Every building of Chiyoda ward (city code 13101), 11,139 buildings surveyed in 2016, read from the 23 wards' CityGML (v2) on 2026-10-12; each building's roof outline (LOD0), measured height and name where given kept."
+      }
+    ],
+    "styling": [
+      "One ward, not the whole city: Chiyoda's 11,139 buildings draw at once, well under the render cap, while the 42 grid squares around the ward already hold 81,543. Chiyoda holds both Tokyo's tallest cluster and its largest open space.",
+      "Every building is raised to its measured height, metre for metre: the height scale maps the heights onto themselves.",
+      "Colour follows height on a log Plasma ramp, from deep blue for the low blocks through magenta to yellow for the towers over 200 m.",
+      "Widgets: the number of buildings, the tallest, and the buildings by height band, filtering the map.",
+      "The camera stands over Tokyo Station looking west across Marunouchi to the Imperial Palace; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
