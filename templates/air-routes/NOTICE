@@ -1,0 +1,73 @@
+The world's air routes (air-routes), version 1
+==============================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- OpenFlights Airport and Route Databases, ODbL-1.0: OpenFlights.org
+
+
+OpenFlights Airport and Route Databases
+---------------------------------------
+
+Datasets: air_routes (18,930 pairs of airports joined by a nonstop route)
+and airports (3,257 airports with at least one such route). Both are
+derivative databases of the OpenFlights route and airport databases and
+are offered under the same licence.
+
+Licence: Open Database License v1.0 (ODbL-1.0); any rights in the
+individual contents under the Database Contents License v1.0. The
+publisher states: "The OpenFlights Airport, Airline, Plane and Route
+Databases are made available under the Open Database License. Any rights
+in individual contents of the database are licensed under the Database
+Contents License. In short, these mean that you are welcome to use the
+data as you wish, if and only if you both acknowledge the source and and
+license any derived works made available to the public with a free license
+as well."
+https://openflights.org/data (read 2026-10-12)
+https://opendatacommons.org/licenses/odbl/1-0/
+https://opendatacommons.org/licenses/dbcl/1-0/
+
+Credit, acknowledging the source as the licence asks: "OpenFlights.org"
+
+A 2014 snapshot: the publisher warns that "The third-party that OpenFlights
+uses for route data ceased providing updates in June 2014. The current data
+is of historical value only." The routes are the routes of June 2014; the
+airport names and positions are as the airport database was last revised
+(2019). A route names its airports by IATA code, and each code is drawn at
+the airport that holds it in that database, so a code that has moved since
+2014 (Istanbul's IST, now the new airport) is drawn at today's airport, a
+few tens of kilometres from the old one.
+
+Where and when: read on 2026-10-12 at 08:48 UTC from the publisher's
+repository at a pinned commit, the address openflights.org/data links to:
+
+  https://raw.githubusercontent.com/jpatokal/openflights/7d1a611e070295dba776d6afb86e57d0d1aa1cef/data/routes.dat
+  (2,377,148 bytes, SHA-256 bd373706238134f619c624c606dccc74c05c2582a977c489c81de501735f2390)
+  https://raw.githubusercontent.com/jpatokal/openflights/7d1a611e070295dba776d6afb86e57d0d1aa1cef/data/airports.dat
+  (1,127,225 bytes, SHA-256 9387cdb38df5bd664da823f8ccb69fdd9b33a1888f5b7cca09c34a3cd9ff59f9)
+
+What was done: the 67,652 nonstop routes (11 with stops left out) matched
+to their airports by IATA code (729 routes whose code the airport database
+no longer holds, and one route from an airport to itself, left out); both
+directions of a route kept as one pair of airports; the airlines flying the
+pair counted, a codeshare (sold by one airline, flown by another) not
+counted as a second airline, and a pair sold only as a codeshare counted as
+one airline; the great-circle distance added, sorted into short haul (under
+1,500 km), medium haul and long haul (4,000 km or more); domestic when both
+airports are in the same country; each pair oriented from the airport with
+more nonstop destinations; positions rounded to four decimal places. Only
+the airport code, city, country and name are kept from the airport
+database. The airline database is not used.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

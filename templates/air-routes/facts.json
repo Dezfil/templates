@@ -1,0 +1,45 @@
+{
+  "formatVersion": 1,
+  "id": "air-routes",
+  "version": 1,
+  "kind": "map",
+  "title": "The world's air routes",
+  "question": "How is the world wired by air?",
+  "place": "World",
+  "tags": ["Flows", "Widgets"],
+  "dataDate": "2014-06",
+  "sources": [
+    {
+      "name": "OpenFlights Airport and Route Databases",
+      "licence": "ODbL-1.0",
+      "credit": "OpenFlights.org"
+    }
+  ],
+  "howMade": {
+    "question": "Which airports are joined by a nonstop flight, and where do the busy hubs sit?\n\nEvery nonstop airline route in the OpenFlights route database, a snapshot that stopped in June 2014, drawn as one arc per pair of airports. The big hubs of Europe, North America and East Asia stand out as knots of arcs, and the long-haul routes run between them.",
+    "datasets": [
+      {
+        "dataset": "air_routes",
+        "source": "OpenFlights Airport and Route Databases",
+        "made": "The 18,930 pairs of airports joined by a nonstop route in June 2014, from routes.dat and airports.dat read at github.com/jpatokal/openflights commit 7d1a611 on 2026-10-12; both directions as one pair, the airlines flying it counted (codeshares not), distance and domestic or international added."
+      },
+      {
+        "dataset": "airports",
+        "source": "OpenFlights Airport and Route Databases",
+        "made": "The 3,257 airports with at least one of those routes, from airports.dat read at the same commit on 2026-10-12, each with the number of airports it reaches nonstop."
+      }
+    ],
+    "styling": [
+      "One arc per pair of airports, coloured from the busier airport of the pair (amber) toward the other (blue), so the hubs gather the warm ends.",
+      "Arcs widen with the number of airlines flying the pair; the busiest pairs draw on top.",
+      "An arc that would cross more than half the world takes the short way over the date line, worked out in the layer's SQL.",
+      "Airports as white dots sized by the number of airports they reach nonstop.",
+      "Widgets: the number of airport pairs, the airlines flying each pair, short, medium or long haul (under 1,500 km, 1,500 to 4,000 km, beyond) and domestic or international, each one filtering the arcs.",
+      "The basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

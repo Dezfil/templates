@@ -19,6 +19,20 @@ export async function readFacts(file) {
   for (const s of facts.sources ?? []) {
     if (!s.name || !s.licence || !s.credit) problems.push("every source needs a name, a licence and a credit");
   }
+  // The format's text bounds: a catalogue whose index breaks one is refused
+  // whole, with no word of which field it was.
+  const long = (value, at, max) => {
+    if (typeof value === "string" && [...value].length > max) problems.push(`${at} is ${[...value].length} characters; the format holds ${max}`);
+  };
+  long(facts.title, "title", 80);
+  long(facts.question, "question", 200);
+  long(facts.place, "place", 80);
+  (facts.sources ?? []).forEach((s, i) => { long(s.name, `sources[${i}].name`, 120); long(s.credit, `sources[${i}].credit`, 300); });
+  long(facts.howMade?.question, "howMade.question", 2000);
+  (facts.howMade?.datasets ?? []).forEach((d, i) => long(d.made, `howMade.datasets[${i}].made`, 300));
+  (facts.howMade?.styling ?? []).forEach((line, i) => long(line, `howMade.styling[${i}]`, 300));
+  if ((facts.howMade?.styling ?? []).length > 12) problems.push("howMade.styling holds at most 12 lines");
+  if (!/^\d{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12]\d|3[01]))?)?$/.test(facts.dataDate ?? "")) problems.push("dataDate must be a year, a month or a day");
   if (facts.pictures?.light !== "pictures/light.png" || facts.pictures?.dark !== "pictures/dark.png") {
     problems.push("pictures must be pictures/light.png and pictures/dark.png");
   }

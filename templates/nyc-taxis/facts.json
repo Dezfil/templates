@@ -1,0 +1,45 @@
+{
+  "formatVersion": 1,
+  "id": "nyc-taxis",
+  "version": 1,
+  "kind": "map",
+  "title": "Where New York's taxis go",
+  "question": "Between which neighbourhoods do yellow cabs run, and when?",
+  "place": "New York City",
+  "tags": ["Flows", "Big data", "Widgets"],
+  "dataDate": "2026-08",
+  "sources": [
+    {
+      "name": "NYC Taxi & Limousine Commission (TLC) Trip Record Data and Taxi Zones",
+      "licence": "CC-PDDC",
+      "credit": "NYC Taxi & Limousine Commission (TLC)"
+    }
+  ],
+  "howMade": {
+    "question": "Between which neighbourhoods do New York's yellow cabs run, and how does that change through the day?\n\nEvery yellow taxi trip of August 2026, 3.3 million of them, is in the map. The trip records name only the taxi zone where a trip started and the one where it ended, so the arcs' SQL counts the trips between every pair of zones in each part of the day, as the map draws. Most trips stay inside Manhattan, along the Upper East Side and Midtown; the long arcs out to JFK and LaGuardia carry the highest fares.",
+    "datasets": [
+      {
+        "dataset": "trips",
+        "source": "NYC Taxi & Limousine Commission (TLC) Trip Record Data and Taxi Zones",
+        "made": "Every yellow taxi trip picked up in August 2026, 3,336,701 trips, from the TLC's monthly trip record file read on 2026-10-12; only the pickup and drop-off zone, the hour of the pickup and the metered fare kept."
+      },
+      {
+        "dataset": "taxi_zones",
+        "source": "NYC Taxi & Limousine Commission (TLC) Trip Record Data and Taxi Zones",
+        "made": "The 263 TLC taxi zones from the TLC's zone shapefile and lookup table read on 2026-10-12, reprojected from New York State Plane to longitude and latitude and simplified by about two metres."
+      }
+    ],
+    "styling": [
+      "Arcs between zone centres, one per pair of zones and part of the day, counted in the layer's SQL over the 3.3 million trips; a pair is drawn when it saw at least 31 trips in that part of the day in the month, about one a day.",
+      "Arcs widen and brighten with the number of trips, both ways together, and the quiet ones fade to a haze; the busiest pairs draw on top.",
+      "The zones underneath in blue, darker where more trips were picked up over the month.",
+      "Widgets: the trips on the arcs drawn, the part of the day, where the trip runs and the average fare, each one filtering the arcs.",
+      "Parts of the day by pickup hour: night 0 to 6, morning rush 6 to 10, midday 10 to 16, evening rush 16 to 20, late evening 20 to 24. Where the trip runs: inside Manhattan, to or from an airport, between Manhattan and another borough, or between the other boroughs.",
+      "The camera looks up Manhattan's avenues, with LaGuardia ahead and JFK to the right."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
