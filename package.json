@@ -1,0 +1,13 @@
+{
+  "name": "dezfil-templates",
+  "private": true,
+  "description": "Builds the Dezfil templates: finished example maps and workflow examples on open data.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "@duckdb/node-api": "1.5.4-r.1"
+  }
+}

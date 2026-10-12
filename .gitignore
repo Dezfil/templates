@@ -1,0 +1,7 @@
+node_modules/
+# Downloads, prepared data and authoring records: rebuilt, never committed.
+work/
+# Archives, pictures and the index a release publishes.
+dist/
+.claude/settings.local.json
+.DS_Store
