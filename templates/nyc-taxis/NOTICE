@@ -1,0 +1,71 @@
+Where New York's taxis go (nyc-taxis), version 1
+================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- NYC Taxi & Limousine Commission (TLC) Trip Record Data and Taxi Zones, CC-PDDC: NYC Taxi & Limousine Commission (TLC)
+
+
+NYC Taxi & Limousine Commission (TLC) Trip Record Data and Taxi Zones
+---------------------------------------------------------------------
+
+Datasets: trips (3,336,701 yellow taxi trips picked up in August 2026) and
+taxi_zones (the 263 TLC taxi zones).
+
+Terms: New York City's open data law, Administrative Code § 23-502(d):
+"Such public data sets shall be made available without any registration
+requirement, license requirement or restrictions on their use provided
+that the department may require a third party providing to the public any
+public data set, or application utilizing such data set, to explicitly
+identify the source and version of the public data set, and a description
+of any modifications made to such public data set."
+https://nyc-laws.readthedocs.io/en/latest/nycadmincode/t23/c05/
+(a mirror of the Administrative Code, read 2026-10-12; the official code
+site refuses automated readers). The TLC states on its page that "The trip
+data was not created by the TLC, and TLC makes no representations as to
+the accuracy of these data." The trip records are facts reported by the
+taxis' technology providers.
+
+Recorded as CC-PDDC: the TLC names no licence, the law grants use without
+any licence requirement or restriction, and CC-PDDC (public domain) is the
+nearest identifier Dezfil admits. The source, version and modifications
+the law allows the city to ask for are stated below and in the map's note.
+
+Credit: "NYC Taxi & Limousine Commission (TLC)"
+
+Version, and where and when: read on 2026-10-12 at 08:52 UTC from the
+addresses the TLC's trip record page links to
+(https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page):
+
+  https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2026-08.parquet
+  (59,043,961 bytes, SHA-256 6683a025443afcbb28ac4f238fcbb6334767dc69fab4a16b1eb16a78dcd013cd;
+  published 2026-10-01)
+  https://d37ci6vzurychx.cloudfront.net/misc/taxi_zones.zip
+  (1,022,574 bytes, SHA-256 f6d711917bb4340f8f644d5366c51665489eb2d426dd1a4a55677721ae5adf17)
+  https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv
+  (12,331 bytes, SHA-256 1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed)
+
+Modifications: of the 3,336,716 records in the August 2026 file, the
+3,336,701 picked up in August 2026 are kept (15 dated outside the month are
+left out); of each, only the pickup and drop-off zone, the hour of the
+pickup and the metered fare (rounded to the cent) are kept. The zone shapes
+are reprojected from New York State Plane Long Island (EPSG:2263) to
+longitude and latitude, simplified by about two metres and given the
+service zone from the lookup table; the two lookup ids without a shape
+(264, unknown, and 265, outside New York City) have no zone, so the trips
+that name them do not draw. The map's SQL counts the trips between every
+pair of zones, both ways together, in five parts of the day, and draws a
+pair that saw at least 31 trips in that part of the day.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
