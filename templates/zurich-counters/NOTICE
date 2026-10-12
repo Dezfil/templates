@@ -1,0 +1,78 @@
+Zurich's counters (zurich-counters), version 1
+==============================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its sources' terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Daten der automatischen Fussgänger- und Velozählung, Viertelstundenwerte, Stadt Zürich, CC0-1.0: Stadt Zürich, Tiefbauamt, Open Data Zürich
+- Standorte der automatischen Fuss- und Velozählungen, Stadt Zürich, CC0-1.0: Stadt Zürich, Open Data Zürich
+
+
+Daten der automatischen Fussgänger- und Velozählung – Viertelstundenwerte
+-------------------------------------------------------------------------
+
+Dataset: counts (828,507 quarter-hour counts at 28 counters in 2025)
+
+Publisher: the City of Zurich's civil engineering office (Tiefbauamt,
+Tiefbau- und Entsorgungsdepartement), on the city's open data portal.
+https://data.stadt-zuerich.ch/dataset/ted_taz_verkehrszaehlungen_werte_fussgaenger_velo
+
+Licence: Creative Commons CC0 1.0 (CC0-1.0), as the dataset's catalogue
+record states it ("cc-zero", "Creative Commons CCZero").
+
+Credit: the licence asks for none; the template names the source as
+"Stadt Zürich, Tiefbauamt, Open Data Zürich".
+
+Where and when: read on 2026-10-12 from the portal:
+
+  https://data.stadt-zuerich.ch/api/3/action/package_show?id=ted_taz_verkehrszaehlungen_werte_fussgaenger_velo
+  (the catalogue record, with the licence)
+  https://data.stadt-zuerich.ch/dataset/ted_taz_verkehrszaehlungen_werte_fussgaenger_velo/download/2025_verkehrszaehlungen_werte_fussgaenger_velo.csv
+  (the year 2025, 37,626,822 bytes, SHA-256 193141ff23c9d1da05d65e0e6980d92670c1657a5c051fe0c0c5e5fd7179c4ce)
+
+Kept: for each quarter hour, the counter, its start in Zurich's local time
+as the city writes it, whether the counter counts bicycles or
+pedestrians, the passages each way, and both ways added up. Left out: the
+counter's coordinates (the counters dataset carries the place). This is a
+modified version of the data.
+
+
+Standorte der automatischen Fuss- und Velozählungen
+---------------------------------------------------
+
+Dataset: counters (the 28 counters that counted in 2025)
+
+Publisher: the City of Zurich (Tiefbauamt, Grundlagen + Strategien), on
+the city's open data portal and its geodata service.
+https://data.stadt-zuerich.ch/dataset/geo_standorte_der_automatischen_fuss__und_velozaehlungen
+
+Licence: Creative Commons CC0 1.0 (CC0-1.0), as the dataset's catalogue
+record states it ("cc-zero", "Creative Commons CCZero").
+
+Credit: the licence asks for none; the template names the source as
+"Stadt Zürich, Open Data Zürich".
+
+Where and when: read on 2026-10-12:
+
+  https://data.stadt-zuerich.ch/api/3/action/package_show?id=geo_standorte_der_automatischen_fuss__und_velozaehlungen
+  (the catalogue record, with the licence)
+  https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Standorte_der_automatischen_Fuss__und_Velozaehlungen?SERVICE=WFS&REQUEST=GetFeature&VERSION=1.1.0&TYPENAME=view_eco_standorte&outputFormat=application/vnd.geo%2Bjson
+  (175 site records, 81,055 bytes, SHA-256 385c9b56cd38a11f16d7b1fa97b7cd246bc336f7a4e10572207fe111de8bb25c)
+
+Kept: for each counter in the 2025 counts, the name and the two
+directions of the site record at its place (the register keeps a site's
+earlier records beside its current one; the current one is taken), and
+the place itself, from the counts' Swiss grid coordinates (LV95) turned
+into longitude and latitude. This is a modified version of the data.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

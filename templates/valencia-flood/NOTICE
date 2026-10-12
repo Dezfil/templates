@@ -1,0 +1,110 @@
+Valencia's 2024 flood footprint (valencia-flood), version 1
+===========================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Copernicus Emergency Management Service, EMSR773 Horta Sud (AOI03) grading map, LicenseRef-Copernicus-Data-Policy: Copernicus Emergency Management Service (© 2024 European Union), [EMSR773] Horta Sud (AOI03): Grading Map
+- Overture Maps divisions, ODbL-1.0: © OpenStreetMap contributors, Overture Maps Foundation
+
+
+Copernicus Emergency Management Service, EMSR773
+------------------------------------------------
+
+Datasets: flood (1,528 patches of the observed flood), graded_buildings
+(3,906 graded buildings, one point each) and area_mapped (the area of
+interest, one outline)
+
+Publisher: the Copernicus Emergency Management Service, On-Demand
+Mapping (Rapid Mapping), European Commission Joint Research Centre;
+activation EMSR773, "Flood in Valencia Region, Spain", requested on
+29 October 2024 by Spain's Directorate-General for Civil Protection and
+Emergencies. The product is the grading map of area of interest 3, Horta
+Sud, version 2, delivered on 6 November 2024 ("Correction of observed
+event. In particular not all flood traces were delineated."), made from a
+GeoEye-1 image taken on 31 October 2024 at 10:22 UTC.
+https://mapping.emergency.copernicus.eu/activations/EMSR773/
+
+Licence: the Copernicus data policy (LicenseRef-Copernicus-Data-Policy).
+The service's terms (last modified 7 June 2023) state that its data is
+governed by Regulation (EU) 2021/696, which gives users "a free, full and
+open access to Copernicus Service Information", and grant "free access
+to the data of CEMS On-Demand Mapping for the following purposes [...]:
+(a) reproduction; (b) distribution; (c) communication to the public;
+(d) adaptation, modification and combination with other data and
+information; (e) any combination of points (a) to (d)". Whoever
+distributes the data "shall inform the recipients of the source of that
+data", in the form the citation guidelines give. The data comes "as is",
+without warranty.
+https://mapping.emergency.copernicus.eu/terms-and-conditions/
+https://mapping.emergency.copernicus.eu/about/citation-guidelines/
+
+Credit: Copernicus Emergency Management Service (© 2024 European Union),
+[EMSR773] Horta Sud (AOI03): Grading Map, the form the citation
+guidelines give for a specific map or geospatial dataset.
+
+Where and when: read on 2026-10-12:
+
+  https://rapidmapping.emergency.copernicus.eu/backend/dashboard-api/public-activations/?code=EMSR773
+  (the activation's record, which lists the product and its image)
+  https://rapidmapping.emergency.copernicus.eu/backend/EMSR773/AOI03/GRA_PRODUCT/EMSR773_AOI03_GRA_PRODUCT_v2.zip
+  (70,968,988 bytes, SHA-256 8248feef4f0a9938dfaff103a6e3d6960294f4572d193df919eda55ad79880ba;
+  the layers EMSR773_AOI03_GRA_PRODUCT_observedEventA_v2.json,
+  EMSR773_AOI03_GRA_PRODUCT_builtUpP_v2.json and
+  EMSR773_AOI03_GRA_PRODUCT_areaOfInterestA_v2.json inside it)
+
+Kept, and what was changed: of the observed flood, each patch's class,
+"Flooded area" named "Standing water" and "Flood trace" named "Flood
+traces", and its area, given in hectares and turned into km²; of the
+graded buildings, each point's grade, its kind ("11-Residential
+Buildings" as Residential, "12-Non-residential Buildings" as
+Non-residential, the rest as Unclassified) and its name where the map
+gives one; of the area of interest, its outline, with its area measured
+on the ellipsoid. Left out: the product's other layers (facilities,
+transport, image footprints) and every other attribute. Every geometry is
+as delivered, in longitude and latitude. This is a modified version of
+the data. A patch of 0.4 km² in the west of the area, which the image did
+not cover, was not analysed by the service.
+
+
+Overture Maps divisions
+-----------------------
+
+Dataset: towns (the 24 municipalities the area of interest takes in, as
+outlines)
+
+Publisher: the Overture Maps Foundation, its divisions theme
+(division_area), release 2026-09-23.1, whose outlines and names here all
+come from OpenStreetMap.
+https://docs.overturemaps.org/attribution/
+
+Licence: Open Database License 1.0 (ODbL-1.0), the divisions theme's
+licence, as Overture's attribution page states it ("License for theme:
+ODbL © OpenStreetMap contributors"). The ODbL applies to this dataset as
+a derived database: anyone may use it, and a public derived database
+must be offered under the ODbL as well.
+
+Credit: © OpenStreetMap contributors, Overture Maps Foundation.
+
+Where and when: read on 2026-10-12 from Overture's public bucket, the
+localities in Spain whose bounding box meets the area of interest:
+
+  s3://overturemaps-us-west-2/release/2026-09-23.1/theme=divisions/type=division_area/*.parquet
+
+Kept: each municipality's id, primary name and outline. Left out: the
+comarcas, which Overture also files as localities but which each hold
+several municipalities (the comarca of València, with the city's own
+outline, gives way to the city), and every other property. This is a
+modified version of the data.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

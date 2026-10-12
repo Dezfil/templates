@@ -1,0 +1,61 @@
+{
+  "formatVersion": 1,
+  "id": "leipzig-supermarkets",
+  "version": 1,
+  "kind": "workflow",
+  "title": "Supermarket access in Leipzig",
+  "question": "How many people in Leipzig live more than a kilometre from the nearest supermarket, and in which districts?",
+  "place": "Leipzig, Germany",
+  "tags": [
+    "Analysis"
+  ],
+  "dataDate": "2026-10",
+  "sources": [
+    {
+      "name": "Zensus 2022, population per 100 m grid cell, Statistische Ämter des Bundes und der Länder",
+      "licence": "DL-DE-BY-2.0",
+      "credit": "© Statistische Ämter des Bundes und der Länder, 2024 (Zensus 2022)"
+    },
+    {
+      "name": "OpenStreetMap",
+      "licence": "ODbL-1.0",
+      "credit": "© OpenStreetMap contributors"
+    },
+    {
+      "name": "Geodaten der Ortsteile der Stadt Leipzig",
+      "licence": "DL-DE-BY-2.0",
+      "credit": "Stadt Leipzig, Amt für Statistik und Wahlen"
+    }
+  ],
+  "howMade": {
+    "question": "A supermarket within a kilometre means the weekly shop can be carried home on foot. How many of Leipzig's 600,000 people live further than that from the nearest one, and where?\n\nThe workflow takes the 2022 census's population in 100 m squares, finds the nearest supermarket OpenStreetMap maps in and around the city to the middle of each square with a nearest join, gives each square its district with a spatial join, and adds up each district's people, those more than 1 km away, their share and the average distance in a SQL step.\n\nThe answer: 22,700 people, about one in 26, and more than half of them in six villages on the city's edge, from Althen-Kleinpösna in the east to Seehausen in the north. In 33 of the 63 districts nobody lives that far. The distance is a straight line; the walk along the streets is longer, so the real numbers are somewhat higher.",
+    "datasets": [
+      {
+        "dataset": "population_cells",
+        "source": "Zensus 2022, population per 100 m grid cell, Statistische Ämter des Bundes und der Länder",
+        "made": "The 8,351 populated 100 m squares of the 2022 census whose middle lies in the city, 599,035 people, streamed from the grid of all Germany read on 2026-10-12; cell id and people kept, each square turned from the European grid (EPSG:3035) into longitude and latitude."
+      },
+      {
+        "dataset": "supermarkets",
+        "source": "OpenStreetMap",
+        "made": "The 272 shops tagged as supermarkets in a box reaching past the city (216 in it), as mapped at 18:08 UTC on 2026-10-12, read through the Overpass API; name and brand kept, a building placed at its centre, a shop mapped twice within 50 m under one brand kept once."
+      },
+      {
+        "dataset": "districts",
+        "source": "Geodaten der Ortsteile der Stadt Leipzig",
+        "made": "The city's 63 districts (Ortsteile), number and name kept, read from the city's open data portal on 2026-10-12 and turned from UTM zone 33 into longitude and latitude."
+      }
+    ],
+    "styling": [
+      "Every populated 100 m square coloured by the straight-line distance to its nearest supermarket: under 500 m, 500 m to 1 km, 1 to 1.5 km, 1.5 km or more.",
+      "The districts outlined; the 13 where at least one person in ten lives more than 1 km away labelled with that share.",
+      "Every supermarket as a shopping-cart icon.",
+      "Widgets: the people in each distance band, filtering the squares; the people more than 1 km away; the supermarkets.",
+      "The camera holds the whole city; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

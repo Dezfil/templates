@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "id": "charging-germany",
+  "version": 1,
+  "kind": "map",
+  "title": "Charging Germany's cars",
+  "question": "Where in Germany can an electric car charge, and how fast did the fast chargers spread?",
+  "place": "Germany",
+  "tags": ["Widgets", "Time"],
+  "dataDate": "2026-09",
+  "sources": [
+    {
+      "name": "Ladesäulenregister, Bundesnetzagentur",
+      "licence": "CC-BY-4.0",
+      "credit": "Bundesnetzagentur.de"
+    },
+    {
+      "name": "Overture Maps divisions",
+      "licence": "ODbL-1.0",
+      "credit": "© OpenStreetMap contributors, Overture Maps Foundation"
+    },
+    {
+      "name": "Kontur Population: Germany, population density for 400m H3 hexagons",
+      "licence": "CC-BY-4.0",
+      "credit": "Kontur Population, Kontur Inc., via the Humanitarian Data Exchange"
+    }
+  ],
+  "howMade": {
+    "question": "Every public charging station in Germany has to be reported to the Bundesnetzagentur, the federal network agency, which publishes the list: more than 116,000 stations with 209,000 charge points by September 2026, each with its operator, its power and the day it went into service.\n\nThe map shades every county by its public charge points per 10,000 people, counting each station into the county it stands in with a spatial join in the layer's SQL. The towns that build cars lead by far: Ingolstadt, Wolfsburg, Regensburg and Stuttgart. On top, every station of 150 kW or more, the ones a long drive stops at, is a point on a timeline by the day it opened: play it to watch them spread along the motorways from 2017 on. The register lists only the stations whose operators finished reporting them, so the real number is somewhat higher.",
+    "datasets": [
+      {
+        "dataset": "chargers",
+        "source": "Ladesäulenregister, Bundesnetzagentur",
+        "made": "Every station in the register as of 2026-09-01, 116,443 stations, read from the Bundesnetzagentur on 2026-10-12; operator, kind, charge points, power, opening day, address, county and place kept."
+      },
+      {
+        "dataset": "counties",
+        "source": "Overture Maps divisions",
+        "made": "Germany's 399 counties, and Berlin and Hamburg, from Overture's release 2026-09-23.1, read on 2026-10-12; name and state kept, outlines simplified to about 100 m."
+      },
+      {
+        "dataset": "county_population",
+        "source": "Kontur Population: Germany, population density for 400m H3 hexagons",
+        "made": "The people of Kontur's 2023-11-01 release, read from Kontur's address on HDX on 2026-10-12, summed in each county by where each hexagon's middle falls: 83.3 million in 401 counties."
+      }
+    ],
+    "styling": [
+      "Counties shaded by public charge points per 10,000 people, in seven classes from under 15 to 60 or more, light to dark blue.",
+      "Every station of 150 kW or more as a small orange point, 23,582 of them, on a timeline by the day it went into service.",
+      "212 stations whose coordinates fall outside every county, most of them just across a border or on the coast, count in no county.",
+      "Widgets: the charge points and the charging power in all counties, the fastest stations in the period shown and who runs them, and the counties by charge points per person.",
+      "The camera takes in the whole country; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

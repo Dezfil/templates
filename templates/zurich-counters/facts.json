@@ -1,0 +1,49 @@
+{
+  "formatVersion": 1,
+  "id": "zurich-counters",
+  "version": 1,
+  "kind": "map",
+  "title": "Zurich's counters",
+  "question": "When do people cycle and walk through Zurich, hour by hour?",
+  "place": "Zurich, Switzerland",
+  "tags": ["Time", "Big data", "Widgets"],
+  "dataDate": "2025",
+  "sources": [
+    {
+      "name": "Daten der automatischen Fussgänger- und Velozählung, Viertelstundenwerte, Stadt Zürich",
+      "licence": "CC0-1.0",
+      "credit": "Stadt Zürich, Tiefbauamt, Open Data Zürich"
+    },
+    {
+      "name": "Standorte der automatischen Fuss- und Velozählungen, Stadt Zürich",
+      "licence": "CC0-1.0",
+      "credit": "Stadt Zürich, Open Data Zürich"
+    }
+  ],
+  "howMade": {
+    "question": "Zurich counts its cyclists and pedestrians with loops set into the road and infrared sensors beside paths, every quarter of an hour, day and night. In 2025 its 28 counters recorded more than 13 million passages, nearly all of them by bicycle.\n\nThe map plays one week of July 2025, Monday to Sunday, hour by hour: each counter is a circle that swells with the people passing it in that hour, blue for bicycles and orange for pedestrians. Weekdays pulse twice, with a morning rush into town and a bigger one out of it after five; the weekend wakes late and spreads along the lake. The dataset holds the whole year in quarter hours, and the layer's SQL adds them up by hour for the week shown: change its dates to play another.",
+    "datasets": [
+      {
+        "dataset": "counts",
+        "source": "Daten der automatischen Fussgänger- und Velozählung, Viertelstundenwerte, Stadt Zürich",
+        "made": "Every quarter hour of 2025 at every counter, 828,507 counts read from the city's open data portal on 2026-10-12; bicycles or pedestrians, each way and both."
+      },
+      {
+        "dataset": "counters",
+        "source": "Standorte der automatischen Fuss- und Velozählungen, Stadt Zürich",
+        "made": "The 28 counters that counted in 2025, read from the city's site register on 2026-10-12 and matched to the counts by place; name, what it counts and the two directions kept."
+      }
+    ],
+    "styling": [
+      "Each counter's passages in the hour as a circle, its area growing with the count: blue for bicycles, orange for pedestrians.",
+      "The timeline plays Monday 7 to Sunday 13 July 2025 an hour at a time; the map opens on Tuesday from five to six in the evening, the busiest hour of the week.",
+      "The counters as small dark points with their names; where several count one street, as on the Langstrasse, their circles overlap.",
+      "Widgets: the passages in the hours shown, and the passages by time of day, by counter and by bicycles or pedestrians, each filtering the circles.",
+      "The camera takes in the city from Oerlikon to the lake; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
