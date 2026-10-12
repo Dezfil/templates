@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "london-crash-hotspots",
-  "version": 1,
+  "version": 2,
   "kind": "workflow",
   "title": "London's crash hotspots",
   "question": "Where in London do collisions that kill or seriously injure someone cluster more than chance would allow?",

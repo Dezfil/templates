@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "melbourne-urban-forest",
-  "version": 1,
+  "version": 2,
   "kind": "map",
   "title": "Melbourne's urban forest",
   "question": "Where in Melbourne do the trees stand, and which will the city lose first?",

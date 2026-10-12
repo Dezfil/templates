@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "storm-tracks",
-  "version": 1,
+  "version": 2,
   "kind": "map",
   "title": "Storm tracks since 1980",
   "question": "Where do the world's hurricanes, typhoons and cyclones run, and where do they grow strongest?",

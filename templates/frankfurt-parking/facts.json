@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "frankfurt-parking",
-  "version": 2,
+  "version": 3,
   "kind": "map",
   "title": "Hunting for a parking spot in Frankfurt",
   "question": "Where do drivers circle for a parking spot in Frankfurt, and how long does the hunt take?",
