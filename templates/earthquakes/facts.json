@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "earthquakes",
-  "version": 1,
+  "version": 2,
   "kind": "map",
   "title": "Forty years of big earthquakes",
   "question": "Where does the Earth break, and how deep?",
