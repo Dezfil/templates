@@ -1,0 +1,111 @@
+{
+ "about": ["Our reading of Charles Joseph Minard's Carte figurative des pertes successives en hommes de l'Armée Française dans la campagne de Russie 1812-1813 (Paris, 20 November 1869),", "on the Bibliothèque nationale de France's scan (Gallica btv1b52504201x) as Wikimedia Commons holds it, 8809 by 7612 pixels: every position is in that scan's pixels.", "controls: where Minard placed each named place, read from his labels; the build pins each to its Wikidata item's coordinate.", "bands: each band's centreline as vertices [x, y, men, how read] (the last vertex has no men): the men of the stretch that starts at that vertex.", "How read: printed (the number Minard wrote across the band), width (no number printed: read from the band's width at his scale, 1 mm for 10,000 men, measured column by column on the scan and rounded to 5,000),", "difference (400,000 less the 60,000 of the corps sent north, both printed).", "temperatures: Minard's table of the retreat's temperatures, in degrees Réaumur, each at the x of the retreat he aligned it with, his own words as printed.", "Read on 2026-10-12. Released with this repository's templates; the numbers and dates are Minard's."],
+ "scan": {"sha256": "219ce3632e0d5e6871032666d14d932e6321078f1f6c1cfdad233d728907a894", "width": 8809, "height": 7612},
+ "controls": [
+  {"chart": "Kowno", "wikidata": "Q4115712", "x": 880, "y": 5500},
+  {"chart": "Wilna", "wikidata": "Q216", "x": 1700, "y": 5450},
+  {"chart": "Smorgoni", "wikidata": "Q958617", "x": 2450, "y": 5850},
+  {"chart": "Molodezno", "wikidata": "Q201203", "x": 2600, "y": 5935},
+  {"chart": "Gloubokoe", "wikidata": "Q954114", "x": 2900, "y": 4920},
+  {"chart": "Minsk", "wikidata": "Q2280", "x": 3400, "y": 6320},
+  {"chart": "Studienska", "wikidata": "Q16718427", "x": 3440, "y": 6050},
+  {"chart": "Polotzk", "wikidata": "Q200797", "x": 3650, "y": 4830},
+  {"chart": "Bobr", "wikidata": "Q2659074", "x": 3880, "y": 5990},
+  {"chart": "Witebsk", "wikidata": "Q102217", "x": 4200, "y": 5050},
+  {"chart": "Orscha", "wikidata": "Q208609", "x": 4560, "y": 5700},
+  {"chart": "Mohilow", "wikidata": "Q154835", "x": 4560, "y": 6260},
+  {"chart": "Smolensk", "wikidata": "Q2337", "x": 5230, "y": 5470},
+  {"chart": "Dorogobouge", "wikidata": "Q135446", "x": 6060, "y": 5080},
+  {"chart": "Wizma", "wikidata": "Q102307", "x": 6660, "y": 5030},
+  {"chart": "Chjat", "wikidata": "Q134318", "x": 6720, "y": 4400},
+  {"chart": "Mojaisk", "wikidata": "Q159139", "x": 7380, "y": 4600},
+  {"chart": "Moscou", "wikidata": "Q649", "x": 8130, "y": 4120},
+  {"chart": "Tarantino", "wikidata": "Q4452204", "x": 8190, "y": 4720},
+  {"chart": "Malo-jarosewli", "wikidata": "Q158005", "x": 8150, "y": 4900}
+ ],
+ "bands": [
+  {"part": "Main army", "direction": "Advance", "vertices": [
+    [880, 5443, 422000, "printed"],
+    [920, 5488, 422000, "printed"],
+    [1150, 5422, 422000, "printed"],
+    [1200, 5430, 400000, "printed"],
+    [1420, 5436, 400000, "printed"],
+    [1430, 5453, 400000, "printed"],
+    [1870, 5512, 340000, "difference"],
+    [2235, 5429, 330000, "width"],
+    [2295, 5412, 315000, "width"],
+    [2355, 5390, 305000, "width"],
+    [2615, 5320, 300000, "width"],
+    [2675, 5303, 290000, "width"],
+    [2735, 5282, 285000, "width"],
+    [3055, 5203, 275000, "width"],
+    [3115, 5191, 260000, "width"],
+    [3475, 5163, 245000, "width"],
+    [3515, 5149, 225000, "width"],
+    [3600, 5132, 225000, "width"],
+    [3610, 5109, 225000, "width"],
+    [3620, 5130, 225000, "width"],
+    [3795, 5115, 210000, "width"],
+    [3835, 5112, 195000, "width"],
+    [4175, 5074, 185000, "width"],
+    [4215, 5059, 175000, "printed"],
+    [4290, 5057, 175000, "printed"],
+    [5210, 5389, 145000, "printed"],
+    [6030, 5098, 145000, "printed"],
+    [6770, 4411, 145000, "printed"],
+    [6840, 4388, 127100, "printed"],
+    [7240, 4490, 127100, "printed"],
+    [7270, 4518, 100000, "printed"],
+    [7390, 4541, 100000, "printed"],
+    [8090, 4182]
+  ]},
+  {"part": "Main army", "direction": "Retreat", "vertices": [
+    [8140, 4235, 100000, "printed"],
+    [8105, 4860, 96000, "printed"],
+    [7975, 4915, 96000, "printed"],
+    [7190, 4730, 87000, "printed"],
+    [6650, 4985, 55000, "printed"],
+    [6100, 5280, 37000, "printed"],
+    [5340, 5560, 24000, "printed"],
+    [4540, 5705, 20000, "printed"],
+    [3900, 5975, 50000, "printed"],
+    [3460, 6060, 28000, "printed"],
+    [2925, 5785, 28000, "printed"],
+    [2625, 5935, 12000, "printed"],
+    [2345, 5860, 14000, "printed"],
+    [1690, 5815, 8000, "printed"],
+    [1370, 5835, 4000, "printed"],
+    [1100, 5845, 10000, "printed"],
+    [910, 5855]
+  ]},
+  {"part": "Corps sent north to Polotzk", "direction": "Advance", "vertices": [
+    [1850, 5195, 60000, "printed"],
+    [2420, 4728, 45000, "width"],
+    [2885, 4765, 33000, "printed"],
+    [3580, 4830]
+  ]},
+  {"part": "Corps sent north to Polotzk", "direction": "Retreat", "vertices": [
+    [3575, 4860, 30000, "printed"],
+    [3900, 5975]
+  ]},
+  {"part": "Detachment sent north from the Niemen", "direction": "Advance", "vertices": [
+    [1240, 5120, 22000, "printed"],
+    [1240, 4540]
+  ]},
+  {"part": "Detachment sent north from the Niemen", "direction": "Retreat", "vertices": [
+    [1190, 4530, 6000, "printed"],
+    [1150, 5062, 6000, "printed"],
+    [1100, 5845]
+  ]}
+ ],
+ "temperatures": [
+  {"x": 8140, "reaumur": 0, "date": "1812-10-18", "printed": "Zéro le 18 8bre"},
+  {"x": 6100, "reaumur": -9, "date": "1812-11-09", "printed": "−9° le 9 9bre"},
+  {"x": 5340, "reaumur": -21, "date": "1812-11-14", "printed": "−21° le 14 9bre"},
+  {"x": 3895, "reaumur": -11, "date": null, "printed": "−11°"},
+  {"x": 3460, "reaumur": -20, "date": "1812-11-28", "printed": "−20° le 28 9bre"},
+  {"x": 2925, "reaumur": -24, "date": "1812-12-01", "printed": "−24° le 1er Xbre"},
+  {"x": 2625, "reaumur": -30, "date": "1812-12-06", "printed": "−30° le 6 Xbre"},
+  {"x": 1640, "reaumur": -26, "date": "1812-12-07", "printed": "−26° le 7 Xbre"}
+ ]
+}

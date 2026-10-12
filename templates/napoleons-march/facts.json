@@ -1,0 +1,55 @@
+{
+  "formatVersion": 1,
+  "id": "napoleons-march",
+  "version": 1,
+  "kind": "map",
+  "title": "Napoleon's march",
+  "question": "How did 422,000 men become 10,000?",
+  "place": "Lithuania, Belarus and western Russia",
+  "tags": ["Flows", "First map"],
+  "dataDate": "1812",
+  "sources": [
+    {
+      "name": "Charles Joseph Minard, Carte figurative des pertes successives en hommes de l'Armée Française (1869)",
+      "licence": "CC-PDM-1.0",
+      "credit": "After Charles Joseph Minard, 1869; scan: Bibliothèque nationale de France"
+    },
+    {
+      "name": "Wikidata",
+      "licence": "CC0-1.0",
+      "credit": "Wikidata"
+    }
+  ],
+  "howMade": {
+    "question": "In 1869 Charles Joseph Minard, a retired French civil engineer, drew Napoleon's invasion of Russia as one band: its width is the army, at one millimetre for 10,000 men, tan going in and black coming out, with the cold of the retreat in a table beneath. It has been called the best statistical graphic ever drawn.\n\nThis is his chart read again and laid on today's map. 422,000 men cross the Niemen at Kowno; detachments peel off to the north; the band thins at every step towards Moscow, which 100,000 reach. The black band comes back, through the cold Minard noted under it, and loses nearly half of what is left at the crossing of the Berezina. About 10,000 come back across the Niemen.",
+    "datasets": [
+      {
+        "dataset": "army",
+        "source": "Charles Joseph Minard, Carte figurative des pertes successives en hommes de l'Armée Française (1869)",
+        "made": "Minard's bands read off the BnF's scan of his 1869 chart (read 2026-10-12), 40 stretches with his printed numbers or, where he printed none, the band's width at his scale; laid on the map through the places."
+      },
+      {
+        "dataset": "places",
+        "source": "Wikidata",
+        "made": "The 20 places Minard named, at the coordinates of their Wikidata items read on 2026-10-12, with his spelling and today's name."
+      },
+      {
+        "dataset": "temperatures",
+        "source": "Charles Joseph Minard, Carte figurative des pertes successives en hommes de l'Armée Française (1869)",
+        "made": "The 8 temperatures of Minard's table under the retreat, read on 2026-10-12: degrees Réaumur, the date where he gave one, and Celsius; each at the point of the retreat he set it under."
+      }
+    ],
+    "styling": [
+      "The army as Minard drew it: each stretch as wide as the men in it (422,000 at the Niemen is 60 pixels), tan going into Russia, black coming out.",
+      "The chart is pinned to the map at the 20 places he named, each at its real position, and bends smoothly between them as he drew it, so the advance and the retreat run apart as on his paper.",
+      "Where Minard printed no number, between Wilna and Witebsk and on one stretch of the corps sent north, the number is read from the band's width and rounded to 5,000.",
+      "His temperatures sit on the retreat in blue, in degrees Réaumur as he wrote them; the tooltip gives Celsius.",
+      "Places carry Minard's spelling; the tooltip gives today's name.",
+      "A light basemap, like his paper, in either theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

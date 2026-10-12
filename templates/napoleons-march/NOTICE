@@ -1,0 +1,121 @@
+Napoleon's march (napoleons-march), version 1
+=============================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Charles Joseph Minard, Carte figurative des pertes successives en hommes de l'Armée Française (1869), CC-PDM-1.0: After Charles Joseph Minard, 1869; scan: Bibliothèque nationale de France
+- Wikidata, CC0-1.0: Wikidata
+
+
+Charles Joseph Minard, Carte figurative (1869)
+----------------------------------------------
+
+Datasets: army (the 40 stretches of the army's bands, drawn as bands as
+wide as their men) and temperatures (the 8 temperatures of the retreat).
+
+The work: Charles Joseph Minard (1781-1870), "Carte figurative des pertes
+successives en hommes de l'Armée Française dans la campagne de Russie
+1812-1813", Paris, 20 November 1869, lithograph by Regnier et Dourdet,
+printed on one sheet with his chart of Hannibal's march. Minard died in
+1870; the work is in the public domain everywhere.
+
+Licence: recorded as CC-PDM-1.0, the Public Domain Mark, for a work free
+of known copyright. https://creativecommons.org/publicdomain/mark/1.0/
+
+Credit: After Charles Joseph Minard, 1869; scan: Bibliothèque nationale
+de France.
+
+The scan: the Bibliothèque nationale de France's, Gallica
+btv1b52504201x (https://gallica.bnf.fr/ark:/12148/btv1b52504201x),
+8,809 by 7,612 pixels at 400 dpi. Gallica refuses automated readers, so
+the build reads the same scan from Wikimedia Commons, which holds it
+with the source "Gallica btv1b52504201x" and the licence tag
+PD-old-100-1923 (its author died more than 100 years ago and it was
+published before 1923):
+https://commons.wikimedia.org/wiki/File:Carte_figurative_des_pertes_successives_en_hommes_de_l%27arm%C3%A9e_fran%C3%A7aise_dans_la_Campagne_de_Russie_1812-13.jpg
+read on 2026-10-12 at 12:11:37 UTC from
+
+  https://upload.wikimedia.org/wikipedia/commons/5/59/Carte_figurative_des_pertes_successives_en_hommes_de_l%27arm%C3%A9e_fran%C3%A7aise_dans_la_Campagne_de_Russie_1812-13.jpg
+  (6,504,247 bytes, SHA-256 219ce3632e0d5e6871032666d14d932e6321078f1f6c1cfdad233d728907a894)
+
+The template carries no part of the scan: only the numbers and positions
+read off it.
+
+What was read, by us, on 2026-10-12, and kept in trace.json beside the
+build (our own reading, released with this repository's templates):
+- where Minard placed each of the 20 places he named;
+- each band's centreline as he drew it, the advance (his red, here tan)
+  and the retreat (black), the main army and the two parts sent north;
+- the number of men on each stretch: the number Minard printed across the
+  band; where he printed none (from Wilna to Witebsk, and on one stretch
+  of the corps sent north to Polotzk), read from the band's width at his
+  scale, one millimetre for 10,000 men, measured column by column on the
+  scan and rounded to 5,000; and on one stretch, 340,000, his printed
+  400,000 less his printed 60,000. Each stretch says which;
+- his table of the retreat's temperatures, in degrees Réaumur below zero,
+  with the dates he gave, each at the point of the retreat he set it
+  under; Celsius added (Réaumur times 1.25).
+
+Where his numbers and his widths disagree (from Smolensk to Dorogobouge
+he printed 145,000 on a band drawn about 180,000 wide), the printed
+number is kept.
+
+The chart is laid on today's map with a thin-plate spline through the
+20 places: each place sits at its Wikidata coordinate and the bands bend
+smoothly between them, so the bands keep Minard's positions relative to
+his places (his advance and retreat run apart where he drew them apart).
+The bands are drawn at his scale on the ground, about 1.7 km for 10,000
+men, with flat ends.
+
+
+Wikidata
+--------
+
+Dataset: places (the 20 places Minard named, with his spelling and the
+item's English name today). Their coordinates also pin the chart to the
+map, so the army and temperatures datasets are placed by them.
+
+Licence: CC0-1.0. Wikidata states: "All structured data from the main,
+Property, Lexeme, and EntitySchema namespaces is available under the
+Creative Commons CC0 License".
+https://www.wikidata.org/wiki/Wikidata:Copyright
+
+Credit: Wikidata (not required by CC0; given).
+
+Where and when: each item's JSON from
+https://www.wikidata.org/wiki/Special:EntityData/<item>.json, read on
+2026-10-12 between 12:11:37 and 12:11:50 UTC, at these revisions:
+
+  Q4115712 Kaunas, revision 2545944233: 54.90000 N, 23.93333 E
+  Q216 Vilnius, revision 2555331868: 54.68722 N, 25.28000 E
+  Q958617 Smarhon, revision 2542683374: 54.48361 N, 26.40000 E
+  Q201203 Maladzyechna, revision 2548192664: 54.31361 N, 26.85167 E
+  Q954114 Hlybokaye, revision 2543127037: 55.13333 N, 27.68333 E
+  Q2280 Minsk, revision 2555384147: 53.90225 N, 27.56184 E
+  Q16718427 Studzionka, revision 2471935909: 54.32667 N, 28.35750 E
+  Q200797 Polatsak, revision 2550033617: 55.48333 N, 28.80000 E
+  Q2659074 Bobr, revision 2547466721: 54.34222 N, 29.27528 E
+  Q102217 Vitebsk, revision 2532764182: 55.18333 N, 30.16667 E
+  Q208609 Vorsha, revision 2532737936: 54.50917 N, 30.42583 E
+  Q154835 Mahilyow, revision 2532329759: 53.90894 N, 30.34296 E
+  Q2337 Smolensk, revision 2532331889: 54.78278 N, 32.04528 E
+  Q135446 Dorogobuzh, revision 2554552544: 54.92000 N, 33.30778 E
+  Q102307 Vyazma, revision 2531605638: 55.21028 N, 34.28500 E
+  Q134318 Gagarin, revision 2554551717: 55.55000 N, 35.00000 E
+  Q159139 Mozhaysk, revision 2534966889: 55.50000 N, 36.03333 E
+  Q649 Moscow, revision 2551381497: 55.75056 N, 37.61750 E
+  Q4452204 Tarutino, revision 2534343863: 55.12222 N, 36.94056 E
+  Q158005 Maloyaroslavets, revision 2534966681: 55.00000 N, 36.46667 E
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
