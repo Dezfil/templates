@@ -29,6 +29,12 @@ const ADDRESS = `https://www.ncei.noaa.gov/data/international-best-track-archive
 const FIRST_YEAR = 1980;
 const LAST_YEAR = 2025;
 
+// The licence travels in the archive's own files as a global attribute;
+// NOAA's AOML ERDDAP serves the since1980 files' attributes. The build
+// refuses to go on unless it still reads the same.
+const ATTRIBUTES = "https://erddap.aoml.noaa.gov/hdb/erddap/info/IBTrACS_since1980_1/index.json";
+const LICENCE = "These data may be redistributed and used without restriction.";
+
 const downloads = path.join(work, "downloads");
 const data = path.join(work, "data");
 await rm(downloads, { recursive: true, force: true });
@@ -37,6 +43,10 @@ await mkdir(data, { recursive: true });
 
 const csv = await download(downloads, "ibtracs-since1980", ADDRESS, "ibtracs.since1980.csv");
 process.stdout.write(`ibtracs: ${csv.bytes} bytes\n`);
+const attributes = await download(downloads, "ibtracs-attributes", ATTRIBUTES, "info.json");
+const attributeRows = JSON.parse(await readFile(attributes.path, "utf8")).table.rows;
+const licence = attributeRows.find((r) => r[0] === "attribute" && r[1] === "NC_GLOBAL" && r[2] === "license")?.[4];
+if (licence !== LICENCE) throw new Error(`The IBTrACS files' licence attribute reads ${JSON.stringify(licence)}; the template was released under ${JSON.stringify(LICENCE)}.`);
 
 const db = await engine();
 try {
@@ -131,7 +141,7 @@ try {
       category5Storms: cat5,
       pointsBroughtBackFromPast180: wrapped,
     },
-    sources: { ibtracs: source },
+    sources: { ibtracs: source, licence: { ...(({ path: _q, ...rest }) => rest)(attributes), attribute: licence } },
     outputs,
   };
   await writeFile(path.join(work, "build-record.json"), JSON.stringify(record, null, 2) + "\n");

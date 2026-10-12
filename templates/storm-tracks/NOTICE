@@ -8,7 +8,7 @@ below.
 Sources, licences and credits, as the template's facts and its map's note
 carry them:
 
-- NOAA NCEI, International Best Track Archive for Climate Stewardship (IBTrACS), version 4.01, LicenseRef-IBTrACS-Open-Access: NOAA's International Best Track Archive for Climate Stewardship (IBTrACS) data, accessed on 2026-10-12
+- NOAA NCEI, International Best Track Archive for Climate Stewardship (IBTrACS), version 4.01, CC-PDDC: NOAA's International Best Track Archive for Climate Stewardship (IBTrACS) data, accessed on 2026-10-12
 
 
 NOAA NCEI, International Best Track Archive for Climate Stewardship (IBTrACS)
@@ -30,13 +30,30 @@ contribute to global tropical cyclone research. We also use the World
 Meteorological Organization's Resolution 40 policy as the guide for
 commercial use of IBTrACS data."
 
-The terms name no licence. They are recorded as
-LicenseRef-IBTrACS-Open-Access, a name for these terms (full and open
-access, open for distribution, WMO Resolution 40 as the guide for
-commercial use). The archive gathers best tracks from agencies around
-the world; under WMO Resolution 40 the members exchange essential data
-free and without conditions on their use, and may attach conditions to
-the commercial re-export of "additional" data. The record of the
+The archive's own files state the licence, in their global attribute
+"license": "These data may be redistributed and used without
+restriction." Read from NOAA AOML's ERDDAP, which serves the since1980
+files and their attributes (the file it shows the attributes of is
+2022008S13148.ibtracs_int.v04r01.nc, product version v04r01, publisher
+"National Centers for Environmental Information, NESDIS, NOAA, U.S.
+Department of Commerce"), on 2026-10-12 at 12:57:20 UTC:
+
+  https://erddap.aoml.noaa.gov/hdb/erddap/info/IBTrACS_since1980_1/index.json
+  (127,387 bytes, SHA-256 d0337d92f30e4040068f0c18083281e781a744780ce9bdaf9af2eca5ea6b7823)
+
+The build refuses to go on unless the attribute still reads so.
+
+Licence: recorded as CC-PDDC, the Creative Commons Public Domain
+Dedication and Certification, as for the earthquakes' US-government
+source: IBTrACS is published by NCEI, part of NOAA, a US federal agency,
+and its files say it may be redistributed and used without restriction.
+https://creativecommons.org/licenses/publicdomain/
+
+On commercial use the page names WMO Resolution 40 as NCEI's guide: under
+it the members of the World Meteorological Organization exchange
+essential data free and without conditions on their use, and may attach
+conditions to the commercial re-export of "additional" data. The page
+asks nothing more of users than the credit below. The record of the
 dataset (NCEI, gov.noaa.ncdc:C01552) adds: "NOAA and NCEI make no
 warranty, expressed or implied, regarding these data, nor does the fact
 of distribution constitute such a warranty."
@@ -57,7 +74,8 @@ Citation, as the page and the record ask for it:
   Bulletin of the American Meteorological Society, 91, 363-376.
   doi:10.1175/2009BAMS2755.1
 
-Where and when: read on 2026-10-12 at 11:53:02 UTC from NCEI. The file is
+Where and when: read on 2026-10-12 at 12:57:20 UTC from NCEI (the same
+bytes as a first read at 11:53:02 UTC). The file is
 updated three times a week and no dated copy is kept, so its bytes and
 hash identify the version read:
 
@@ -75,7 +93,8 @@ the time (UTC), the one-minute sustained wind of the US agencies
 continuous past 180° (7,365 points) are brought back into -180 to 180.
 Positions rounded to 0.01°. The points include the archive's 3-hourly
 interpolated positions. The map's SQL joins each storm's points into
-stretches of one category.
+stretches of one category and splits a track where it crosses the
+antimeridian, at the latitude where the step crosses.
 
 
 The pictures

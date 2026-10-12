@@ -38,27 +38,40 @@ const CATEGORY = {
 
 // The tracks are built in the layer's SQL from the 300,000 points: each
 // storm's track is cut into stretches of one category (a stretch runs on
-// to the next one's first point, so a track draws unbroken) and is broken
-// where it crosses the antimeridian. Stronger stretches draw on top. One
-// stretch of each storm carries storms = 1, so the widgets count storms.
+// to the next one's first point, so a track draws unbroken). Where a track
+// crosses the antimeridian it is split there: the stretch before ends on
+// 180° and the one after starts on -180° at the latitude where the step
+// between the two points crosses, so no step runs the long way round the
+// world and none goes missing. Stronger stretches draw on top. One stretch
+// of each storm carries storms = 1, so the widgets count storms.
 const TRACKS_SQL = [
   "WITH p AS (",
   "  SELECT storm_id, name, season, time_utc, category, category_rank, wind_kt, geom,",
   "         first_value(basin) OVER w AS formed_in,",
   "         max(category_rank) OVER (PARTITION BY storm_id) AS peak_rank,",
   "         coalesce(lag(category) OVER w <> category, true) AS new_category,",
-  "         coalesce(abs(ST_X(geom) - lag(ST_X(geom)) OVER w) > 180, false) AS crosses",
+  "         coalesce(abs(ST_X(geom) - lag(ST_X(geom)) OVER w) > 180, false) AS crosses,",
+  "         lag(ST_X(geom)) OVER w AS before_x, lag(ST_Y(geom)) OVER w AS before_y, lag(time_utc) OVER w AS before_time",
   "  FROM storm_track_points",
   "  WINDOW w AS (PARTITION BY storm_id ORDER BY time_utc)),",
   "r AS (",
   "  SELECT *, sum(CAST(new_category OR crosses AS INTEGER))",
   "              OVER (PARTITION BY storm_id ORDER BY time_utc ROWS UNBOUNDED PRECEDING) AS stretch",
   "  FROM p),",
+  "cuts AS (",
+  "  SELECT storm_id, stretch, time_utc, before_time, sign(before_x) * 180 AS edge,",
+  "         before_y + (ST_Y(geom) - before_y) * (sign(before_x) * 180 - before_x)",
+  "                    / (ST_X(geom) + sign(before_x) * 360 - before_x) AS lat",
+  "  FROM r WHERE crosses),",
   "vertices AS (",
   "  SELECT storm_id, stretch, time_utc, geom FROM r",
   "  UNION ALL",
   "  SELECT storm_id, stretch - 1, time_utc, geom FROM r",
-  "  WHERE new_category AND NOT crosses AND stretch > 1),",
+  "  WHERE new_category AND NOT crosses AND stretch > 1",
+  "  UNION ALL",
+  "  SELECT storm_id, stretch - 1, time_utc, ST_Point(edge, lat) FROM cuts",
+  "  UNION ALL",
+  "  SELECT storm_id, stretch, before_time, ST_Point(-edge, lat) FROM cuts),",
   "lines AS (",
   "  SELECT storm_id, stretch, ST_MakeLine(list(geom ORDER BY time_utc)) AS geom",
   "  FROM vertices GROUP BY storm_id, stretch HAVING count(*) >= 2),",

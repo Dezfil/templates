@@ -11,7 +11,7 @@
   "sources": [
     {
       "name": "NOAA NCEI, International Best Track Archive for Climate Stewardship (IBTrACS), version 4.01",
-      "licence": "LicenseRef-IBTrACS-Open-Access",
+      "licence": "CC-PDDC",
       "credit": "NOAA's International Best Track Archive for Climate Stewardship (IBTrACS) data, accessed on 2026-10-12"
     }
   ],
@@ -25,7 +25,7 @@
       }
     ],
     "styling": [
-      "The tracks are built in the layer's SQL from the 300,420 points: each storm's track cut into stretches of one category, broken where it crosses the antimeridian.",
+      "The tracks are built in the layer's SQL from the 300,420 points: each storm's track cut into stretches of one category, and split at the antimeridian so a track crossing it runs on unbroken.",
       "Each stretch coloured and widened by its Saffir-Simpson category, from faint grey below tropical storm strength to magenta at category 5; stronger stretches draw on top.",
       "Category from the one-minute winds of the US agencies (NHC and JTWC), which track every basin; other agencies' ten-minute winds read lower.",
       "A timeline docked on each stretch's start plays the 46 years.",
