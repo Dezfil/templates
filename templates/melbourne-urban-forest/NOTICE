@@ -1,0 +1,57 @@
+Melbourne's urban forest (melbourne-urban-forest), version 1
+============================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its source's terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Trees, with species and dimensions (Urban Forest), City of Melbourne, CC-BY-4.0: City of Melbourne Open Data
+
+
+Trees, with species and dimensions (Urban Forest)
+-------------------------------------------------
+
+Dataset: trees (82,064 trees the City of Melbourne maintains, one point
+each)
+
+Publisher: the City of Melbourne, on its open data portal, the dataset
+"Trees, with species and dimensions (Urban Forest)", updated on
+2025-09-22.
+https://data.melbourne.vic.gov.au/explore/dataset/trees-with-species-and-dimensions-urban-forest/
+
+Licence: Creative Commons Attribution 4.0 International (CC-BY-4.0), as
+the dataset's catalogue record states it ("CC BY", with the licence's
+address https://creativecommons.org/licenses/by/4.0/legalcode).
+
+Credit: City of Melbourne Open Data.
+
+Where and when: read on 2026-10-12 from the portal's own interface:
+
+  https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/trees-with-species-and-dimensions-urban-forest
+  (the catalogue record: licence, update time, record count)
+  https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/trees-with-species-and-dimensions-urban-forest/exports/parquet
+  (the whole dataset, 6,820,296 bytes, SHA-256 b86b1e1db12f0146a35a48ea55fce4971f9fcc5b4244abe9fcfcbf1ad2893289)
+
+Kept: for each tree, its id, common and scientific name, genus, family,
+whether it stands in a street or a park, its precinct, its age class and
+its useful life expectancy class, with the class's upper end in years
+(under 10 years as 10, over 41 years as 50); its place from the dataset's
+longitude and latitude. A tree whose useful life class is empty is marked
+"Not assessed" and given no years, though the export carries 50 for it.
+The class names are reworded ("< 10 years" as "Under 10 years", "11 - 20
+years" as "11 to 20 years", "> 41 years" as "Over 40 years"). Left out:
+the trunk diameter (missing for most trees, impossible for some), the
+planting year and date (1900 stands in for a third of the trees), the
+upload date and the eastings and northings. This is a modified version of
+the dataset.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

@@ -1,0 +1,43 @@
+{
+  "formatVersion": 1,
+  "id": "melbourne-urban-forest",
+  "version": 1,
+  "kind": "map",
+  "title": "Melbourne's urban forest",
+  "question": "Where in Melbourne do the trees stand, and which will the city lose first?",
+  "place": "Melbourne, Australia",
+  "tags": [
+    "3D",
+    "Widgets"
+  ],
+  "dataDate": "2025-09",
+  "sources": [
+    {
+      "name": "Trees, with species and dimensions (Urban Forest), City of Melbourne",
+      "licence": "CC-BY-4.0",
+      "credit": "City of Melbourne Open Data"
+    }
+  ],
+  "howMade": {
+    "question": "The City of Melbourne looks after more than 80,000 trees in its streets and parks, and its arborists estimate how many useful years each one has left. Many were planted together, in the boulevards and gardens of the nineteenth century and the plantings of the last twenty years, so whole streets can come to their end at once.\n\nThe map bins every tree the city maintains into hexagons a block wide. Each rises with the number of trees in it and takes its colour from the useful life its trees have left on average: purple where they are nearest their end, yellow where they have decades. The widgets count the trees and split them by useful life and by genus; choosing one redraws the forest for it, so you can see where the elms or the gums stand and how long they have. Switch on the tree icons to read, street by street, the trees with twenty years or less to live.",
+    "datasets": [
+      {
+        "dataset": "trees",
+        "source": "Trees, with species and dimensions (Urban Forest), City of Melbourne",
+        "made": "Every tree in the City of Melbourne's inventory, 82,064 trees as updated on 2025-09-22, read from the city's open data portal on 2026-10-12; names, genus, family, street or park, precinct, age and useful life kept."
+      }
+    ],
+    "styling": [
+      "Hexagons with 60 m edges rise with the number of trees in them. The height scale runs up to the densest hexagon, 719 trees at the top of 2,500 m, so an ordinary hexagon of a dozen trees stands about 45 m tall.",
+      "Each hexagon's colour is the average useful life its assessed trees have left, on the Viridis ramp from purple at the shortest to yellow at more than forty years. A class counts as its upper end: under ten years as 10, over forty as 50.",
+      "Trees the city has not assessed (17,410) count toward the height but not the colour.",
+      "The 4,946 trees with twenty years or less to live as tree icons, dark red under ten years and orange from eleven to twenty. The layer opens switched off: under the raised forest its icons would stand inside the columns.",
+      "Widgets: the number of trees, the useful life left and the genus, each filtering the forest; under ten years and eleven to twenty are one class there.",
+      "The camera looks north over Southbank to the city grid, Docklands on the left and the Fitzroy Gardens on the right; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
