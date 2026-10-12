@@ -44,8 +44,8 @@
       "The chart is pinned to the map at the 20 places he named, each at its real position, and bends smoothly between them as he drew it, so the advance and the retreat run apart as on his paper.",
       "Where Minard printed no number, between Wilna and Witebsk and on one stretch of the corps sent north, the number is read from the band's width and rounded to 5,000.",
       "His temperatures sit on the retreat in blue, in degrees Réaumur as he wrote them; the tooltip gives Celsius.",
-      "Places carry Minard's spelling; the tooltip gives today's name.",
-      "A light basemap, like his paper, in either theme."
+      "Places carry Minard's spelling; the tooltip gives today's name. Where the retreat crowds them, names and temperatures are set a little off their points so none touches another.",
+      "A light basemap without today's place names, like his paper, in either theme: his names are the map's."
     ]
   },
   "pictures": {

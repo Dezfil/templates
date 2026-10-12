@@ -27,6 +27,41 @@ const rgb = (hex, a = 1) => ({ r: parseInt(hex.slice(1, 3), 16), g: parseInt(hex
 // into Russia in a pinkish tan, the men who come out in black.
 const DIRECTION = { Advance: rgb("#D29C80"), Retreat: rgb("#1E1B18") };
 
+// Where each label sits at the template's camera: a nudge in pixels from
+// its point, so that no two texts touch where the retreat crowds them
+// between Wilna and Bobr and around Moscou, and none sits on the black band. Labels in different layers do
+// not avoid one another, so the placement is set here; every label is
+// centred on its nudged point, which keeps the point inside its own box.
+// Names go above their point unless named; temperatures below.
+const CAMERA = { lng: 30.75, lat: 55.05, zoom: 5.85 };
+const PLACE_NUDGES = {
+  Smorgoni: [-21, -13],
+  Molodezno: [-10, 22],
+  Studienska: [-8, 23],
+  Bobr: [21, 24],
+  Wizma: [-40, -6],
+  Tarantino: [45, 0],
+  "Malo-jarosewli": [-24, 19],
+};
+const TEMPERATURE_NUDGES = {
+  "0°": [30, 2],
+  "−9°": [0, 16],
+  "−11°": [6, -19],
+  "−20°": [7, -23],
+  "−24°": [7, -19],
+  "−30°": [14, -18],
+  "−26°": [0, 15],
+};
+// A point moved by dx, dy pixels at the camera's zoom, in Web Mercator.
+const nudged = (column, nudges, [dx, dy]) => {
+  const perDegree = (512 * 2 ** CAMERA.zoom) / 360;
+  const cases = (i) => Object.entries(nudges).map(([text, d]) => `WHEN ${column} = '${text}' THEN ${d[i]}`).join(" ");
+  const x = `CASE ${cases(0)} ELSE ${dx} END`;
+  const y = `CASE ${cases(1)} ELSE ${dy} END`;
+  const mercator = "degrees(ln(tan(pi() / 4 + radians(ST_Y(geom)) / 2)))";
+  return `ST_Point(ST_X(geom) + (${x}) / ${perDegree}, degrees(2 * atan(exp(radians(${mercator} - (${y}) / ${perDegree}))) - pi() / 2)) AS geom`;
+};
+
 const api = await connect(base);
 
 const project = await api.post("/api/projects", { name: facts.title });
@@ -65,26 +100,29 @@ await patchLayer(army.id, {
 
 const temperatures = await addLayer({
   name: "Temperature on the retreat",
-  sql: "SELECT label, day, degrees_reaumur, degrees_celsius, as_printed, geom FROM temperatures",
+  sql: `SELECT label, day, degrees_reaumur, degrees_celsius, as_printed, ${nudged("label", TEMPERATURE_NUDGES, [0, 8])} FROM temperatures`,
 });
 await patchLayer(temperatures.id, {
   style: {
     ...temperatures.style,
     // Minard wrote numbers, not dots: the label is the mark (the point
-    // stays for the tooltip). The label's box keeps the point inside it.
+    // stays for the tooltip).
     fill: { type: "constant", color: rgb("#2F6DB5") },
     fillOpacity: 0,
     stroke: rgb("#FFFFFF"),
     strokeWidth: 0,
     strokeOpacity: 0,
     pointRadius: 4,
-    label: { attribute: "label", size: 13, color: rgb("#1F4F8A"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.9), weight: "bold", anchor: "bottom", offsetY: -4, density: 1 },
+    label: { attribute: "label", size: 13, color: rgb("#1F4F8A"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.9), weight: "bold", density: 1 },
   },
   tooltip: ["day", "degrees_reaumur", "degrees_celsius", "as_printed"],
   legendTitle: "Temperature (degrees Réaumur)",
 });
 
-const places = await addLayer({ name: "Places, as Minard named them", sql: "SELECT name_on_chart, name_today, geom FROM places" });
+const places = await addLayer({
+  name: "Places, as Minard named them",
+  sql: `SELECT name_on_chart, name_today, ${nudged("name_on_chart", PLACE_NUDGES, [0, -9])} FROM places`,
+});
 await patchLayer(places.id, {
   style: {
     ...places.style,
@@ -94,7 +132,7 @@ await patchLayer(places.id, {
     strokeWidth: 0,
     strokeOpacity: 0,
     pointRadius: 4,
-    label: { attribute: "name_on_chart", size: 12, color: rgb("#2A2622"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.9), anchor: "top", offsetY: 4, density: 0.7 },
+    label: { attribute: "name_on_chart", size: 12, color: rgb("#2A2622"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.9), density: 1 },
   },
   tooltip: ["name_on_chart", "name_today"],
   legendTitle: "Places, as Minard named them",
@@ -105,8 +143,11 @@ const widget = (id, type, title, more) => ({
   unit: null, note: null, format: null, visible: true, ...more,
 });
 await api.mapWrite(map.id, "PATCH", `/api/maps/${map.id}`, {
-  viewport: { lng: 30.75, lat: 55.05, zoom: 5.85, pitch: 0, bearing: 0 },
+  viewport: { ...CAMERA, pitch: 0, bearing: 0 },
   basemap: "light",
+  // Minard's names are the map's names: today's basemap labels would sit
+  // on top of them (Minsk, Moscow, Vitebsk).
+  basemapLayers: { labels: false },
   legendCorner: "bottom-left",
   legendOrder: [army.id, temperatures.id, places.id],
   layerOrder: [army.id, temperatures.id, places.id],
