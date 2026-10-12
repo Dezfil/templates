@@ -165,11 +165,7 @@ await patchLayer(deaths.id, {
 
 const pumps = await addLayer({
   name: "Pumps",
-  // The name starts with four spaces and its box 4 px left of the pump:
-  // the words sit clear to the right of the dot, and the box still holds
-  // the pump's point, which the label's collision test reads (a box that
-  // only touches its point draws faded).
-  sql: "SELECT pump, coalesce(feature_count, 0) AS deaths_nearest, '    ' || pump AS label, geom FROM pumps_with_deaths",
+  sql: "SELECT pump, coalesce(feature_count, 0) AS deaths_nearest, geom FROM pumps_with_deaths",
 });
 await patchLayer(pumps.id, {
   style: {
@@ -180,7 +176,8 @@ await patchLayer(pumps.id, {
     strokeWidth: 1.6,
     strokeOpacity: 1,
     pointRadius: 5,
-    label: { attribute: "label", size: 12, color: rgb("#1D1F24"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.92), weight: "bold", anchor: "right", offsetX: -4, offsetY: 0, density: 1 },
+    // The name to the right of its pump, clear of the dot.
+    label: { attribute: "pump", size: 12, color: rgb("#1D1F24"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.92), weight: "bold", anchor: "right", offsetX: 8, density: 1 },
   },
   tooltip: ["pump", "deaths_nearest"],
   legendTitle: "A pump on Snow's map",
