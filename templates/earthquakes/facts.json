@@ -1,0 +1,50 @@
+{
+  "formatVersion": 1,
+  "id": "earthquakes",
+  "version": 1,
+  "kind": "map",
+  "title": "Forty years of big earthquakes",
+  "question": "Where does the Earth break, and how deep?",
+  "place": "World",
+  "tags": ["Time", "Widgets"],
+  "dataDate": "2025",
+  "sources": [
+    {
+      "name": "U.S. Geological Survey, ANSS Comprehensive Earthquake Catalog (ComCat)",
+      "licence": "CC-PDDC",
+      "credit": "Credit: U.S. Geological Survey"
+    },
+    {
+      "name": "World tectonic plates and boundaries (PB2002), Peter Bird (2003), converted by Hugo Ahlenius, Nordpil",
+      "licence": "ODC-By-1.0",
+      "credit": "Hugo Ahlenius, Nordpil and Peter Bird"
+    }
+  ],
+  "howMade": {
+    "question": "Where on Earth do big earthquakes happen, and how far below the surface do they start?\n\nForty years of every earthquake of magnitude 5 or more give the answer. Almost all of them line up along the edges of the tectonic plates, and the deep ones happen only where one plate dives under another, at the subduction zones around the Pacific.",
+    "datasets": [
+      {
+        "dataset": "earthquakes",
+        "source": "U.S. Geological Survey, ANSS Comprehensive Earthquake Catalog (ComCat)",
+        "made": "Every earthquake of magnitude 5 or more from 1986 to 2025, 67,510 events, read one year per query from the USGS FDSN event service on 2026-10-12; time, magnitude, depth and place kept, depth sorted into three classes."
+      },
+      {
+        "dataset": "plate_boundaries",
+        "source": "World tectonic plates and boundaries (PB2002), Peter Bird (2003), converted by Hugo Ahlenius, Nordpil",
+        "made": "The 241 PB2002 boundary lines, read as GeoJSON from github.com/fraxen/tectonicplates at commit 339b0c5 on 2026-10-12; subduction zones marked from the boundary type."
+      }
+    ],
+    "styling": [
+      "Earthquakes as points sized by magnitude and coloured by depth: shallow red, intermediate amber, deep blue.",
+      "Deeper earthquakes draw over shallower ones, so the sinking plates show as amber and blue bands inland of each trench.",
+      "Plate boundaries as thin lines under the earthquakes, subduction zones in violet.",
+      "A timeline docked on the earthquakes' time plays the forty years.",
+      "Widgets: the count, a magnitude histogram and the three depth classes, each one filtering the map.",
+      "The basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}

@@ -1,0 +1,70 @@
+Forty years of big earthquakes (earthquakes), version 1
+=======================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- U.S. Geological Survey, ANSS Comprehensive Earthquake Catalog (ComCat), CC-PDDC: Credit: U.S. Geological Survey
+- World tectonic plates and boundaries (PB2002), Peter Bird (2003), converted by Hugo Ahlenius, Nordpil, ODC-By-1.0: Hugo Ahlenius, Nordpil and Peter Bird
+
+
+U.S. Geological Survey, ANSS Comprehensive Earthquake Catalog (ComCat)
+----------------------------------------------------------------------
+
+Dataset: earthquakes (67,510 earthquakes of magnitude 5 or more, 1986 to 2025)
+
+Licence: U.S. Public Domain, recorded as CC-PDDC. The USGS states:
+"USGS-authored or produced data and information are considered to be in
+the U.S. Public Domain."
+https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits
+(read 2026-10-12)
+
+Credit, as the same page asks for it: "Credit: U.S. Geological Survey"
+
+Where and when: the USGS FDSN event service, one query per calendar year
+from 1986 to 2025, read on 2026-10-12 between 08:16:55 and 08:17:57 UTC:
+
+  https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&starttime=<year>-01-01T00:00:00&endtime=<year>-12-31T23:59:59.999&minmagnitude=5&eventtype=earthquake&orderby=time-asc
+
+Kept: the event id, time (UTC), magnitude and its type, depth, and place;
+depth sorted into three classes (under 70 km, 70 to 300 km, 300 km or
+more). The catalogue is revised as solutions are reviewed, so a build on
+another day can differ by a few events.
+
+
+World tectonic plates and boundaries (PB2002)
+---------------------------------------------
+
+Dataset: plate_boundaries (241 boundary lines)
+
+Licence: Open Data Commons Attribution License v1.0 (ODC-By-1.0).
+https://opendatacommons.org/licenses/by/1-0/
+
+Credit, as the publisher asks for it: "Please consider giving Hugo
+Ahlenius, Nordpil and Peter Bird credit and recognition as a data source."
+
+The original model: Bird, P. (2003), An updated digital model of plate
+boundaries, Geochemistry Geophysics Geosystems, 4(3), 1027,
+doi:10.1029/2001GC000252. Converted to GIS formats by Hugo Ahlenius,
+Nordpil; GeoJSON by csterling.
+
+Where and when: read on 2026-10-12 at 08:17:57 UTC from the publisher's
+repository at a pinned commit:
+
+  https://raw.githubusercontent.com/fraxen/tectonicplates/339b0c56563c118307b1f4542703047f5f698fae/GeoJSON/PB2002_boundaries.json
+  (226,378 bytes, SHA-256 42b3e0876a7e40f133e958ba7ab85f8851b5c693a046fbc3b138e7751863d92a)
+
+Kept: the boundary name, its two plates and the source of each segment;
+the boundary type read as "Subduction zone" or "Other plate boundary".
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
