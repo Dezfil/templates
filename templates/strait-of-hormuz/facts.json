@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "strait-of-hormuz",
-  "version": 1,
+  "version": 2,
   "kind": "map",
   "title": "Ships through the Strait of Hormuz in 2026",
   "question": "How many ships still crossed the Strait of Hormuz after 28 February 2026, and which ports kept their ships?",
@@ -31,7 +31,7 @@
     }
   ],
   "howMade": {
-    "question": "Much of the world's oil and liquefied gas leaves the Gulf through the Strait of Hormuz. On 28 February 2026 the United States and Israel struck Iran, and on 4 March PortWatch counted no ship crossing the strait. How many crossed after that, and which ports kept their ships?\n\nThe IMF's PortWatch counts ships from the signals their AIS transponders send by satellite: the ships that cross the strait each day, and the ships that arrive at each port. The map sets the same days of two years side by side, 1 March to 2 October 2025 and 2026: a ring for the ships a day in 2025, a dot for 2026, at the strait and at each of the 68 ports PortWatch follows in the eight countries on the Gulf and its approaches. The dots are coloured by the change. Under them, the lanes ships used from 2015 to 2021, from the World Bank's ship density grid.\n\nThe timeline plays the strait day by day from the start of 2025: each transit PortWatch counted is one row, so its bars are the ships a day, and the strait's dot is the busiest day in its window.\n\nThe counts are a floor, not all the traffic. PortWatch warns of GPS jamming, AIS spoofing and ships going dark at the strait, and of possible anomalies on 27 and 28 April 2026. A ship crossing with its transponder off is not counted.",
+    "question": "Much of the world's oil and liquefied gas leaves the Gulf through the Strait of Hormuz. On 28 February 2026 the United States and Israel struck Iran, and on 4 March PortWatch counted no ship crossing the strait. How many crossed after that, and which ports kept their ships?\n\nThe IMF's PortWatch counts ships from the signals their AIS transponders send by satellite: the ships that cross the strait each day, and the ships that arrive at each port. The map sets the same days of two years side by side, 1 March to 2 October 2025 and 2026: a dot for the ships a day in 2026 at the strait and at each port that had a call a day or more in 2025, 35 of the 68 ports PortWatch follows in the eight countries on the Gulf and its approaches, coloured by the change. A ring gives the 2025 figure at the strait and at the ports the map names: in each of the UAE, Iran, Iraq and Saudi Arabia, the port inside the strait that lost the most calls a day, and the three ports outside it that gained the most. Under them, the lanes ships used from 2015 to 2021, from the World Bank's ship density grid.\n\nThe timeline plays the strait day by day from the start of 2025: each transit PortWatch counted is one row, so its bars are the ships a day, and the strait's dot is the busiest day in its window.\n\nThe counts are a floor, not all the traffic. PortWatch warns of GPS jamming, AIS spoofing and ships going dark at the strait, and of possible anomalies on 27 and 28 April 2026. A ship crossing with its transponder off is not counted.",
     "datasets": [
       {
         "dataset": "strait_transits",
@@ -60,13 +60,13 @@
       }
     ],
     "styling": [
-      "Rings: ships a day from 1 March to 2 October 2025, crossing the strait or arriving at a port; dots: the same days of 2026. Area tracks the number, on one scale for both.",
-      "The ports' dots are coloured by the change, from red (down 75% or more) to blue (up 100% or more); ports with fewer than 30 calls in the 2025 days are left grey.",
-      "Labels give the change at the strait and at every port with at least one call a day in 2025.",
+      "Dots: ships a day from 1 March to 2 October 2026, crossing the strait or arriving at a port, at every port with a call a day or more on the same days of 2025; rings, thin and pale: those 2025 days, at the strait and the labelled ports only. Area tracks the number, on one scale for both.",
+      "The ports' dots are coloured by the change, from red (down 75% or more) through grey (within 25%) to blue (up 100% or more); the ports with less than a call a day in 2025 are left off.",
+      "Eight labels give the change: the strait; in each of the UAE, Iran, Iraq and Saudi Arabia, the port inside the strait that lost the most calls a day; and the three ports on the Red Sea, the Gulf of Oman and the Arabian Sea that gained the most. Each sits clear of the other ports' marks.",
       "The strait's red dot is the busiest day in the timeline's window; each row of that layer is one transit PortWatch counted, so the timeline's bars are ships a day.",
       "The usual lanes, from the World Bank's grid of commercial ships' positions, in blue on a logarithmic scale; the traffic separation schemes as thin lines.",
       "Widgets: the ships through the strait in the timeline's window and their types; port calls a day in 2026 by sea, against the same days of 2025; what happened; the sources.",
-      "The camera holds the Gulf, the Gulf of Oman, the Arabian Sea and Saudi Arabia's Red Sea coast; the basemap follows the light or dark theme."
+      "The camera holds the Gulf, the Gulf of Oman, the Arabian Sea and Saudi Arabia's Red Sea coast; the basemap is the dark style in both themes, so the white labels and the blue lanes read the same way."
     ]
   },
   "pictures": {

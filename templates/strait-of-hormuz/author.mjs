@@ -27,8 +27,17 @@ const { figures } = record;
 // PortWatch's series hold.
 const BEFORE = ["2025-03-01", "2025-10-02"];
 const AFTER = ["2026-03-01", "2026-10-02"];
-// A port needs this many calls on the 2025 days for its change to be read.
-const FEWEST_CALLS = 30;
+// The ports drawn: those with at least a call a day on the 2025 days. The
+// small ones crowd the Emirates' coast and say little at this scale; their
+// calls stay in the data.
+const FEWEST_A_DAY = 1;
+// The ports labelled, and ringed with their 2025 calls: in each of the
+// UAE, Iran, Iraq and Saudi Arabia, the port inside the strait that lost
+// the most calls a day; and the three ports on the Red Sea, the Gulf of
+// Oman and the Arabian Sea that gained the most.
+const FALLS_IN = ["United Arab Emirates", "Iran", "Iraq", "Saudi Arabia"];
+const SEAWARD = ["Red Sea", "Gulf of Oman", "Arabian Sea"];
+const GAINS = 3;
 
 const rgb = (hex, a = 1) => ({ r: parseInt(hex.slice(1, 3), 16), g: parseInt(hex.slice(3, 5), 16), b: parseInt(hex.slice(5, 7), 16), a });
 // Red for ports that lost their ships, blue for ports that gained, a
@@ -40,11 +49,35 @@ const CHANGE = {
   "Within 25%": rgb("#9E9E9E"),
   "Up 25 to 100%": rgb("#6BAED6"),
   "Up 100% or more": rgb("#2171B5"),
-  "Too few calls to compare": rgb("#C8C8C8"),
 };
 // One size scale for every ring and dot: ships a day, area-true, up to the
 // strait's busiest day in the series.
 const SIZE = { domain: [0, figures.busiest_day_ships], range: [1, 46] };
+
+// Where each label sits at the template's camera: its point moved by dx, dy
+// pixels from the place, the label centred there, so that no label lies on
+// another port's ring or dot where the Emirates' ports crowd. Labels and
+// marks do not avoid each other, so the placement is set here.
+const CAMERA = { lng: 50.0, lat: 23.4, zoom: 4.95 };
+const LABEL_NUDGES = {
+  "Strait of Hormuz": [128, 0],
+  "Jebel Ali": [0, 52],
+  "Bandar-E Pars Terminal": [0, -38],
+  "Umm Qasr": [-112, 0],
+  Jubail: [-93, 0],
+  Duqm: [71, 0],
+  Salalah: [93, 0],
+  "Yanbu (King Fahd Port)": [172, 0],
+};
+// A point moved by dx, dy pixels at the camera's zoom, in Web Mercator.
+const nudged = (column, nudges) => {
+  const perDegree = (512 * 2 ** CAMERA.zoom) / 360;
+  const cases = (i) => Object.entries(nudges).map(([text, d]) => `WHEN ${column} = '${text}' THEN ${d[i]}`).join(" ");
+  const x = `CASE ${cases(0)} ELSE 0 END`;
+  const y = `CASE ${cases(1)} ELSE 0 END`;
+  const mercator = "degrees(ln(tan(pi() / 4 + radians(ST_Y(geom)) / 2)))";
+  return `ST_Point(ST_X(geom) + (${x}) / ${perDegree}, degrees(2 * atan(exp(radians(${mercator} - (${y}) / ${perDegree}))) - pi() / 2)) AS geom`;
+};
 
 const change = (now, then) => `round(100 * (${now} - ${then}) / ${then})`;
 const signed = (pct) => `CASE WHEN ${pct} >= 0 THEN '+' ELSE '−' END || CAST(abs(${pct}) AS INTEGER) || '%'`;
@@ -55,44 +88,62 @@ const PORT_RATES = [
   "WITH rates AS (",
   "  SELECT portid,",
   `         avg(calls) FILTER (WHERE ${between(BEFORE)}) AS y2025,`,
-  `         avg(calls) FILTER (WHERE ${between(AFTER)}) AS y2026,`,
-  `         sum(calls) FILTER (WHERE ${between(BEFORE)}) AS calls_before`,
+  `         avg(calls) FILTER (WHERE ${between(AFTER)}) AS y2026`,
   "  FROM port_calls",
-  "  GROUP BY portid)",
+  "  GROUP BY portid),",
+  "story AS (",
+  "  SELECT portid FROM (",
+  "    SELECT r.portid, row_number() OVER (PARTITION BY p.country ORDER BY r.y2025 - r.y2026 DESC) AS n",
+  "    FROM ports AS p JOIN rates AS r USING (portid)",
+  `    WHERE p.sea = 'The Gulf, inside the strait' AND p.country IN (${FALLS_IN.map((c) => `'${c}'`).join(", ")}) AND r.y2025 >= ${FEWEST_A_DAY})`,
+  "  WHERE n = 1",
+  "  UNION ALL",
+  "  SELECT portid FROM (",
+  "    SELECT r.portid, row_number() OVER (ORDER BY r.y2026 - r.y2025 DESC) AS n",
+  "    FROM ports AS p JOIN rates AS r USING (portid)",
+  `    WHERE p.sea IN (${SEAWARD.map((c) => `'${c}'`).join(", ")}) AND r.y2025 >= ${FEWEST_A_DAY} AND r.y2026 > r.y2025)`,
+  `  WHERE n <= ${GAINS})`,
 ].join("\n");
 
-const RINGS_SQL = [
-  "WITH strait AS (",
+// The strait and the story's ports, each with its 2025 and 2026 a day and
+// its label; the rings layer draws them, the labels layer names them.
+const STORY_ROWS = [
+  "strait AS (",
   `  SELECT avg(ships) FILTER (WHERE ${between(BEFORE)}) AS y2025,`,
   `         avg(ships) FILTER (WHERE ${between(AFTER)}) AS y2026,`,
   "         any_value(geom) AS geom",
   "  FROM strait_transits),",
-  PORT_RATES.replace(/^WITH /, ""),
-  "SELECT 'Strait of Hormuz' AS place, 'Ships through the strait' AS counted,",
-  "       round(y2025, 1) AS a_day_2025, round(y2026, 1) AS a_day_2026,",
-  `       'Strait of Hormuz ' || ${signed(change("y2026", "y2025"))} AS label,`,
-  "       geom",
-  "FROM strait",
-  "UNION ALL",
-  "SELECT p.port, 'Calls at the port', round(r.y2025, 1), round(r.y2026, 1),",
-  `       CASE WHEN r.y2025 >= 1 AND r.calls_before >= ${FEWEST_CALLS} THEN p.port || ' ' || ${signed(change("r.y2026", "r.y2025"))} END,`,
-  "       p.geom",
-  "FROM ports AS p JOIN rates AS r USING (portid)",
+  "rows AS (",
+  "  SELECT 'Strait of Hormuz' AS place, 'Ships through the strait' AS counted, y2025, y2026, geom FROM strait",
+  "  UNION ALL",
+  "  SELECT p.port, 'Calls at the port', r.y2025, r.y2026, p.geom",
+  "  FROM ports AS p JOIN rates AS r USING (portid) JOIN story USING (portid))",
+].join("\n");
+const RINGS_SQL = [
+  PORT_RATES + ",",
+  STORY_ROWS,
+  "SELECT place, counted, round(y2025, 1) AS a_day_2025, round(y2026, 1) AS a_day_2026, geom FROM rows",
+].join("\n");
+const LABELS_SQL = [
+  PORT_RATES + ",",
+  STORY_ROWS,
+  `SELECT place || ' ' || ${signed(change("y2026", "y2025"))} AS label, ${nudged("place", LABEL_NUDGES)}`,
+  "FROM rows",
 ].join("\n");
 
 const DOTS_SQL = [
   PORT_RATES + ",",
   "rated AS (",
-  "  SELECT p.port, p.country, p.sea, r.y2025, r.y2026, r.calls_before,",
-  `         CASE WHEN r.calls_before >= ${FEWEST_CALLS} THEN ${change("r.y2026", "r.y2025")} END AS change_pct,`,
+  "  SELECT p.port, p.country, p.sea, r.y2025, r.y2026,",
+  `         ${change("r.y2026", "r.y2025")} AS change_pct,`,
   "         p.geom",
-  "  FROM ports AS p JOIN rates AS r USING (portid))",
+  "  FROM ports AS p JOIN rates AS r USING (portid)",
+  `  WHERE r.y2025 >= ${FEWEST_A_DAY})`,
   "SELECT port, country, sea,",
   "       round(y2025, 1) AS calls_a_day_2025,",
   "       round(y2026, 1) AS calls_a_day_2026,",
   "       change_pct,",
-  "       CASE WHEN change_pct IS NULL THEN 'Too few calls to compare'",
-  "            WHEN change_pct <= -75 THEN 'Down 75% or more'",
+  "       CASE WHEN change_pct <= -75 THEN 'Down 75% or more'",
   "            WHEN change_pct <= -50 THEN 'Down 50 to 75%'",
   "            WHEN change_pct <= -25 THEN 'Down 25 to 50%'",
   "            WHEN change_pct < 25 THEN 'Within 25%'",
@@ -170,7 +221,7 @@ const changePaint = await api.post(`/api/layers/${dots.id}/fill`, { attribute: "
 await patchLayer(dots.id, {
   style: {
     ...dots.style,
-    fill: { ...changePaint, map: Object.entries(CHANGE).map(([value, color]) => ({ value, color })), other: CHANGE["Too few calls to compare"] },
+    fill: { ...changePaint, map: Object.entries(CHANGE).map(([value, color]) => ({ value, color })), other: CHANGE["Within 25%"] },
     fillOpacity: 0.95,
     stroke: rgb("#FFFFFF"),
     strokeWidth: 0.8,
@@ -204,13 +255,26 @@ await patchLayer(rings.id, {
     ...rings.style,
     fill: { type: "constant", color: rgb("#FFFFFF", 0) },
     fillOpacity: 0,
-    stroke: rgb("#6E7781"),
-    strokeWidth: 1.4,
-    strokeOpacity: 0.95,
+    stroke: rgb("#C9D1D9"),
+    strokeWidth: 1,
+    strokeOpacity: 0.8,
     pointRadiusBy: { attribute: "a_day_2025", ...SIZE },
-    // The labels ride the top layer, so no ring or dot covers them: the
-    // change at the strait and at every port with a call a day in 2025,
-    // the busiest first.
+  },
+  tooltip: ["place", "counted", "a_day_2025", "a_day_2026"],
+  legendTitle: "Ships a day, 1 March to 2 October 2025, at the strait and the labelled ports",
+});
+
+// The labels: a layer of their own on top, out of the legend, its marks
+// invisible, each label centred on its nudged point.
+const labels = await addLayer({ name: "Labels", sql: LABELS_SQL });
+await patchLayer(labels.id, {
+  inLegend: false,
+  style: {
+    ...labels.style,
+    fill: { type: "constant", color: rgb("#FFFFFF", 0) },
+    fillOpacity: 0,
+    strokeWidth: 0,
+    pointRadius: 0,
     label: {
       attribute: "label",
       size: 12,
@@ -218,13 +282,10 @@ await patchLayer(rings.id, {
       haloWidth: 1,
       haloColor: rgb("#1D1F24"),
       weight: "bold",
-      anchor: "right",
-      offsetX: 8,
-      priorityField: "a_day_2025",
+      anchor: "center",
     },
   },
-  tooltip: ["place", "counted", "a_day_2025", "a_day_2026"],
-  legendTitle: "Ships a day, 1 March to 2 October 2025",
+  tooltip: [],
 });
 
 // What happened, in PortWatch's own figures from the data as built.
@@ -233,7 +294,7 @@ const fmtDay = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB",
 const happened = [
   `28 February 2026: the United States and Israel strike Iran. PortWatch counted ${d27.ships} ships through the Strait of Hormuz on ${fmtDay(d27.day)}, ${d28.ships} on ${fmtDay(d28.day)}, ${d1.ships} on ${fmtDay(d1.day)}, ${d2.ships} on ${fmtDay(d2.day)} and ${d4.ships === 0 ? "none" : d4.ships} on ${fmtDay(d4.day)}. Across 2025 it counted ${figures.transits_a_day_2025} a day.`,
   `From 1 March to 2 October 2026 it counted ${figures.strait_2026} a day, against ${figures.strait_2025} on the same days of 2025, and ${figures.days_without_a_transit} days with none at all.`,
-  "Most ports inside the strait lost most of their calls; some outside it gained. The rings are the ships a day on the 2025 days, the dots the same days of 2026.",
+  "Most ports inside the strait lost most of their calls; some outside it gained. The dots are the calls a day on the 2026 days at every port with a call a day or more in 2025; the rings, the same days of 2025 at the strait and the labelled ports.",
   "The counts come from ships' AIS transponders. PortWatch writes: \"Due to the ongoing conflict in the Strait of Hormuz, there are reports of GPS jamming, AIS spoofing, and vessels going dark.\" It names possible anomalies on 27 and 28 April 2026. A port call is a ship's arrival at berth, bunkering stops left out. A ship crossing with its transponder off is not counted: the counts are a floor, not all the traffic.",
   "Data to 4 October 2026 for the strait and 2 October for the ports. Context: Wikipedia, 2026 Strait of Hormuz crisis.",
 ].join("\n\n");
@@ -245,17 +306,19 @@ const widget = (id, type, title, layerId, more) => ({
 });
 const read = record.builtAt.slice(0, 10);
 await api.mapWrite(map.id, "PATCH", `/api/maps/${map.id}`, {
-  viewport: { lng: 50.0, lat: 23.4, zoom: 4.95, pitch: 0, bearing: 0 },
-  basemap: null,
+  viewport: { ...CAMERA, pitch: 0, bearing: 0 },
+  // One basemap for both themes: on the dark style the white labels and
+  // the blue lanes read the same way in either.
+  basemap: "dark",
   legendCorner: "bottom-left",
-  layerOrder: [lanes.id, schemes.id, dots.id, strait.id, rings.id],
-  legendOrder: [dots.id, rings.id, strait.id, lanes.id, schemes.id],
+  layerOrder: [lanes.id, schemes.id, dots.id, strait.id, rings.id, labels.id],
+  legendOrder: [dots.id, rings.id, strait.id, lanes.id, schemes.id, labels.id],
   timeline: { layerId: strait.id, field: "day", speed: 1 },
   widgets: [
     widget("widget-strait", "formula", "Ships through the strait", strait.id, { format: "integer", note: "In the timeline's window, as AIS counts them" }),
     widget("widget-types", "category", "Of which", strait.id, { field: "ship_type" }),
     widget("widget-sea", "category", "Port calls a day in 2026, by sea", dots.id, { field: "sea", agg: "sum", aggField: "calls_a_day_2026" }),
-    widget("widget-after", "formula", "Port calls a day, 1 March to 2 October 2026", dots.id, { field: "calls_a_day_2026", agg: "sum", format: "integer" }),
+    widget("widget-after", "formula", "Port calls a day, 1 March to 2 October 2026", dots.id, { field: "calls_a_day_2026", agg: "sum", format: "integer", note: "Ports with a call a day or more in 2025" }),
     widget("widget-before", "formula", "The same days of 2025", dots.id, { field: "calls_a_day_2025", agg: "sum", format: "integer" }),
     widget("widget-happened", "note", "What happened", null, { note: happened }),
     widget("widget-sources", "note", "Sources", null, {
@@ -276,7 +339,7 @@ const authored = {
   base: api.origin,
   projectId: project.id,
   mapId: map.id,
-  layers: { lanes: lanes.id, schemes: schemes.id, dots: dots.id, strait: strait.id, rings: rings.id },
+  layers: { lanes: lanes.id, schemes: schemes.id, dots: dots.id, strait: strait.id, rings: rings.id, labels: labels.id },
   authoredAt: new Date().toISOString(),
 };
 await writeFile(path.join(work, "authored.json"), JSON.stringify(authored, null, 2) + "\n");
