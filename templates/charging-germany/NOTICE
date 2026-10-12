@@ -1,0 +1,117 @@
+Charging Germany's cars (charging-germany), version 1
+======================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its sources' terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Ladesäulenregister, Bundesnetzagentur, CC-BY-4.0: Bundesnetzagentur.de
+- Overture Maps divisions, ODbL-1.0: © OpenStreetMap contributors, Overture Maps Foundation
+- Kontur Population: Germany, population density for 400m H3 hexagons, CC-BY-4.0: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange
+
+
+Ladesäulenregister
+------------------
+
+Dataset: chargers (116,443 public charging stations, one point each)
+
+Publisher: the Bundesnetzagentur (Federal Network Agency), its register of
+public charging stations ("Ladesäulenregister"), the list as of
+1 September 2026.
+https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.html
+
+Licence: Creative Commons Attribution 4.0 International (CC-BY-4.0), as
+the register's page states it: "Die Daten sind durch eine Creative
+Commons Namensnennung 4.0 International Lizenz lizenziert. [...] Als
+Namensnennung für Daten dieser Internetseite ist Bundesnetzagentur.de zu
+verwenden."
+
+Credit: Bundesnetzagentur.de.
+
+Where and when: read on 2026-10-12:
+
+  https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.html
+  (the page, with the licence; 65,761 bytes as read)
+  https://data.bundesnetzagentur.de/Bundesnetzagentur/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenregister_BNetzA_2026-09-01.csv
+  (55,559,083 bytes, SHA-256 cdd8e38f1fa7e8512bd97caa8cf77e9f875436be1f8fe3fe1f2bd9789a504c5b)
+
+Kept: for each station, its id, operator, kind ("Schnellladeeinrichtung"
+as Fast, "Normalladeeinrichtung" as Normal), number of charge points,
+rated power, the day it went into service, status, street and house
+number, postcode, town, county and state as the register writes them,
+and its place from the register's latitude and longitude. Left out: the
+display name, the parking and payment notes, the opening hours and every
+charge point's plug, power, EVSE id and public key. This is a modified
+version of the register. The register lists only stations whose
+operators completed the agency's reporting, so the stations in service
+are more than it holds.
+
+
+Overture Maps divisions
+-----------------------
+
+Dataset: counties (Germany's 399 counties, and Berlin and Hamburg, which
+have none of their own, as outlines)
+
+Publisher: the Overture Maps Foundation, its divisions theme
+(division_area), release 2026-09-23.1, whose outlines and names here all
+come from OpenStreetMap.
+https://docs.overturemaps.org/attribution/
+
+Licence: Open Database License 1.0 (ODbL-1.0), the divisions theme's
+licence, as Overture's attribution page states it ("License for theme:
+ODbL © OpenStreetMap contributors"). The ODbL applies to this dataset as
+a derived database: anyone may use it, and a public derived database
+must be offered under the ODbL as well.
+
+Credit: © OpenStreetMap contributors, Overture Maps Foundation.
+
+Where and when: read on 2026-10-12 from Overture's public bucket, the
+divisions with country DE, class land and subtype county, and the
+regions DE-BE and DE-HH:
+
+  s3://overturemaps-us-west-2/release/2026-09-23.1/theme=divisions/type=division_area/*.parquet
+
+Kept: each division's id, primary name and state code, and its outline
+simplified to about 100 m (0.001 degrees, topology kept). Left out:
+every other property, among them names in other languages, which
+Overture takes for Berlin and Hamburg from Esri Community Maps (CC0).
+This is a modified version of the data.
+
+
+Kontur Population: Germany
+--------------------------
+
+Dataset: county_population (the people in each of the 401 counties)
+
+Publisher: Kontur Inc., on the Humanitarian Data Exchange, dataset
+"Germany: Population Density for 400m H3 Hexagons", release 2023-11-01.
+https://data.humdata.org/dataset/kontur-population-germany
+
+Licence: Creative Commons Attribution 4.0 International (CC-BY-4.0), as
+the dataset's record on HDX states it ("cc-by").
+
+Credit: Kontur Population, Kontur Inc., via the Humanitarian Data
+Exchange.
+
+Where and when: read on 2026-10-12 from the address HDX lists:
+
+  https://geodata-eu-central-1-kontur-public.s3.amazonaws.com/kontur_datasets/kontur_population_DE_20231101.gpkg.gz
+  (25,852,962 bytes, SHA-256 b6f2f548e882fe5dd57641473dfae524b77c230698b0e0b1c2b8628a3f3f530f)
+
+Kept: the hexagons' people summed in each county, a hexagon counting in
+the county its middle falls in (by the counties' full OpenStreetMap
+outlines); 83.3 of the grid's 83.5 million people fall in a county. The
+hexagons themselves are not carried. This is a modified version of the
+data.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
