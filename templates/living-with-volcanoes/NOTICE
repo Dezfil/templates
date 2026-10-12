@@ -1,0 +1,124 @@
+Living with volcanoes (living-with-volcanoes), version 1
+========================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines, CC0-1.0: National Geophysical Data Center / World Data Service (NGDC/WDS): NCEI/WDS Global Significant Volcanic Eruptions Database. NOAA National Centers for Environmental Information. doi:10.7289/V5JW8BSH, accessed 2026-10-12
+- Kontur Population: Philippines, population density for 400m H3 hexagons, CC-BY-4.0: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange
+- Natural Earth: the Philippines (1:10m countries), LicenseRef-Natural-Earth: Made with Natural Earth
+
+
+NOAA NCEI volcano databases
+---------------------------
+
+Datasets: volcanoes (the 49 volcanoes NCEI lists in the Philippines) and
+significant_eruptions (the 50 significant eruptions it lists there, from
+3580 BC to 2024).
+
+Publisher: NOAA's National Centers for Environmental Information (NCEI),
+the Volcano Locations Database (metadata record G02135) and the Global
+Significant Volcanic Eruptions Database (record G10147). NCEI says the
+volcano list is obtained from the Smithsonian Institution's Global
+Volcanism Program, Volcanoes of the World.
+https://www.ncei.noaa.gov/products/natural-hazards/tsunamis-earthquakes-volcanoes/volcanoes
+
+Licence: CC0 1.0 Universal (CC0-1.0), the licence data.gov's record of the
+Global Volcano Locations Database gives. NCEI's metadata says of the
+locations: "Not subject to copyright protection within the United
+States", and of the eruptions: "Access to this dataset is unrestricted."
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Credit, as NCEI's metadata asks the data be cited: National Geophysical
+Data Center / World Data Service (NGDC/WDS): NCEI/WDS Global Significant
+Volcanic Eruptions Database. NOAA National Centers for Environmental
+Information. doi:10.7289/V5JW8BSH, accessed 2026-10-12.
+
+Where and when: read on 2026-10-12 at 18:15:43 UTC from NCEI's natural
+hazards service, each in one page:
+
+  https://www.ngdc.noaa.gov/hazel/hazard-service/api/v1/volcanolocs?country=Philippines
+  (13,163 bytes, SHA-256 d22e558558f74be330bdf54bdbed9fe2d1abebd9df2eb4a29976430d3379c65e)
+  https://www.ngdc.noaa.gov/hazel/hazard-service/api/v1/volcanoes?country=Philippines
+  (25,426 bytes, SHA-256 ab097b7281f9f852589333722a7395804b903ab9fa5420e137d44d59290d9828)
+
+Kept: each volcano's id, name, location, kind, elevation, status, the code
+of its last known eruption and that code in words, from NCEI's list in
+record G02135 ("D1 - Last known eruption 1964 or later" and so on), placed
+by its latitude and longitude; each eruption's id, volcano id and name,
+date, explosivity index (VEI), deaths and total deaths.
+
+
+Kontur Population: Philippines
+------------------------------
+
+Dataset: population_cells (291,941 populated H3 hexagons at resolution 8,
+about 400 m across, 117,332,868 people; the Kalayaan islands included)
+
+Publisher: Kontur Inc., on the Humanitarian Data Exchange, dataset
+kontur-population-philippines, release 2023-11-01.
+https://data.humdata.org/dataset/kontur-population-philippines
+
+Licence: Creative Commons Attribution 4.0 International (CC-BY-4.0), as
+HDX's record states.
+https://creativecommons.org/licenses/by/4.0/
+
+Credit: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange.
+
+Where and when: read on 2026-10-12 at 18:15:45 UTC from the address HDX
+lists for the release:
+
+  https://geodata-eu-central-1-kontur-public.s3.amazonaws.com/kontur_datasets/kontur_population_PH_20231101.gpkg.gz
+  (20,021,839 bytes, SHA-256 800b7f540284b92741fb9f0733d0ed460a73dededb2213fe73390baa80814d0a;
+  unpacked 57,556,992 bytes, SHA-256 1c4f6c8a2ea39b6e15e3e513c95f5b9d509209797fa5d269225e152acf8eed72)
+
+Kept: every hexagon, with its H3 cell and its people rounded to whole
+people; turned from Web Mercator (EPSG:3857) into longitude and latitude
+(EPSG:4326).
+
+
+Natural Earth
+-------------
+
+Dataset: philippines (the Philippines' outline, admin-0 countries,
+version 5.1.1)
+
+Publisher: Natural Earth, with the support of NACIS.
+https://www.naturalearthdata.com
+
+Licence: public domain, as Natural Earth's terms of use state: no
+permission is needed and crediting is not required.
+https://www.naturalearthdata.com/about/terms-of-use/
+
+Credit, the short form it suggests: Made with Natural Earth.
+
+Where and when: read on 2026-10-12 at 18:15:45 UTC from
+
+  https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries.zip
+  (4,930,492 bytes, SHA-256 ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6)
+
+Kept: the country whose ADM0_A3 is PHL.
+
+
+The workflow's results
+----------------------
+
+The template carries each workflow step's result from its run on
+2026-10-12 (results/<step id>.parquet): the 18 volcanoes with a historical
+eruption, their 30 km circles, the circles on land, the hexagons' middles,
+the people per volcano, the significant eruptions per volcano, both joined,
+the circles merged, the middles inside them, their people, and the
+Philippines in numbers. They are made from the three sources together and
+carry each one's terms: Kontur's CC-BY-4.0 credit goes with them.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
