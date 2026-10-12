@@ -169,5 +169,26 @@ export async function writeOutput(db, work, data, name) {
   return { file: path.relative(work, file), rows, sha256: sha256(await readFile(file)) };
 }
 
+/**
+ * Keep the Park-and-Visit licence beside the build's outputs, word for word
+ * as the repository holds it at the pinned commit: its BSD-3-Clause notice
+ * (the copyright line, the three conditions and the disclaimer) travels
+ * with the trips, in the template's note and its NOTICE.
+ */
+export async function keepLicence(work, trips) {
+  const bytes = await readFile(trips.licence.path);
+  if (sha256(bytes) !== trips.licence.sha256) throw new Error("The Park-and-Visit licence changed on disk after it was fetched.");
+  const file = path.join(work, "park-and-visit-LICENSE.txt");
+  await writeFile(file, bytes);
+  return { file: path.relative(work, file), sha256: sha256(bytes) };
+}
+
+/** The kept licence, read back and held to the hash the build recorded. */
+export async function readLicence(work, record) {
+  const bytes = await readFile(path.join(work, record.licenceText.file));
+  if (sha256(bytes) !== record.sources.parkAndVisit.licence.sha256) throw new Error("The kept licence is not the one the build fetched.");
+  return bytes.toString("utf8");
+}
+
 /** A download's record without its local path. */
 export const recorded = ({ path: p, ...rest }) => rest;

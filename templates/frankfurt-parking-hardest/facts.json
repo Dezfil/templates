@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "frankfurt-parking-hardest",
-  "version": 1,
+  "version": 2,
   "kind": "workflow",
   "title": "Where is parking hardest in Frankfurt?",
   "question": "Where in Frankfurt do drivers spend the most time hunting for parking for the spaces there are?",
@@ -12,7 +12,7 @@
     {
       "name": "start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences",
       "licence": "BSD-3-Clause",
-      "credit": "start2park, ReLUT, Frankfurt University of Applied Sciences. Copyright (c) 2023, ReLUT"
+      "credit": "ReLUT, Frankfurt University of Applied Sciences"
     },
     {
       "name": "Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences",

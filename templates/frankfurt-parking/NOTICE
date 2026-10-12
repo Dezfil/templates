@@ -1,4 +1,4 @@
-Hunting for a parking spot in Frankfurt (frankfurt-parking), version 1
+Hunting for a parking spot in Frankfurt (frankfurt-parking), version 2
 ======================================================================
 
 The scripts in this folder are under this repository's Apache-2.0 licence.
@@ -8,7 +8,7 @@ source's terms, below.
 Sources, licences and credits, as the template's facts and its map's note
 carry them:
 
-- start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences, BSD-3-Clause: start2park, ReLUT, Frankfurt University of Applied Sciences. Copyright (c) 2023, ReLUT
+- start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences, BSD-3-Clause: ReLUT, Frankfurt University of Applied Sciences
 - Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences, ODbL-1.0: © OpenStreetMap contributors
 
 
@@ -23,12 +23,13 @@ University of Applied Sciences, from the start2park project.
 https://github.com/ReLUT/parking-search-prediction/tree/main/Park-and-Visit
 
 Licence: BSD 3-Clause License, as the repository's LICENSE states at the
-pinned commit, reproduced in full at the end of this file.
+pinned commit. Its notice (the copyright line, the three conditions and
+the disclaimer) is reproduced word for word at the end of this file and
+in the map's note.
 
-Credit: start2park, ReLUT, Frankfurt University of Applied Sciences.
-Copyright (c) 2023, ReLUT.
+Credit: ReLUT, Frankfurt University of Applied Sciences.
 
-Where and when: read on 2026-10-12 at 08:45:01 UTC from the publisher's
+Where and when: read on 2026-10-12 at 11:40:36 UTC from the publisher's
 repository at commit de394ee98e37612da887b0e5cd9c87f8adf6a106:
 
   https://raw.githubusercontent.com/ReLUT/parking-search-prediction/de394ee98e37612da887b0e5cd9c87f8adf6a106/Park-and-Visit/Dynamic_Park-and-visit_waypoints.csv
@@ -72,7 +73,7 @@ https://opendatacommons.org/licenses/odbl/1-0/
 
 Credit: © OpenStreetMap contributors.
 
-Where and when: read on 2026-10-12 at 08:45:01 UTC from the offer's one
+Where and when: read on 2026-10-12 at 11:40:36 UTC from the offer's one
 file (fetched with curl, which verifies the server's certificate):
 
   https://mobilithek.info/mdp-api/files/aux/886571101635461120/FFM_parking_data.zip
