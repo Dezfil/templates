@@ -1,0 +1,137 @@
+Where is parking hardest in Frankfurt? (frankfurt-parking-hardest), version 1
+=============================================================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: each dataset stays under its own
+source's terms, below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences, BSD-3-Clause: start2park, ReLUT, Frankfurt University of Applied Sciences. Copyright (c) 2023, ReLUT
+- Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences, ODbL-1.0: © OpenStreetMap contributors
+
+The build reads both sources through ../frankfurt-parking/sources.mjs, at
+the same pinned addresses as the map "Hunting for a parking spot in
+Frankfurt".
+
+
+start2park Park-and-Visit trips
+-------------------------------
+
+Dataset: search_points (the 1,147 waypoints marked as searching on the
+trips that end in Frankfurt, November 2020 to June 2021: 65 trips with a
+search, 131.4 minutes of searching)
+
+Publisher: ReLUT, the Research Lab for Urban Transport at Frankfurt
+University of Applied Sciences, from the start2park project.
+https://github.com/ReLUT/parking-search-prediction/tree/main/Park-and-Visit
+
+Licence: BSD 3-Clause License, as the repository's LICENSE states at the
+pinned commit, reproduced in full at the end of this file.
+
+Credit: start2park, ReLUT, Frankfurt University of Applied Sciences.
+Copyright (c) 2023, ReLUT.
+
+Where and when: read on 2026-10-12 at 08:49:19 UTC from the publisher's
+repository at commit de394ee98e37612da887b0e5cd9c87f8adf6a106:
+
+  https://raw.githubusercontent.com/ReLUT/parking-search-prediction/de394ee98e37612da887b0e5cd9c87f8adf6a106/Park-and-Visit/Dynamic_Park-and-visit_waypoints.csv
+  (1,346,641 bytes, SHA-256 b50ff1b2faa3e158a2ed07835c0e3ef43d7f5127ed7e1faba44a7224d033fa04)
+  https://raw.githubusercontent.com/ReLUT/parking-search-prediction/de394ee98e37612da887b0e5cd9c87f8adf6a106/Park-and-Visit/Dynamic_Park-and-visit_metadata.csv
+  (16,944 bytes, SHA-256 8ad4e6f562855f51a442d1c934567eccd989f449437a11141e3ce73201eaff24)
+  https://raw.githubusercontent.com/ReLUT/parking-search-prediction/de394ee98e37612da887b0e5cd9c87f8adf6a106/LICENSE
+  (1,492 bytes, SHA-256 7b2c08c31495983a9451054a5e1710962ba9309b6fa67b427e52ab5fcb645716)
+
+Kept: of the trips whose last waypoint lies in Frankfurt (south of 52° N;
+the study's Rostock trips are left out), every waypoint the app marked as
+searching, with its trip, its time as recorded (local time) and the
+minutes until the trip's next waypoint. Nothing else of the waypoints is
+kept.
+
+
+Georeferenced street parking locations in Frankfurt am Main
+-----------------------------------------------------------
+
+Dataset: parking_spaces (29,215 parking spaces, one point each)
+
+Publisher: Frankfurt University of Applied Sciences, on the Mobilithek,
+offer 886571101635461120 ("Georeferenzierte Straßenparkstandorte in
+Frankfurt am Main / Georeferenced street parking locations in Frankfurt am
+Main"; temporal coverage 2024-01-01 to 2025-03-31).
+https://mobilithek.info/offers/886571101635461120
+
+Licence: Open Database License v1.0 (ODbL-1.0), the offer's standard
+licence. The offer's condition for use: "This dataset contains information
+from OpenStreetMap, which is made available here
+(https://www.openstreetmap.org/copyright) under the Open Database License
+(ODbL)." The data was processed from OpenStreetMap with the OSM Parkraum
+processing (https://github.com/osmberlin/osm-parking-processing, AGPL-3.0,
+a licence of that code, not of the data).
+https://opendatacommons.org/licenses/odbl/1-0/
+
+Credit: © OpenStreetMap contributors.
+
+Where and when: read on 2026-10-12 at 08:49:19 UTC from the offer's one
+file (fetched with curl, which verifies the server's certificate):
+
+  https://mobilithek.info/mdp-api/files/aux/886571101635461120/FFM_parking_data.zip
+  (3,612,670 bytes, SHA-256 0420754ac53090a88d9385a8d401416d35848cc7885aed5fa7447ff0905ea8e2)
+  of which parking_spaces_frankfurt.gpkg
+  (21,643,264 bytes, SHA-256 972dafb3218234a72432558ea750af15b0f499f2feaa9d40a755e65e66f8f7bd)
+
+Kept: for each space, its street, side, orientation and position. The
+dataset is a derivative database of the supply and stays under the ODbL:
+anyone may use, share and adapt it, crediting © OpenStreetMap contributors
+and sharing adaptations under the same licence.
+
+
+The workflow's results
+----------------------
+
+The template carries each workflow step's result from its run on
+2026-10-12 (results/<step id>.parquet): the searching minutes and the
+parking spaces per H3 cell, the minutes per space, and the hot spot
+scores. They are made from both sources together and carry both sources'
+terms: the BSD-3-Clause notice of the trips and the ODbL of the spaces.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.
+
+
+The Park-and-Visit licence, in full
+-----------------------------------
+
+BSD 3-Clause License
+
+Copyright (c) 2023, ReLUT
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
