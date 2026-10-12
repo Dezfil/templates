@@ -1,0 +1,100 @@
+Every tree in Berlin (berlin-trees), version 1
+==============================================
+
+The scripts in this folder are under this repository's Apache-2.0 licence.
+The data the template carries is not: it stays under its sources' terms,
+below.
+
+Sources, licences and credits, as the template's facts and its map's note
+carry them:
+
+- Baumbestand Berlin, Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin, DL-DE-ZERO-2.0: Geoportal Berlin / Baumbestand Berlin
+- Baumbestand in den Liegenschaften der Grün Berlin GmbH (Anlagenbäume), DL-DE-BY-2.0: Geoportal Berlin / Baumbestand in den Liegenschaften der Grün Berlin GmbH (Anlagenbäume)
+
+
+Baumbestand Berlin
+------------------
+
+Dataset: trees (956,249 street and park trees, one point each)
+
+Publisher: the Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen
+Berlin, through Berlin's geodata infrastructure (Geoportal Berlin): the
+tree register of the green space information system GRIS, "Baumbestand
+Berlin" (street trees and part of the trees in parks), its catalogue
+record last changed on 2026-04-15.
+https://gdi.berlin.de/geonetwork/srv/ger/catalog.search#/metadata/3368004a-d596-336a-8fdf-c4391f3313dd
+
+Licence: Datenlizenz Deutschland – Zero – Version 2.0 (DL-DE-ZERO-2.0),
+as the catalogue record states it: "Für die Nutzung der Daten ist die
+Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist
+über https://www.govdata.de/dl-de/zero-2-0 abrufbar."
+
+Credit: the licence asks for none; the template names the source as
+"Geoportal Berlin / Baumbestand Berlin".
+
+Where and when: read on 2026-10-12 from the register's feature service as
+GeoPackage (EPSG:25833):
+
+  https://gdi.berlin.de/geonetwork/srv/api/records/3368004a-d596-336a-8fdf-c4391f3313dd/formatters/xml
+  (the catalogue record, with the licence)
+  https://gdi.berlin.de/services/wfs/baumbestand?service=WFS&version=2.0.0&request=GetFeature&typeNames=baumbestand:strassenbaeume&outputFormat=geopackage
+  (the street trees, 142,561,280 bytes, SHA-256 1f23fff1cd454bbac8b0ac23df41c8f8041907281d2ba90ffd9b14bba2a64016)
+  https://gdi.berlin.de/services/wfs/baumbestand?service=WFS&version=2.0.0&request=GetFeature&typeNames=baumbestand:anlagenbaeume&outputFormat=geopackage
+  (the park trees, 159,596,544 bytes, SHA-256 49f8e920403b3992bb889780baeec1c0034a6c05544ee410ed11bc3933089f31)
+
+Kept: for each tree, its register id, whether it is a street or a park
+tree, its genus (with an English name for the commoner genera), its
+botanical and German species names, the planting year (when the register
+gives a year from 1700 on), height, crown diameter and trunk girth (a 0,
+which the register writes for "not measured", as empty), its district,
+and its street or park; its place turned from EPSG:25833 into longitude
+and latitude. Left out: the location numbers, the age (which follows from
+the planting year), the owner, and 6,296 entries that carry an id and a
+place but no genus, species, district or street. This is a modified
+version of the register.
+
+
+Baumbestand in den Liegenschaften der Grün Berlin GmbH (Anlagenbäume)
+---------------------------------------------------------------------
+
+Dataset: gruen_berlin_trees (26,017 trees in the parks Grün Berlin GmbH
+runs, one point each)
+
+Publisher: Grün Berlin GmbH's own tree register, published through
+Berlin's geodata infrastructure (Geoportal Berlin), its catalogue record
+last changed on 2026-08-05.
+https://gdi.berlin.de/geonetwork/srv/ger/catalog.search#/metadata/558eed2a-2d05-4447-a580-e26e7dccd48a
+
+Licence: Datenlizenz Deutschland – Namensnennung – Version 2.0
+(DL-DE-BY-2.0, https://www.govdata.de/dl-de/by-2-0), as the catalogue
+record states it: "Für die Nutzung der Daten ist die Datenlizenz
+Deutschland - Namensnennung - Version 2.0 anzuwenden." (The feature
+service's own capabilities name the Zero licence; the record's licence,
+which asks for more, is the one followed.)
+
+Credit: the record gives its source note as "[Quelle] / Baumbestand in
+den Liegenschaften der Grün Berlin GmbH (Anlagenbäume)", its first part
+left as a placeholder; the template fills it with the portal that
+publishes the data: "Geoportal Berlin / Baumbestand in den Liegenschaften
+der Grün Berlin GmbH (Anlagenbäume)". The data is changed, as the licence
+asks to be said: see "Kept".
+
+Where and when: read on 2026-10-12:
+
+  https://gdi.berlin.de/geonetwork/srv/api/records/558eed2a-2d05-4447-a580-e26e7dccd48a/formatters/xml
+  (the catalogue record, with the licence)
+  https://gdi.berlin.de/services/wfs/baumbestand_gruen_berlin?service=WFS&version=2.0.0&request=GetFeature&typeNames=baumbestand_gruen_berlin:anlagenbaum_gruenberlin&outputFormat=geopackage
+  (6,774,784 bytes, SHA-256 f2cab920559bf426978e847df1f3803653c969b52aa7823fbb48155deaccc2db)
+
+Kept: as for the city's register, from this register's own columns; its
+names, which it writes in capitals, put in the city register's case
+("FAGUS SYLVATICA" as "Fagus sylvatica"); the park's name as the place.
+This is a modified version of the register.
+
+
+The pictures
+------------
+
+The template's two pictures are the map drawn by Dezfil's image export
+over the OpenFreeMap basemap; each picture carries its attribution:
+© OpenMapTiles, © OpenStreetMap contributors.

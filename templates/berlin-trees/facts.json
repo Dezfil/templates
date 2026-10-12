@@ -1,0 +1,52 @@
+{
+  "formatVersion": 1,
+  "id": "berlin-trees",
+  "version": 1,
+  "kind": "map",
+  "title": "Every tree in Berlin",
+  "question": "Which trees line Berlin's streets and parks, and when were they planted?",
+  "place": "Berlin, Germany",
+  "tags": [
+    "Big data",
+    "Widgets"
+  ],
+  "dataDate": "2026-10",
+  "sources": [
+    {
+      "name": "Baumbestand Berlin, Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+      "licence": "DL-DE-ZERO-2.0",
+      "credit": "Geoportal Berlin / Baumbestand Berlin"
+    },
+    {
+      "name": "Baumbestand in den Liegenschaften der Grün Berlin GmbH (Anlagenbäume)",
+      "licence": "DL-DE-BY-2.0",
+      "credit": "Geoportal Berlin / Baumbestand in den Liegenschaften der Grün Berlin GmbH (Anlagenbäume)"
+    }
+  ],
+  "howMade": {
+    "question": "Berlin keeps a register of the trees it looks after: almost a million street and park trees, each with its species, the year it was planted and its size. Grün Berlin, the city's park company, keeps its own for the parks it runs, such as Tempelhofer Feld and the Britzer Garten. Forests and private gardens are in neither.\n\nThe map draws one district, Friedrichshain-Kreuzberg, tree by tree, coloured by genus: limes and maples line most streets, black locusts and poplars grow along the railway land and in the parks. The rest of the city, more than 900,000 trees, is drawn in hexagons a few blocks wide, each coloured by the average year its trees were planted: the old boulevards and parks of the west and the centre, the young plantings of the large estates in the east. The widgets count the trees and split the city's by genus and planting year; choosing a genus redraws the hexagons for it alone.",
+    "datasets": [
+      {
+        "dataset": "trees",
+        "source": "Baumbestand Berlin, Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+        "made": "Every street and park tree of the city's register, 956,249 trees read from Berlin's geodata service on 2026-10-12; genus, species, planting year, height, crown, trunk, district and street or park kept."
+      },
+      {
+        "dataset": "gruen_berlin_trees",
+        "source": "Baumbestand in den Liegenschaften der Grün Berlin GmbH (Anlagenbäume)",
+        "made": "Every tree in the parks Grün Berlin runs, 26,017 trees read from Berlin's geodata service on 2026-10-12; kept as for the city's register."
+      }
+    ],
+    "styling": [
+      "Friedrichshain-Kreuzberg's 46,039 trees as points, coloured by genus: its eight commonest genera by name, the rest in grey.",
+      "Every other tree in hexagons with edges of about 60 m on the ground, coloured by the average planting year of the trees whose year is known: dark green for 1950 or earlier, through green to yellow for 2010 or later.",
+      "The whole city is four times the number of points a map draws at once, so one district is drawn tree by tree and the rest is counted into hexagons on the server.",
+      "Widgets: the trees in the district and in the rest of the city, and the rest of the city's trees by genus and by planting year, each filtering the hexagons.",
+      "The camera sits over Friedrichshain-Kreuzberg at city level; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
