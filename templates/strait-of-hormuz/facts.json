@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "id": "strait-of-hormuz",
+  "version": 1,
+  "kind": "map",
+  "title": "Ships through the Strait of Hormuz in 2026",
+  "question": "How many ships still crossed the Strait of Hormuz after 28 February 2026, and which ports kept their ships?",
+  "place": "The Strait of Hormuz and the Gulf",
+  "tags": ["Time", "Widgets"],
+  "dataDate": "2026-10-04",
+  "sources": [
+    {
+      "name": "IMF PortWatch: daily transits at the Strait of Hormuz, daily port calls and the ports database",
+      "licence": "LicenseRef-IMF-Copyright-and-Usage",
+      "credit": "Sources: Kpler; UN Global Platform; IMF PortWatch (portwatch.imf.org). Commercial reuse of the IMF's data needs the IMF's permission: copyright@imf.org"
+    },
+    {
+      "name": "World Bank, Global Shipping Traffic Density, commercial ships (2015 to 2021)",
+      "licence": "CC-BY-4.0",
+      "credit": "World Bank, Global Shipping Traffic Density. Data source: IMF's World Seaborne Trade monitoring system (Cerdeiro, Komaromi, Liu and Saeed, 2020)"
+    },
+    {
+      "name": "OpenStreetMap, traffic separation schemes in the Gulf and the Gulf of Oman",
+      "licence": "ODbL-1.0",
+      "credit": "© OpenStreetMap contributors"
+    },
+    {
+      "name": "Natural Earth, marine areas (1:10m, version 5.1.0)",
+      "licence": "LicenseRef-Natural-Earth",
+      "credit": "Made with Natural Earth"
+    }
+  ],
+  "howMade": {
+    "question": "Much of the world's oil and liquefied gas leaves the Gulf through the Strait of Hormuz. On 28 February 2026 the United States and Israel struck Iran, and on 4 March PortWatch counted no ship crossing the strait. How many crossed after that, and which ports kept their ships?\n\nThe IMF's PortWatch counts ships from the signals their AIS transponders send by satellite: the ships that cross the strait each day, and the ships that arrive at each port. The map sets the same days of two years side by side, 1 March to 2 October 2025 and 2026: a ring for the ships a day in 2025, a dot for 2026, at the strait and at each of the 68 ports PortWatch follows in the eight countries on the Gulf and its approaches. The dots are coloured by the change. Under them, the lanes ships used from 2015 to 2021, from the World Bank's ship density grid.\n\nThe timeline plays the strait day by day from the start of 2025: each transit PortWatch counted is one row, so its bars are the ships a day, and the strait's dot is the busiest day in its window.\n\nThe counts are a floor, not all the traffic. PortWatch warns of GPS jamming, AIS spoofing and ships going dark at the strait, and of possible anomalies on 27 and 28 April 2026. A ship crossing with its transponder off is not counted.",
+    "datasets": [
+      {
+        "dataset": "strait_transits",
+        "source": "IMF PortWatch: daily transits at the Strait of Hormuz, daily port calls and the ports database",
+        "made": "PortWatch's daily transits at the Strait of Hormuz (chokepoint6), 1 January 2025 to 4 October 2026, read on 2026-10-12: the ships a day by type, at PortWatch's point for the strait."
+      },
+      {
+        "dataset": "ports",
+        "source": "IMF PortWatch: daily transits at the Strait of Hormuz, daily port calls and the ports database",
+        "made": "The 68 ports PortWatch follows in the UAE, Saudi Arabia, Qatar, Bahrain, Kuwait, Iraq, Iran and Oman, read on 2026-10-12; each on the sea Natural Earth's nearest marine area names."
+      },
+      {
+        "dataset": "port_calls",
+        "source": "IMF PortWatch: daily transits at the Strait of Hormuz, daily port calls and the ports database",
+        "made": "PortWatch's daily port calls at those 68 ports, 1 January 2025 to 2 October 2026, by ship type, read on 2026-10-12 one port at a time."
+      },
+      {
+        "dataset": "shipping_lanes",
+        "source": "World Bank, Global Shipping Traffic Density, commercial ships (2015 to 2021)",
+        "made": "The commercial ships' AIS positions from January 2015 to February 2021, 33° to 65° E and 11° to 33° N, summed into H3 cells at resolution 5 (about 250 km²); the raster read on 2026-10-12."
+      },
+      {
+        "dataset": "separation_schemes",
+        "source": "OpenStreetMap, traffic separation schemes in the Gulf and the Gulf of Oman",
+        "made": "The traffic separation schemes' lanes, boundaries, lines and zones mapped in OpenStreetMap from 47° to 60° E, as they stood on 2026-10-12, as lines."
+      }
+    ],
+    "styling": [
+      "Rings: ships a day from 1 March to 2 October 2025, crossing the strait or arriving at a port; dots: the same days of 2026. Area tracks the number, on one scale for both.",
+      "The ports' dots are coloured by the change, from red (down 75% or more) to blue (up 100% or more); ports with fewer than 30 calls in the 2025 days are left grey.",
+      "Labels give the change at the strait and at every port with at least one call a day in 2025.",
+      "The strait's red dot is the busiest day in the timeline's window; each row of that layer is one transit PortWatch counted, so the timeline's bars are ships a day.",
+      "The usual lanes, from the World Bank's grid of commercial ships' positions, in blue on a logarithmic scale; the traffic separation schemes as thin lines.",
+      "Widgets: the ships through the strait in the timeline's window and their types; port calls a day in 2026 by sea, against the same days of 2025; what happened; the sources.",
+      "The camera holds the Gulf, the Gulf of Oman, the Arabian Sea and Saudi Arabia's Red Sea coast; the basemap follows the light or dark theme."
+    ]
+  },
+  "pictures": {
+    "light": "pictures/light.png",
+    "dark": "pictures/dark.png"
+  }
+}
