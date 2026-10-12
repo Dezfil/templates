@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "which-pump",
-  "version": 1,
+  "version": 2,
   "kind": "workflow",
   "title": "Which pump?",
   "question": "Which street pump do the deaths of London's 1854 Broad Street cholera outbreak gather around?",

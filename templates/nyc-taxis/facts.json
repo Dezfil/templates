@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "nyc-taxis",
-  "version": 2,
+  "version": 3,
   "kind": "map",
   "title": "Where New York's taxis go",
   "question": "Between which neighbourhoods do yellow cabs run, and when?",

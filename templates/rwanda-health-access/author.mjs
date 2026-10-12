@@ -183,7 +183,10 @@ await patchLayer(cells.id, {
 
 const districtLayer = await addLayer({
   name: "Districts, share more than 5 km away",
-  sql: "SELECT district, people, people_beyond_5km, share_beyond_5km, district || ' · ' || share_beyond_5km || '%' AS label, geom FROM district_share",
+  // The name over its share, on two lines: narrow enough that 27 of the
+  // 30 districts keep a label at the template's camera (Kigali's two small
+  // inner districts and Ngororero show from the next zoom in).
+  sql: "SELECT district, people, people_beyond_5km, share_beyond_5km, district || chr(10) || share_beyond_5km || '%' AS label, geom FROM district_share",
 });
 await patchLayer(districtLayer.id, {
   style: {
@@ -197,12 +200,12 @@ await patchLayer(districtLayer.id, {
     // districts with the largest share win a label first.
     label: {
       attribute: "label",
-      size: 12,
+      size: 9,
       color: rgb("#FFFFFF"),
       haloWidth: 1,
       haloColor: rgb("#1D1F24", 0.85),
       weight: "bold",
-      density: 0.8,
+      density: 0.75,
       priorityField: "share_beyond_5km",
     },
   },
@@ -234,7 +237,9 @@ await api.mapWrite(map.id, "PATCH", `/api/maps/${map.id}`, {
   basemap: null,
   legendCorner: "bottom-left",
   legendOrder: [cells.id, facilities.id, districtLayer.id],
-  layerOrder: [cells.id, districtLayer.id, facilities.id],
+  // The districts above the facilities, so no facility's dot covers a
+  // district's label (a layer's labels draw in its own place in the stack).
+  layerOrder: [cells.id, facilities.id, districtLayer.id],
   widgets: [
     widget("widget-distance", "category", "People by distance", cells.id, { field: "distance", agg: "sum", aggField: "population" }),
     widget("widget-far", "formula", "More than 5 km away", districtLayer.id, {

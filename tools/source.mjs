@@ -34,10 +34,13 @@ export async function download(root, label, url, file) {
   };
 }
 
-/** An in-memory DuckDB with the spatial extension loaded. */
+/** An in-memory DuckDB with the spatial extension loaded, held to 3 GB and
+ * four threads: builds share the machine with the scratch instances. */
 export async function engine() {
   const instance = await DuckDBInstance.create(":memory:");
   const conn = await instance.connect();
+  await conn.run("SET memory_limit = '3GB'");
+  await conn.run("SET threads = 4");
   await conn.run("INSTALL spatial");
   await conn.run("LOAD spatial");
   return {

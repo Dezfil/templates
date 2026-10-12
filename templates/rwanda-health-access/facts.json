@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "rwanda-health-access",
-  "version": 2,
+  "version": 3,
   "kind": "workflow",
   "title": "Health access in Rwanda",
   "question": "How many people in Rwanda live more than 5 km from a public health facility, district by district?",

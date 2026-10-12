@@ -27,37 +27,32 @@ const rgb = (hex, a = 1) => ({ r: parseInt(hex.slice(1, 3), 16), g: parseInt(hex
 // into Russia in a pinkish tan, the men who come out in black.
 const DIRECTION = { Advance: rgb("#D29C80"), Retreat: rgb("#1E1B18") };
 
-// Where each label sits at the template's camera: a nudge in pixels from
-// its point, so that no two texts touch where the retreat crowds them
-// between Wilna and Bobr and around Moscou, and none sits on the black band. Labels in different layers do
-// not avoid one another, so the placement is set here; every label is
-// centred on its nudged point, which keeps the point inside its own box.
-// Names go above their point unless named; temperatures below.
+// Names sit above their place and temperatures below their point on the
+// retreat, by the labels' own anchors, so a town and the cold measured there
+// share a spot without touching; where two would meet, the places (the upper
+// layer) win. Where the retreat crowds them at the template's camera, a few
+// labels are moved by a nudge in pixels from their point: so that Bobr,
+// Malo-jarosewli and −24° show at all, no two texts touch, and none sits on
+// the black band (Wizma, Dorogobouge, Tarantino, 0°).
 const CAMERA = { lng: 30.75, lat: 55.05, zoom: 5.85 };
 const PLACE_NUDGES = {
-  Smorgoni: [-21, -13],
-  Molodezno: [-10, 22],
-  Studienska: [-8, 23],
-  Bobr: [21, 24],
-  Wizma: [-40, -6],
-  Tarantino: [45, 0],
-  "Malo-jarosewli": [-24, 19],
+  Smorgoni: [-6, -5],
+  Bobr: [34, 0],
+  Wizma: [-50, -8],
+  Dorogobouge: [-44, -16],
+  Tarantino: [44, 12],
+  "Malo-jarosewli": [-14, 34],
 };
 const TEMPERATURE_NUDGES = {
-  "0°": [30, 2],
-  "−9°": [0, 16],
-  "−11°": [6, -19],
-  "−20°": [7, -23],
-  "−24°": [7, -19],
-  "−30°": [14, -18],
-  "−26°": [0, 15],
+  "0°": [26, -8],
+  "−24°": [0, -42],
 };
 // A point moved by dx, dy pixels at the camera's zoom, in Web Mercator.
-const nudged = (column, nudges, [dx, dy]) => {
+const nudged = (column, nudges) => {
   const perDegree = (512 * 2 ** CAMERA.zoom) / 360;
   const cases = (i) => Object.entries(nudges).map(([text, d]) => `WHEN ${column} = '${text}' THEN ${d[i]}`).join(" ");
-  const x = `CASE ${cases(0)} ELSE ${dx} END`;
-  const y = `CASE ${cases(1)} ELSE ${dy} END`;
+  const x = `CASE ${cases(0)} ELSE 0 END`;
+  const y = `CASE ${cases(1)} ELSE 0 END`;
   const mercator = "degrees(ln(tan(pi() / 4 + radians(ST_Y(geom)) / 2)))";
   return `ST_Point(ST_X(geom) + (${x}) / ${perDegree}, degrees(2 * atan(exp(radians(${mercator} - (${y}) / ${perDegree}))) - pi() / 2)) AS geom`;
 };
@@ -100,7 +95,7 @@ await patchLayer(army.id, {
 
 const temperatures = await addLayer({
   name: "Temperature on the retreat",
-  sql: `SELECT label, day, degrees_reaumur, degrees_celsius, as_printed, ${nudged("label", TEMPERATURE_NUDGES, [0, 8])} FROM temperatures`,
+  sql: `SELECT label, day, degrees_reaumur, degrees_celsius, as_printed, ${nudged("label", TEMPERATURE_NUDGES)} FROM temperatures`,
 });
 await patchLayer(temperatures.id, {
   style: {
@@ -113,7 +108,7 @@ await patchLayer(temperatures.id, {
     strokeWidth: 0,
     strokeOpacity: 0,
     pointRadius: 4,
-    label: { attribute: "label", size: 13, color: rgb("#1F4F8A"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.9), weight: "bold", density: 1 },
+    label: { attribute: "label", size: 13, color: rgb("#1F4F8A"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.9), weight: "bold", anchor: "bottom", offsetY: 3, density: 1 },
   },
   tooltip: ["day", "degrees_reaumur", "degrees_celsius", "as_printed"],
   legendTitle: "Temperature (degrees Réaumur)",
@@ -121,7 +116,7 @@ await patchLayer(temperatures.id, {
 
 const places = await addLayer({
   name: "Places, as Minard named them",
-  sql: `SELECT name_on_chart, name_today, ${nudged("name_on_chart", PLACE_NUDGES, [0, -9])} FROM places`,
+  sql: `SELECT name_on_chart, name_today, ${nudged("name_on_chart", PLACE_NUDGES)} FROM places`,
 });
 await patchLayer(places.id, {
   style: {
@@ -132,7 +127,7 @@ await patchLayer(places.id, {
     strokeWidth: 0,
     strokeOpacity: 0,
     pointRadius: 4,
-    label: { attribute: "name_on_chart", size: 12, color: rgb("#2A2622"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.9), density: 1 },
+    label: { attribute: "name_on_chart", size: 12, color: rgb("#2A2622"), haloWidth: 1, haloColor: rgb("#FFFFFF", 0.9), anchor: "top", offsetY: -3, density: 1 },
   },
   tooltip: ["name_on_chart", "name_today"],
   legendTitle: "Places, as Minard named them",
