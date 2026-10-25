@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "london-crash-hotspots",
-  "version": 2,
+  "version": 3,
   "kind": "workflow",
   "title": "London's crash hotspots",
   "question": "Where in London do collisions that kill or seriously injure someone cluster more than chance would allow?",
@@ -21,7 +21,7 @@
       {
         "dataset": "collisions",
         "source": "Road Safety Data, personal injury collisions 2025, Department for Transport",
-        "made": "Every personal injury collision the Metropolitan Police and the City of London Police recorded in 2025, 20,901 collisions read from the DfT's 2025 collision file on 2026-10-12; date, time, severity, road type, speed limit and light kept, decoded with the DfT's data guide."
+        "made": "Every personal injury collision the Metropolitan Police and the City of London Police recorded in 2025, 20,901 collisions read from the DfT's 2025 collision file on 2026-10-25; date, time, severity, road type, speed limit and light kept, decoded with the DfT's data guide."
       }
     ],
     "styling": [

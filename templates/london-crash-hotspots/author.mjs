@@ -14,7 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, setCanvas } from "../../tools/workflow.mjs";
+import canvas from "./canvas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -98,32 +99,8 @@ await step("hotspots", "hotspot", {
   name: "crash_hotspots",
 });
 
-await setLayout(api, workflow.id, {
-  sources: { collisions: { x: 20, y: 120 } },
-  steps: {
-    [steps.cells.id]: { x: 300, y: 120 },
-    [steps.serious.id]: { x: 580, y: 40 },
-    [steps.perCell.id]: { x: 860, y: 40 },
-    [steps.everyCell.id]: { x: 1140, y: 120 },
-    [steps.hotspots.id]: { x: 1420, y: 120 },
-  },
-  notes: [
-    {
-      id: "note-zeros",
-      x: 860, y: 260, w: 300, h: 150, color: "yellow",
-      text:
-        "Every cell where anyone was hurt in 2025 is kept, with a zero where no one was killed or seriously injured. " +
-        "Leaving those cells out would compare the dangerous streets only with each other.",
-    },
-    {
-      id: "note-reading",
-      x: 1260, y: 260, w: 300, h: 150, color: "blue",
-      text:
-        "Gi* compares each cell and the six around it with every scored cell in London. " +
-        "A z-score above 1.65, 1.96 or 2.58 marks a hot spot at 90, 95 or 99% confidence.",
-    },
-  ],
-});
+// The canvas in sections, as canvas.mjs lays it out.
+await setCanvas(api, workflow.id, canvas(facts));
 
 const run = await runWorkflow(api, workflow.id);
 
