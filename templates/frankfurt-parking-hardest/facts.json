@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "frankfurt-parking-hardest",
-  "version": 3,
+  "version": 4,
   "kind": "workflow",
   "title": "Where is parking hardest in Frankfurt?",
   "question": "Where in Frankfurt do drivers spend the most time hunting for parking for the spaces there are?",
@@ -26,12 +26,12 @@
       {
         "dataset": "search_points",
         "source": "start2park Park-and-Visit trips, ReLUT, Frankfurt University of Applied Sciences",
-        "made": "Every waypoint marked as searching on the trips that end in Frankfurt, 1,147 points read at commit de394ee on 2026-10-12; each worth the minutes until the trip's next waypoint."
+        "made": "Every waypoint marked as searching on the trips that end in Frankfurt, 1,147 points read at commit de394ee on 2026-10-25; each worth the minutes until the trip's next waypoint."
       },
       {
         "dataset": "parking_spaces",
         "source": "Georeferenced street parking locations in Frankfurt am Main, Frankfurt University of Applied Sciences",
-        "made": "All 29,215 parking spaces of the supply, one point each, read from Mobilithek offer 886571101635461120 on 2026-10-12; street, side, orientation and position kept."
+        "made": "All 29,215 parking spaces of the supply, one point each, read from Mobilithek offer 886571101635461120 on 2026-10-25; street, side, orientation and position kept."
       }
     ],
     "styling": [
