@@ -14,7 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, setCanvas } from "../../tools/workflow.mjs";
+import canvas from "./canvas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -79,41 +80,8 @@ await step("share", "sql_step", {
   name: "the_valley_in_numbers",
 });
 
-await setLayout(api, workflow.id, {
-  sources: {
-    nile: { x: 20, y: 40 },
-    nile_delta: { x: 20, y: 260 },
-    egypt: { x: 20, y: 480 },
-    population_cells: { x: 20, y: 700 },
-  },
-  steps: {
-    [steps.simplify.id]: { x: 300, y: 40 },
-    [steps.buffer.id]: { x: 580, y: 40 },
-    [steps.withDelta.id]: { x: 860, y: 150 },
-    [steps.dissolve.id]: { x: 1140, y: 150 },
-    [steps.clip.id]: { x: 1420, y: 300 },
-    [steps.desert.id]: { x: 1700, y: 480 },
-    [steps.valleyArea.id]: { x: 1700, y: 260 },
-    [steps.desertArea.id]: { x: 1980, y: 480 },
-    [steps.cells.id]: { x: 1700, y: 700 },
-    [steps.people.id]: { x: 1980, y: 700 },
-    [steps.share.id]: { x: 2260, y: 480 },
-  },
-  notes: [
-    {
-      id: "note-valley",
-      x: 860, y: 0, w: 300, h: 120, color: "yellow",
-      text:
-        "The valley: 10 km either side of the Nile and its two Delta branches, with the Delta as Natural Earth draws it, " +
-        "merged into one shape and cut at Egypt's border.",
-    },
-    {
-      id: "note-cells",
-      x: 1700, y: 880, w: 300, h: 110, color: "blue",
-      text: "A hexagon counts as in the valley if it touches it. Kontur's hexagons are about 400 m across.",
-    },
-  ],
-});
+// The canvas in sections, as canvas.mjs lays it out.
+await setCanvas(api, workflow.id, canvas(facts));
 
 const run = await runWorkflow(api, workflow.id);
 
