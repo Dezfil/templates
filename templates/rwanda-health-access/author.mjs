@@ -14,7 +14,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, section, setLayout } from "../../tools/workflow.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -114,33 +114,60 @@ await step("share", "sql_step", {
   name: "district_share",
 });
 
+// The canvas in sections, columns left to right as the work flows: the
+// question, the input data, the distance, the people per district, the
+// result. Every heading sits in one band across the top and every node
+// below it, so no edge crosses a section's text. Nodes are 144 by 114 on
+// a 176 column step and three rows; the centroids sit in the middle row
+// and feed both the row above and the row below.
+const ROW = [176, 328, 480];
 await setLayout(api, workflow.id, {
   sources: {
-    population_cells: { x: 20, y: 40 },
-    health_facilities: { x: 20, y: 260 },
-    districts: { x: 20, y: 480 },
+    health_facilities: { x: 328, y: ROW[0] },
+    population_cells: { x: 328, y: ROW[1] },
+    districts: { x: 328, y: ROW[2] },
   },
   steps: {
-    [steps.centres.id]: { x: 300, y: 40 },
-    [steps.nearest.id]: { x: 580, y: 150 },
-    [steps.far.id]: { x: 860, y: 150 },
-    [steps.districtPeople.id]: { x: 580, y: 420 },
-    [steps.districtFar.id]: { x: 1140, y: 300 },
-    [steps.share.id]: { x: 1420, y: 300 },
+    [steps.centres.id]: { x: 568, y: ROW[1] },
+    [steps.nearest.id]: { x: 744, y: ROW[0] },
+    [steps.far.id]: { x: 920, y: ROW[0] },
+    [steps.districtPeople.id]: { x: 1136, y: ROW[2] },
+    [steps.districtFar.id]: { x: 1312, y: ROW[2] },
+    [steps.share.id]: { x: 1552, y: ROW[2] },
   },
   notes: [
-    {
-      id: "note-distance",
-      x: 860, y: 0, w: 300, h: 130, color: "yellow",
+    section({
+      id: "note-about", label: "About", heading: 1, color: "blue",
+      x: 0, y: 0, w: 256, h: 624,
+      title: facts.title,
+      text: "How many people live more than 5 km from a public health facility, district by district? Five kilometres is about an hour's walk.",
+    }),
+    section({
+      id: "note-data", label: "Input data", color: "green",
+      x: 280, y: 0, w: 240, h: 624,
+      title: "Three open datasets",
+      text: "People per hexagon, public health facilities and district boundaries.",
+    }),
+    section({
+      id: "note-distance", label: "Step 1",
+      x: 544, y: 0, w: 544, h: 624,
+      title: "Distance to the nearest facility",
       text:
-        "The distance is a straight line on the ellipsoid from the middle of each hexagon to the nearest facility, in metres. " +
+        "The middle of each hexagon finds its nearest facility in a straight line, and the people more than 5 km away are kept. " +
         "Roads and hills make the real journey longer.",
-    },
-    {
-      id: "note-share",
-      x: 1420, y: 460, w: 300, h: 110, color: "blue",
-      text: "The share is the district's people more than 5 km from a facility, out of all its people.",
-    },
+    }),
+    section({
+      id: "note-districts", label: "Step 2",
+      x: 1112, y: 0, w: 368, h: 624,
+      title: "People per district",
+      text: "Two spatial joins add up each district's people: everyone, and those more than 5 km away.",
+    }),
+    section({
+      id: "note-share", label: "Result",
+      x: 1504, y: 0, w: 240, h: 624,
+      title: "Share per district",
+      text: "Each district's share of people more than 5 km from a facility.",
+    }),
   ],
 });
 

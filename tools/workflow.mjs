@@ -27,6 +27,17 @@ export async function setLayout(api, recipeId, layout) {
 }
 
 /**
+ * A section of the canvas: a tinted note behind a group of steps with an
+ * optional label tag, a short heading and a sentence or two. The examples
+ * explain themselves with these: the question, the input data, one per
+ * stage, the result.
+ */
+export function section({ id, label, title, text, color = "yellow", x, y, w, h, heading = 2 }) {
+  const block = label ? `---\nlabel: ${label}\n---\n` : "";
+  return { id, x, y, w, h, color, text: `${block}${"#".repeat(heading)} ${title}\n\n${text}` };
+}
+
+/**
  * Run the whole workflow once and wait for it to finish. Answers the run;
  * throws unless every step completed.
  */
