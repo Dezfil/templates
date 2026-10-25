@@ -88,11 +88,21 @@ export async function setCanvas(api, recipeId, { at, notes }) {
   return setLayout(api, recipeId, { sources, steps, notes });
 }
 
-/** The dataset names a step reads: its named inputs, or a SQL step's tables. */
+/**
+ * The dataset names a step reads: its named inputs, or the tables a SQL
+ * step's query names after FROM (a comma-separated list too) and JOIN.
+ */
 export function readsOf(step) {
   const { name, sql, ...rest } = step.parameters;
-  if (step.operation === "sql_step") return [...sql.matchAll(/\b(?:FROM|JOIN)\s+([A-Za-z_][A-Za-z0-9_]*)/gi)].map((m) => m[1]);
-  return Object.values(rest).filter((v) => typeof v === "string");
+  if (step.operation !== "sql_step") return Object.values(rest).filter((v) => typeof v === "string");
+  const tables = [...sql.matchAll(/\bJOIN\s+(?:LATERAL\s+)?([A-Za-z_][A-Za-z0-9_]*)/gi)].map((m) => m[1]);
+  for (const [, list] of sql.matchAll(/\bFROM\s+([\s\S]*?)(?=\b(?:WHERE|GROUP|ORDER|LIMIT|HAVING|JOIN|CROSS|LEFT|RIGHT|INNER|FULL|UNION)\b|[();]|$)/gi)) {
+    for (const part of list.split(",")) {
+      const table = part.trim().match(/^[A-Za-z_][A-Za-z0-9_]*/);
+      if (table) tables.push(table[0]);
+    }
+  }
+  return tables;
 }
 
 /**

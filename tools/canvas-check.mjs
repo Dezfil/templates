@@ -1,9 +1,10 @@
 // Check a workflow example's canvas the way a reader sees it: every node
 // inside a section and below its heading band, and no edge crossing a
 // node other than its own ends, a section's heading band, or running
-// backwards. Edges are traced as the canvas draws them (a bezier from the
-// tile's right edge to the next tile's left edge, both control points
-// halfway across).
+// backwards. Edges are traced as the canvas draws them: a cubic from the
+// tile's right edge to the next tile's left edge, level at both ends, its
+// control points 45% of the horizontal run in from each end and never
+// less than 40.
 //
 //   node tools/canvas-check.mjs <instance> <template folder> [work folder]
 //
@@ -23,7 +24,7 @@ function bezier(s, t) {
   const sx = s.x + TILE.right, sy = s.y + TILE.mid;
   const tx = t.x + TILE.left, ty = t.y + TILE.mid;
   const d = tx - sx;
-  const off = d >= 0 ? 0.5 * d : 0.25 * 25 * Math.sqrt(-d);
+  const off = Math.max(40, Math.abs(d) * 0.45);
   const c1 = [sx + off, sy], c2 = [tx - off, ty];
   const points = [];
   for (let i = 0; i <= 200; i++) {
@@ -52,7 +53,11 @@ export function checkCanvas(steps, layout) {
     else if (p.y < home.y + GRID.band - 8) problems.push(`${name} sits in its section's heading band`);
   }
 
-  const bodies = [...members].map(([name, p]) => ({ name, x0: p.x + 6, x1: p.x + GRID.nodeW - 6, y0: p.y - 4, y1: p.y + GRID.nodeH - 2 }));
+  // A node is its tile and, under it, its name and caption.
+  const bodies = [...members].flatMap(([name, p]) => [
+    { name, x0: p.x + TILE.left - 4, x1: p.x + TILE.right + 4, y0: p.y - 4, y1: p.y + 2 * TILE.mid + 2 },
+    { name, x0: p.x + 8, x1: p.x + GRID.nodeW - 8, y0: p.y + 2 * TILE.mid + 2, y1: p.y + GRID.nodeH - 2 },
+  ]);
   const bands = layout.notes.map((n) => ({ name: n.id, x0: n.x, x1: n.x + n.w, y0: n.y, y1: n.y + GRID.band - 8 }));
   for (const s of steps) {
     const to = s.parameters.name;
@@ -61,7 +66,8 @@ export function checkCanvas(steps, layout) {
       const { points, backwards } = bezier(members.get(from), members.get(to));
       const edge = `${from} → ${to}`;
       if (backwards) problems.push(`${edge} runs backwards`);
-      for (const b of bodies) if (b.name !== from && b.name !== to && points.some((pt) => inside(pt, b))) problems.push(`${edge} crosses ${b.name}`);
+      const crossed = new Set(bodies.filter((b) => b.name !== from && b.name !== to && points.some((pt) => inside(pt, b))).map((b) => b.name));
+      for (const name of crossed) problems.push(`${edge} crosses ${name}`);
       for (const b of bands) if (points.some((pt) => inside(pt, b))) problems.push(`${edge} crosses the heading of ${b.name}`);
     }
   }
