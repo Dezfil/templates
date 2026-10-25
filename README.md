@@ -22,6 +22,7 @@ tools/                the shared helpers, plain Node ESM
   source.mjs          fetch a source into a folder of its own; DuckDB with spatial
   facts.mjs           read a template's facts; write its credit note
   workflow.mjs        create a workflow, add its steps, lay out its canvas, run it
+  canvas-check.mjs    check a workflow example's canvas, and lay it out again
   pictures.mjs        the light and dark pictures, from the server's image export
   pack.mjs            the project export plus facts, results and pictures, as one archive
   zip.mjs             read and write ZIP archives, deterministically
@@ -30,6 +31,7 @@ tools/                the shared helpers, plain Node ESM
 templates/<id>/       one folder per template
   build.mjs           fetch each source at a pinned address, prepare it with DuckDB
   author.mjs          author it in a scratch Dezfil through the API
+  canvas.mjs          a workflow example's canvas: its sections and where each node sits
   facts.json          its facts: the template.json the archive carries
   NOTICE              every source, its licence and its credit, where and when it was read
 work/                 downloads, prepared data, authoring records (ignored)
@@ -99,6 +101,18 @@ and the validating one on 3752.
 
 A new version of a template raises `version` in its facts; a listed
 version is never changed.
+
+A workflow example explains itself on its canvas in sections:
+tinted notes behind the nodes, left to right as the work flows (About,
+Input data, one per step, Result), each a full-height column with its tag
+and a short heading and sentence in one band across the top and its nodes
+below, so no edge crosses a section's text. `canvas.mjs` names each node
+by its dataset at a column and row inside its section (`sectionsCanvas`
+in `tools/workflow.mjs` turns that into positions). After authoring,
+`node tools/canvas-check.mjs http://127.0.0.1:3751 templates/<id>` lays
+the canvas onto the authored workflow again and reports any node outside
+a section and any edge that crosses another node or a heading, so a
+canvas can be adjusted without authoring again.
 
 A workflow example names its bundled results in `authored.json` as
 `{ "results": { "<step id>": "<dataset name>" } }`, one per step; pack
