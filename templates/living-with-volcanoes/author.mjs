@@ -14,7 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, setCanvas } from "../../tools/workflow.mjs";
+import canvas from "./canvas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -99,41 +100,8 @@ await step("share", "sql_step", {
   name: "the_philippines_in_numbers",
 });
 
-await setLayout(api, workflow.id, {
-  sources: {
-    volcanoes: { x: 20, y: 40 },
-    philippines: { x: 20, y: 260 },
-    population_cells: { x: 20, y: 480 },
-    significant_eruptions: { x: 20, y: 700 },
-  },
-  steps: {
-    [steps.historical.id]: { x: 300, y: 40 },
-    [steps.buffer.id]: { x: 580, y: 40 },
-    [steps.land.id]: { x: 860, y: 150 },
-    [steps.centres.id]: { x: 300, y: 480 },
-    [steps.perVolcano.id]: { x: 1140, y: 300 },
-    [steps.eruptions.id]: { x: 300, y: 700 },
-    [steps.story.id]: { x: 1420, y: 480 },
-    [steps.together.id]: { x: 1140, y: 40 },
-    [steps.near.id]: { x: 1420, y: 150 },
-    [steps.people.id]: { x: 1700, y: 150 },
-    [steps.share.id]: { x: 1980, y: 150 },
-  },
-  notes: [
-    {
-      id: "note-historical",
-      x: 300, y: 200, w: 300, h: 110, color: "yellow",
-      text: "\"Historical\" is NCEI's status for a volcano with an eruption in recorded history: 18 of the Philippines' 49.",
-    },
-    {
-      id: "note-overlap",
-      x: 1420, y: 640, w: 300, h: 130, color: "blue",
-      text:
-        "Someone within 30 km of two volcanoes counts for each of them here; the total near any volcano counts them once, " +
-        "from the circles merged into one shape.",
-    },
-  ],
-});
+// The canvas in sections, as canvas.mjs lays it out.
+await setCanvas(api, workflow.id, canvas(facts));
 
 const run = await runWorkflow(api, workflow.id);
 

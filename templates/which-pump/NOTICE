@@ -39,11 +39,11 @@ catalogue record and refuses the scan unless every licence on it is the
 Public Domain Mark ("pdm"):
 
   https://api.wellcomecollection.org/catalogue/v2/works/uqa27qrt?include=items
-  read on 2026-10-12 at 12:45:37 UTC (1,860 bytes, SHA-256
+  read on 2026-10-25 at 13:05:15 UTC (1,860 bytes, SHA-256
   7fff5d4b1770a3a80c4cfcbe26f90fba513dd301a5f0c5e230b9bcfc33475070):
   licence "Public Domain Mark" (pdm)
 
-and the image itself, read on 2026-10-12 at 12:45:37 UTC from
+and the image itself, read on 2026-10-25 at 13:05:14 UTC from
 
   https://iiif.wellcomecollection.org/image/b28985266_0058.jp2/full/full/0/default.jpg
   (1,286,874 bytes, SHA-256 de9354e9f7bd867c164f41f81be4730c88731ff63b3057d23a648348802474be)
@@ -51,7 +51,7 @@ and the image itself, read on 2026-10-12 at 12:45:37 UTC from
 The template carries no part of the scan: only the positions read off
 it.
 
-What was read, by us, on 2026-10-12, and kept in trace.json beside the
+What was read, by us, on 2026-10-25, and kept in trace.json beside the
 build (our own reading, given away under CC0 1.0):
 - the 13 pumps, each named by the street beside it on the map, as Snow
   named none of them;
@@ -97,9 +97,9 @@ https://www.openstreetmap.org/copyright
 
 Credit: © OpenStreetMap contributors.
 
-Where and when: the nodes, read on 2026-10-12 at 12:45:37 UTC from the
-OpenStreetMap API (4,515 bytes, SHA-256
-ec027223adad21f190f53e080b18896334097a0d86aa31a8fbc5e498e0e27ea6):
+Where and when: the nodes, read on 2026-10-25 at 13:05:15 UTC from the
+OpenStreetMap API (4,512 bytes, SHA-256
+121a661653ced6f690c652a18091ce23e3cf408198d48c175ee70a15fad8d787):
 
   https://api.openstreetmap.org/api/0.6/nodes.json?nodes=9512930,25473293,108072,9521025,25473287,25473285,25473295,25475478,25475484,5453319326,9512928,11751472416,1906612406,9512935,107326,9521031,108062,25473424,5776590973,5718464949
 

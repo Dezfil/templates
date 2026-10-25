@@ -29,7 +29,7 @@ https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
 Credit: Department for Transport. Contains public sector information
 licensed under the Open Government Licence v3.0.
 
-Where and when: read on 2026-10-12 from the publisher's own files:
+Where and when: read on 2026-10-25 from the publisher's own files:
 
   https://data.dft.gov.uk/road-accidents-safety-data/dft-road-casualty-statistics-collision-2025.csv
   (19,349,153 bytes, SHA-256 e699c19bdb82e47e449b6f3381ac87631865f6a31cef118c9955ba80ca870e2b)
@@ -50,7 +50,7 @@ The workflow's results
 ----------------------
 
 The template carries each workflow step's result from its run on
-2026-10-12 (results/<step id>.parquet): the collisions with their H3 cells,
+2026-10-25 (results/<step id>.parquet): the collisions with their H3 cells,
 those that killed or seriously injured someone, their count per cell,
 every cell with its count, and the hot spot scores. They are made from the
 Road Safety Data and carry its terms.

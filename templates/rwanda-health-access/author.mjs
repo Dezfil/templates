@@ -14,7 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, setCanvas } from "../../tools/workflow.mjs";
+import canvas from "./canvas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -114,35 +115,8 @@ await step("share", "sql_step", {
   name: "district_share",
 });
 
-await setLayout(api, workflow.id, {
-  sources: {
-    population_cells: { x: 20, y: 40 },
-    health_facilities: { x: 20, y: 260 },
-    districts: { x: 20, y: 480 },
-  },
-  steps: {
-    [steps.centres.id]: { x: 300, y: 40 },
-    [steps.nearest.id]: { x: 580, y: 150 },
-    [steps.far.id]: { x: 860, y: 150 },
-    [steps.districtPeople.id]: { x: 580, y: 420 },
-    [steps.districtFar.id]: { x: 1140, y: 300 },
-    [steps.share.id]: { x: 1420, y: 300 },
-  },
-  notes: [
-    {
-      id: "note-distance",
-      x: 860, y: 0, w: 300, h: 130, color: "yellow",
-      text:
-        "The distance is a straight line on the ellipsoid from the middle of each hexagon to the nearest facility, in metres. " +
-        "Roads and hills make the real journey longer.",
-    },
-    {
-      id: "note-share",
-      x: 1420, y: 460, w: 300, h: 110, color: "blue",
-      text: "The share is the district's people more than 5 km from a facility, out of all its people.",
-    },
-  ],
-});
+// The canvas in sections, as canvas.mjs lays it out.
+await setCanvas(api, workflow.id, canvas(facts));
 
 const run = await runWorkflow(api, workflow.id);
 

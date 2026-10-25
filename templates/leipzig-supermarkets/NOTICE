@@ -36,7 +36,7 @@ https://www.govdata.de/dl-de/by-2-0
 Credit: © Statistische Ämter des Bundes und der Länder, 2024 (Zensus
 2022), the notice the description carries.
 
-Where and when: read on 2026-10-12:
+Where and when: read on 2026-10-25:
 
   https://www.destatis.de/static/DE/zensus/gitterdaten/Zensus2022_Bevoelkerungszahl.zip
   (18,501,524 bytes, SHA-256 1a8428d31eab264c8717bfdcbf40fbd66c217edb2e2a98d0e67741bd8a1a941a;
@@ -67,8 +67,8 @@ https://opendatacommons.org/licenses/odbl/1-0/
 
 Credit: © OpenStreetMap contributors.
 
-Where and when: read on 2026-10-12 from the Overpass API, the data as of
-2026-10-12 18:08:20 UTC, with this query:
+Where and when: read on 2026-10-25 from the Overpass API, the data as of
+2026-10-25 13:04:21 UTC, with this query:
 
   https://overpass-api.de/api/interpreter
   [out:json][timeout:120];nwr["shop"="supermarket"](51.2,12.17,51.48,12.6);out center tags;
@@ -96,7 +96,7 @@ https://www.govdata.de/dl-de/by-2-0
 
 Credit: Stadt Leipzig, Amt für Statistik und Wahlen.
 
-Where and when: read on 2026-10-12:
+Where and when: read on 2026-10-25:
 
   https://opendata.leipzig.de/api/3/action/package_show?id=geodaten-ortsteile-leipzig
   (the record, with the licence)
@@ -112,7 +112,7 @@ The workflow's results
 ----------------------
 
 The template carries each workflow step's result from its run on
-2026-10-12 (results/<step id>.parquet): the squares' middles, each
+2026-10-25 (results/<step id>.parquet): the squares' middles, each
 middle's nearest supermarket and its distance, each middle's district,
 and the people per district with those more than 1 km away, their share
 and the average distance. They are made from all three sources together

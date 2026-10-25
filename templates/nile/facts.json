@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "nile",
-  "version": 1,
+  "version": 2,
   "kind": "workflow",
   "title": "The Nile",
   "question": "How many of Egypt's people live along the Nile, and on how much of its land?",
@@ -28,22 +28,22 @@
       {
         "dataset": "population_cells",
         "source": "Kontur Population: Egypt, population density for 400m H3 hexagons",
-        "made": "All 95,818 populated H3 hexagons of the 2023-11-01 release, 112.7 million people, read from Kontur's address on HDX on 2026-10-12; turned from Web Mercator into longitude and latitude."
+        "made": "All 95,818 populated H3 hexagons of the 2023-11-01 release, 112.7 million people, read from Kontur's address on HDX on 2026-10-25; turned from Web Mercator into longitude and latitude."
       },
       {
         "dataset": "nile",
         "source": "Natural Earth: the Nile, the Nile Delta and Egypt (1:10m)",
-        "made": "The Nile's centre line in Egypt, its course through Lake Nasser, and the Rosetta and Damietta branches, from Natural Earth's rivers (version 5.0.0), cut at Egypt's border; read on 2026-10-12."
+        "made": "The Nile's centre line in Egypt, its course through Lake Nasser, and the Rosetta and Damietta branches, from Natural Earth's rivers (version 5.0.0), cut at Egypt's border; read on 2026-10-25."
       },
       {
         "dataset": "nile_delta",
         "source": "Natural Earth: the Nile, the Nile Delta and Egypt (1:10m)",
-        "made": "The Nile Delta as Natural Earth's geographic regions draw it (version 5.0.0), read on 2026-10-12."
+        "made": "The Nile Delta as Natural Earth's geographic regions draw it (version 5.0.0), read on 2026-10-25."
       },
       {
         "dataset": "egypt",
         "source": "Natural Earth: the Nile, the Nile Delta and Egypt (1:10m)",
-        "made": "Egypt's outline from Natural Earth's countries (version 5.1.1), read on 2026-10-12."
+        "made": "Egypt's outline from Natural Earth's countries (version 5.1.1), read on 2026-10-25."
       }
     ],
     "styling": [

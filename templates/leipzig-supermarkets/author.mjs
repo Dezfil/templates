@@ -14,7 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, setCanvas } from "../../tools/workflow.mjs";
+import canvas from "./canvas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -88,34 +89,8 @@ await step("summary", "sql_step", {
   name: "district_access",
 });
 
-await setLayout(api, workflow.id, {
-  sources: {
-    population_cells: { x: 20, y: 40 },
-    supermarkets: { x: 20, y: 240 },
-    districts: { x: 20, y: 440 },
-  },
-  steps: {
-    [steps.centres.id]: { x: 300, y: 40 },
-    [steps.nearest.id]: { x: 580, y: 140 },
-    [steps.district.id]: { x: 860, y: 300 },
-    [steps.summary.id]: { x: 1140, y: 300 },
-  },
-  notes: [
-    {
-      id: "note-distance",
-      x: 580, y: -60, w: 300, h: 150, color: "yellow",
-      text:
-        "The distance runs in a straight line from the middle of each 100 m census cell to the nearest supermarket, in metres on the ground. " +
-        "Streets, rivers and railways make the walk longer.",
-    },
-    {
-      id: "note-summary",
-      x: 1140, y: 460, w: 300, h: 150, color: "blue",
-      text:
-        "Per district: its people, those more than 1 km from a supermarket and their share, and the average distance, each cell weighted by the people in it.",
-    },
-  ],
-});
+// The canvas in sections, as canvas.mjs lays it out.
+await setCanvas(api, workflow.id, canvas(facts));
 
 const run = await runWorkflow(api, workflow.id);
 

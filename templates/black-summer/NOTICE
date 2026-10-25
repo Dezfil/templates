@@ -43,7 +43,7 @@ acknowledge the use of imagery from the NASA LANCE FIRMS
 Information System (ESDIS)."
 https://www.earthdata.nasa.gov/data/tools/firms/faq
 
-Where and when: read on 2026-10-12 at 18:25:33 UTC from FIRMS's country
+Where and when: read on 2026-10-25 at 13:06:21 UTC from FIRMS's country
 files:
 
   https://firms.modaps.eosdis.nasa.gov/data/country/modis/2019/modis_2019_Australia.csv
@@ -74,7 +74,7 @@ https://www.naturalearthdata.com/about/terms-of-use/
 
 Credit, the short form it suggests: Made with Natural Earth.
 
-Where and when: read on 2026-10-12 at 18:25:35 UTC from
+Where and when: read on 2026-10-25 at 13:06:23 UTC from
 
   https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_1_states_provinces.zip
   (14,909,524 bytes, SHA-256 efc59726337323058f9446210adc96673179cd344e053666ee3d28cb58ba2b05)
@@ -86,7 +86,7 @@ The workflow's results
 ----------------------
 
 The template carries each workflow step's result from its run on
-2026-10-12 (results/<step id>.parquet): the confident detections, their H3
+2026-10-25 (results/<step id>.parquet): the confident detections, their H3
 cells, the burning cells and their middles, the cells by fire, the
 detections by fire, the hulls, the hulls on land, measured, each fire's
 fire radiative power, and the fires. They are made from both sources

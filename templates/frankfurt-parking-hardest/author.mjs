@@ -14,8 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { readLicence } from "../frankfurt-parking/sources.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, setCanvas } from "../../tools/workflow.mjs";
+import canvas from "./canvas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -25,9 +25,6 @@ const work = path.resolve(process.argv[3] ?? path.join(here, "../../work"), "fra
 const facts = JSON.parse(await readFile(path.join(here, "facts.json"), "utf8"));
 const record = JSON.parse(await readFile(path.join(work, "build-record.json"), "utf8"));
 const [trips, supply] = facts.sources;
-// The trips are under BSD-3-Clause: its notice, word for word, travels in
-// a note on the workflow's canvas.
-const licence = await readLicence(work, record);
 
 // H3 resolution 10, cells about 150 m across (a street block or two), and
 // a neighbourhood of two rings around each, about 300 m: fine enough that
@@ -102,38 +99,8 @@ await step("hotspots", "hotspot", {
   name: "parking_hotspots",
 });
 
-await setLayout(api, workflow.id, {
-  sources: { search_points: { x: 20, y: 40 }, parking_spaces: { x: 20, y: 300 } },
-  steps: {
-    [steps.searchCells.id]: { x: 300, y: 40 },
-    [steps.searchMinutes.id]: { x: 580, y: 40 },
-    [steps.spaceCells.id]: { x: 300, y: 300 },
-    [steps.spaces.id]: { x: 580, y: 300 },
-    [steps.perSpace.id]: { x: 860, y: 170 },
-    [steps.hotspots.id]: { x: 1140, y: 170 },
-  },
-  notes: [
-    {
-      id: "note-question",
-      x: 860, y: 380, w: 300, h: 150, color: "yellow",
-      text:
-        "Searching is measured in minutes: each waypoint the app marked as searching counts the time until the next one. " +
-        "Dividing by the parking spaces in the same cell asks where the hunt is long for the supply there.",
-    },
-    {
-      id: "note-reading",
-      x: 1140, y: 380, w: 300, h: 150, color: "blue",
-      text:
-        "Gi* compares each cell and the cells within two rings of it with every searched cell. " +
-        "A z-score above 1.65, 1.96 or 2.58 marks a hot spot at 90, 95 or 99% confidence.",
-    },
-    {
-      id: "note-licence",
-      x: 20, y: 580, w: 560, h: 520, color: "grey",
-      text: `The start2park trips are published by ReLUT, Frankfurt University of Applied Sciences, under this licence:\n\n${licence.trim()}`,
-    },
-  ],
-});
+// The canvas in sections, as canvas.mjs lays it out.
+await setCanvas(api, workflow.id, await canvas(facts, { work }));
 
 const run = await runWorkflow(api, workflow.id);
 

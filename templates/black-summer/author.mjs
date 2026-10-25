@@ -14,7 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, setCanvas } from "../../tools/workflow.mjs";
+import canvas from "./canvas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -108,39 +109,8 @@ await step("fires", "join_by_key", {
   name: "fires",
 });
 
-await setLayout(api, workflow.id, {
-  sources: {
-    fire_detections: { x: 20, y: 40 },
-    states: { x: 20, y: 480 },
-  },
-  steps: {
-    [steps.confident.id]: { x: 300, y: 40 },
-    [steps.cells.id]: { x: 580, y: 40 },
-    [steps.perCell.id]: { x: 860, y: 40 },
-    [steps.cellPoints.id]: { x: 1140, y: 40 },
-    [steps.cluster.id]: { x: 1420, y: 40 },
-    [steps.byFire.id]: { x: 1700, y: 150 },
-    [steps.hulls.id]: { x: 1980, y: 260 },
-    [steps.land.id]: { x: 2260, y: 370 },
-    [steps.area.id]: { x: 2540, y: 370 },
-    [steps.power.id]: { x: 1980, y: 480 },
-    [steps.fires.id]: { x: 2820, y: 420 },
-  },
-  notes: [
-    {
-      id: "note-cells",
-      x: 860, y: 200, w: 300, h: 130, color: "yellow",
-      text:
-        "Clustering 52,865 detections one by one is past the 10,000 rows the step takes. So the detections go into H3 cells of about 36 km² first, " +
-        "and the cells' middles are clustered: neighbouring burning cells make one fire.",
-    },
-    {
-      id: "note-hull",
-      x: 1980, y: 620, w: 300, h: 120, color: "blue",
-      text: "A convex hull wraps a fire's detections without its bays and gaps, so its area is an upper bound on the ground that burned.",
-    },
-  ],
-});
+// The canvas in sections, as canvas.mjs lays it out.
+await setCanvas(api, workflow.id, canvas(facts));
 
 const run = await runWorkflow(api, workflow.id);
 

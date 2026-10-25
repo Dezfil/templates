@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "black-summer",
-  "version": 1,
+  "version": 2,
   "kind": "workflow",
   "title": "Black Summer fires",
   "question": "How many separate fires burned in New South Wales and Victoria from November 2019 to January 2020, and how big were they?",
@@ -29,12 +29,12 @@
       {
         "dataset": "fire_detections",
         "source": "NASA FIRMS: MODIS active fire detections (MCD14ML), Australia, 2019 and 2020",
-        "made": "The 95,392 MODIS detections in FIRMS's 2019 and 2020 files for Australia from 1 November 2019 to 31 January 2020 in NSW, Victoria, the ACT and Jervis Bay, presumed vegetation fires (type 0), read on 2026-10-12: day, UTC time, satellite, confidence, radiative power, brightness, day or night, state."
+        "made": "The 95,392 MODIS detections in FIRMS's 2019 and 2020 files for Australia from 1 November 2019 to 31 January 2020 in NSW, Victoria, the ACT and Jervis Bay, presumed vegetation fires (type 0), read on 2026-10-25: day, UTC time, satellite, confidence, radiative power, brightness, day or night, state."
       },
       {
         "dataset": "states",
         "source": "Natural Earth: New South Wales, Victoria and the territories (1:10m states and provinces)",
-        "made": "The four outlines from Natural Earth's states and provinces (version 5.1.1), read on 2026-10-12."
+        "made": "The four outlines from Natural Earth's states and provinces (version 5.1.1), read on 2026-10-25."
       }
     ],
     "styling": [

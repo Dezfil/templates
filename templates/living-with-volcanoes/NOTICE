@@ -8,7 +8,7 @@ source's terms, below.
 Sources, licences and credits, as the template's facts and its map's note
 carry them:
 
-- NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines, CC0-1.0: National Geophysical Data Center / World Data Service (NGDC/WDS): NCEI/WDS Global Significant Volcanic Eruptions Database. NOAA National Centers for Environmental Information. doi:10.7289/V5JW8BSH, accessed 2026-10-12
+- NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines, CC0-1.0: National Geophysical Data Center / World Data Service (NGDC/WDS): NCEI/WDS Global Significant Volcanic Eruptions Database. NOAA National Centers for Environmental Information. doi:10.7289/V5JW8BSH, accessed 2026-10-25
 - Kontur Population: Philippines, population density for 400m H3 hexagons, CC-BY-4.0: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange
 - Natural Earth: the Philippines (1:10m countries), LicenseRef-Natural-Earth: Made with Natural Earth
 
@@ -36,9 +36,9 @@ https://creativecommons.org/publicdomain/zero/1.0/
 Credit, as NCEI's metadata asks the data be cited: National Geophysical
 Data Center / World Data Service (NGDC/WDS): NCEI/WDS Global Significant
 Volcanic Eruptions Database. NOAA National Centers for Environmental
-Information. doi:10.7289/V5JW8BSH, accessed 2026-10-12.
+Information. doi:10.7289/V5JW8BSH, accessed 2026-10-25.
 
-Where and when: read on 2026-10-12 at 18:15:43 UTC from NCEI's natural
+Where and when: read on 2026-10-25 at 13:06:12 UTC from NCEI's natural
 hazards service, each in one page:
 
   https://www.ngdc.noaa.gov/hazel/hazard-service/api/v1/volcanolocs?country=Philippines
@@ -69,7 +69,7 @@ https://creativecommons.org/licenses/by/4.0/
 
 Credit: Kontur Population, Kontur Inc., via the Humanitarian Data Exchange.
 
-Where and when: read on 2026-10-12 at 18:15:45 UTC from the address HDX
+Where and when: read on 2026-10-25 at 13:06:14 UTC from the address HDX
 lists for the release:
 
   https://geodata-eu-central-1-kontur-public.s3.amazonaws.com/kontur_datasets/kontur_population_PH_20231101.gpkg.gz
@@ -96,7 +96,7 @@ https://www.naturalearthdata.com/about/terms-of-use/
 
 Credit, the short form it suggests: Made with Natural Earth.
 
-Where and when: read on 2026-10-12 at 18:15:45 UTC from
+Where and when: read on 2026-10-25 at 13:06:14 UTC from
 
   https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries.zip
   (4,930,492 bytes, SHA-256 ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6)
@@ -108,7 +108,7 @@ The workflow's results
 ----------------------
 
 The template carries each workflow step's result from its run on
-2026-10-12 (results/<step id>.parquet): the 18 volcanoes with a historical
+2026-10-25 (results/<step id>.parquet): the 18 volcanoes with a historical
 eruption, their 30 km circles, the circles on land, the hexagons' middles,
 the people per volcano, the significant eruptions per volcano, both joined,
 the circles merged, the middles inside them, their people, and the
