@@ -43,7 +43,7 @@ export default async (facts, { work }) => {
   const licence = await readLicence(work, record);
   const below = Math.max(...canvas.notes.map((n) => n.y + n.h)) + 2 * GRID.gap;
   canvas.notes.push({
-    id: "note-licence", x: 0, y: below, w: 560, h: 520, color: "grey",
+    id: "note-licence", x: 0, y: below, w: 560, h: 640, color: "grey",
     text: `---\nlabel: Licence\n---\nThe start2park trips are published by ReLUT, Frankfurt University of Applied Sciences, under this licence:\n\n${licence.trim()}`,
   });
   return canvas;
