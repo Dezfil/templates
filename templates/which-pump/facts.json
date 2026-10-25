@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "which-pump",
-  "version": 2,
+  "version": 3,
   "kind": "workflow",
   "title": "Which pump?",
   "question": "Which street pump do the deaths of London's 1854 Broad Street cholera outbreak gather around?",
@@ -26,12 +26,12 @@
       {
         "dataset": "deaths",
         "source": "John Snow, Map 1 in On the mode of communication of cholera, 2nd edition (1855)",
-        "made": "One point per bar on Snow's Map 1, read on 2026-10-12 off the Wellcome Collection's scan: 580 bars in 281 stacks, counted from their ink and checked by eye (the 1992 count by Dodson is 578), placed through 17 OpenStreetMap junctions."
+        "made": "One point per bar on Snow's Map 1, read on 2026-10-25 off the Wellcome Collection's scan: 580 bars in 281 stacks, counted from their ink and checked by eye (the 1992 count by Dodson is 578), placed through 17 OpenStreetMap junctions."
       },
       {
         "dataset": "pumps",
         "source": "John Snow, Map 1 in On the mode of communication of cholera, 2nd edition (1855)",
-        "made": "The 13 pumps on Snow's Map 1, read on 2026-10-12 and named by the street beside each; placed like the deaths. The Broad Street pump lands about 4 m from the kerbstone that marks its site in Broadwick Street today."
+        "made": "The 13 pumps on Snow's Map 1, read on 2026-10-25 and named by the street beside each; placed like the deaths. The Broad Street pump lands about 4 m from the kerbstone that marks its site in Broadwick Street today."
       }
     ],
     "styling": [

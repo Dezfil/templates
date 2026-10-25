@@ -14,7 +14,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { connect } from "../../tools/client.mjs";
 import { creditNote } from "../../tools/facts.mjs";
-import { addStep, createWorkflow, runWorkflow, setLayout } from "../../tools/workflow.mjs";
+import { addStep, createWorkflow, runWorkflow, setCanvas } from "../../tools/workflow.mjs";
+import canvas from "./canvas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const base = process.argv[2];
@@ -92,42 +93,8 @@ await step("share", "sql_step", {
   name: "share_within_100_m",
 });
 
-await setLayout(api, workflow.id, {
-  sources: { deaths: { x: 20, y: 40 }, pumps: { x: 20, y: 300 } },
-  steps: {
-    [steps.nearest.id]: { x: 300, y: 40 },
-    [steps.perPump.id]: { x: 580, y: 40 },
-    [steps.pumpsCounted.id]: { x: 860, y: 40 },
-    [steps.broad.id]: { x: 300, y: 300 },
-    [steps.ring.id]: { x: 580, y: 300 },
-    [steps.inRing.id]: { x: 860, y: 300 },
-    [steps.share.id]: { x: 1140, y: 300 },
-  },
-  notes: [
-    {
-      id: "note-question",
-      x: 1140, y: 40, w: 300, h: 200, color: "yellow",
-      text:
-        "Each death goes to the pump nearest it, in a straight line, and the deaths are counted per pump. " +
-        "Then a ring of 100 m, about a minute's walk, around the Broad Street pump asks what share of all the deaths fell that close to it.",
-    },
-    {
-      id: "note-reading",
-      x: 300, y: 560, w: 560, h: 170, color: "blue",
-      text:
-        "Snow also measured the walk to each pump along the streets, which a straight line only approximates: " +
-        "a house can be nearer one pump as the crow flies and another on foot. The deaths are one point per bar he drew at each house, not addresses.",
-    },
-    {
-      id: "note-placing",
-      x: 20, y: 560, w: 260, h: 260, color: "grey",
-      text:
-        `Snow's map is placed on today's streets through ${record.fit.junctions} junctions from OpenStreetMap, ` +
-        `${record.fit.rmsMetres} m apart on average once fitted. His Broad Street pump lands ${record.fit.broadStreetPump.kerbstoneMetres} m ` +
-        "from the red granite kerbstone that marks its site in Broadwick Street today.",
-    },
-  ],
-});
+// The canvas in sections, as canvas.mjs lays it out.
+await setCanvas(api, workflow.id, canvas(facts));
 
 const run = await runWorkflow(api, workflow.id);
 
