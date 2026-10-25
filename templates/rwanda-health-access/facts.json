@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "rwanda-health-access",
-  "version": 3,
+  "version": 4,
   "kind": "workflow",
   "title": "Health access in Rwanda",
   "question": "How many people in Rwanda live more than 5 km from a public health facility, district by district?",
@@ -31,17 +31,17 @@
       {
         "dataset": "population_cells",
         "source": "Kontur Population: Rwanda, population density for 400m H3 hexagons",
-        "made": "All 24,764 populated H3 hexagons of the 2023-11-01 release, 14.3 million people, read from Kontur's address on HDX on 2026-10-12; turned from Web Mercator into longitude and latitude."
+        "made": "All 24,764 populated H3 hexagons of the 2023-11-01 release, 14.3 million people, read from Kontur's address on HDX on 2026-10-25; turned from Web Mercator into longitude and latitude."
       },
       {
         "dataset": "health_facilities",
         "source": "Public health facilities in sub-Saharan Africa, Maina et al. (2019)",
-        "made": "The inventory's 572 facilities in Rwanda, read from figshare article 7725374 version 1 on 2026-10-12; name, type, ownership and province kept, placed by their latitude and longitude."
+        "made": "The inventory's 572 facilities in Rwanda, read from figshare article 7725374 version 1 on 2026-10-25; name, type, ownership and province kept, placed by their latitude and longitude."
       },
       {
         "dataset": "districts",
         "source": "geoBoundaries Rwanda districts (ADM2), from Open Data Rwanda",
-        "made": "The 30 district outlines, simplified, read from the geoBoundaries repository at commit 9469f09 on 2026-10-12; the district name kept."
+        "made": "The 30 district outlines, simplified, read from the geoBoundaries repository at commit 9469f09 on 2026-10-25; the district name kept."
       }
     ],
     "styling": [
