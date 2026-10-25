@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "id": "living-with-volcanoes",
-  "version": 1,
+  "version": 2,
   "kind": "workflow",
   "title": "Living with volcanoes",
   "question": "How many people in the Philippines live within 30 km of a volcano that has erupted in recorded history?",
@@ -14,7 +14,7 @@
     {
       "name": "NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines",
       "licence": "CC0-1.0",
-      "credit": "National Geophysical Data Center / World Data Service (NGDC/WDS): NCEI/WDS Global Significant Volcanic Eruptions Database. NOAA National Centers for Environmental Information. doi:10.7289/V5JW8BSH, accessed 2026-10-12"
+      "credit": "National Geophysical Data Center / World Data Service (NGDC/WDS): NCEI/WDS Global Significant Volcanic Eruptions Database. NOAA National Centers for Environmental Information. doi:10.7289/V5JW8BSH, accessed 2026-10-25"
     },
     {
       "name": "Kontur Population: Philippines, population density for 400m H3 hexagons",
@@ -33,22 +33,22 @@
       {
         "dataset": "volcanoes",
         "source": "NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines",
-        "made": "The 49 volcanoes NCEI lists in the Philippines, read from its hazards service on 2026-10-12: name, location, kind, elevation, status and the last known eruption, its code put in words from NCEI's own list."
+        "made": "The 49 volcanoes NCEI lists in the Philippines, read from its hazards service on 2026-10-25: name, location, kind, elevation, status and the last known eruption, its code put in words from NCEI's own list."
       },
       {
         "dataset": "significant_eruptions",
         "source": "NOAA NCEI: the Volcano Locations Database and the Global Significant Volcanic Eruptions Database, the Philippines",
-        "made": "The 50 significant eruptions NCEI lists in the Philippines, read from its hazards service on 2026-10-12: the volcano, the date, the explosivity index and the deaths."
+        "made": "The 50 significant eruptions NCEI lists in the Philippines, read from its hazards service on 2026-10-25: the volcano, the date, the explosivity index and the deaths."
       },
       {
         "dataset": "population_cells",
         "source": "Kontur Population: Philippines, population density for 400m H3 hexagons",
-        "made": "All 291,941 populated H3 hexagons of the 2023-11-01 release, 117.3 million people, read from Kontur's address on HDX on 2026-10-12; turned from Web Mercator into longitude and latitude."
+        "made": "All 291,941 populated H3 hexagons of the 2023-11-01 release, 117.3 million people, read from Kontur's address on HDX on 2026-10-25; turned from Web Mercator into longitude and latitude."
       },
       {
         "dataset": "philippines",
         "source": "Natural Earth: the Philippines (1:10m countries)",
-        "made": "The Philippines' outline from Natural Earth's countries (version 5.1.1), read on 2026-10-12."
+        "made": "The Philippines' outline from Natural Earth's countries (version 5.1.1), read on 2026-10-25."
       }
     ],
     "styling": [
