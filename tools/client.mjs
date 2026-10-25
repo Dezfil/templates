@@ -43,7 +43,7 @@ export async function connect(base, account = AUTHOR) {
     body: JSON.stringify(entry.setupRequired ? account : { email: account.email, password: account.password }),
   });
   if (signed.status !== 200) throw new ApiError("POST", "/api/auth/sign-in", signed.status, await signed.json().catch(() => null));
-  const cookie = signed.headers.getSetCookie().find((c) => c.startsWith("dezfil_session="))?.split(";")[0];
+  const cookie = signed.headers.getSetCookie().find((c) => /^dezfil_session(_\d+)?=/.test(c))?.split(";")[0];
   if (!cookie) throw new Error("Signing in issued no session.");
   const issued = await fetch(`${origin}/api/account/tokens`, {
     method: "POST",
